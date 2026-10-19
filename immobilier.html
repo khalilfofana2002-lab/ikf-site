@@ -1,1 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IKF Immobilier | Vente et location au Sénégal</title>
 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #080808;
+            color: white;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #111;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            border-bottom: 2px solid #d4af37;
+        }
+
+        .brand {
+            color: #d4af37;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        .hero {
+            min-height: 380px;
+            padding: 70px 7%;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #17130a, #080808 65%);
+        }
+
+        .hero h1 {
+            color: #d4af37;
+            font-size: clamp(32px, 6vw, 52px);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 0 auto 25px;
+            color: #ddd;
+        }
+
+        .button {
+            display: inline-block;
+            background: #d4af37;
+            color: #080808;
+            padding: 13px 22px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        section {
+            padding: 55px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #d4af37;
+            font-size: 30px;
+            margin-bottom: 30px;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #151515;
+            border: 1px solid #55451d;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .card h3 {
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .contact {
+            text-align: center;
+            background: #111;
+        }
+
+        .contact p {
+            margin: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 22px;
+            color: #bbb;
+            border-top: 1px solid #55451d;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="brand">IKF IMMOBILIER</div>
+
+        <nav>
+            <a href="index.html">Accueil IKF</a>
+            <a href="#services">Nos services</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div>
+                <h1>Votre projet immobilier, notre priorité</h1>
+
+                <p>
+                    IKF Immobilier vous accompagne dans la recherche
+                    de logements, la vente de biens et la recherche
+                    de terrains au Sénégal.
+                </p>
+
+                <a class="button"
+                   href="https://wa.me/221703311532"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Nous contacter sur WhatsApp
+                </a>
+            </div>
+        </section>
+
+        <section id="services">
+            <h2 class="section-title">Nos services immobiliers</h2>
+
+            <div class="services">
+
+                <article class="card">
+                    <h3>🏠 Vente de maisons</h3>
+                    <p>
+                        Nous vous accompagnons dans la recherche
+                        d'une maison correspondant à vos besoins.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>🔑 Location</h3>
+                    <p>
+                        Nous vous aidons à rechercher un logement
+                        adapté à votre budget.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>🌍 Terrains</h3>
+                    <p>
+                        Nous vous accompagnons dans la recherche
+                        de terrains selon votre projet.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>🤝 Accompagnement</h3>
+                    <p>
+                        Contactez-nous pour discuter de votre
+                        projet immobilier au Sénégal.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <h2 class="section-title">Contactez IKF</h2>
+
+            <p><strong>Téléphone :</strong> +221 77 877 78 57</p>
+
+            <p><strong>WhatsApp :</strong> +221 70 331 15 32</p>
+
+            <p>
+                <strong>E-mail :</strong>
+                khalilfofana2002@gmail.com
+            </p>
+
+            <p><strong>Adresse :</strong> Keur Massar, Medina Gana Sarr</p>
+
+            <a class="button"
+               href="https://wa.me/221703311532"
+               target="_blank"
+               rel="noopener noreferrer">
+                Écrire à IKF
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <p>IKF — TRAVAIL · DISCIPLINE · RÉUSSITE</p>
+        <p>© 2026 IKF Immobilier</p>
+    </footer>
+
+</body>
+</html>
