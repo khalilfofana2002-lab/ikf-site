@@ -1,661 +1,176 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080808">
-<meta name="description" content="IKF Groupe : immobilier, automobile, commerce et solutions numériques au Sénégal.">
-<title>IKF Groupe | Travail, Discipline, Réussite</title>
-
+<meta name="description" content="IKF — Ibrahima Khaliloulaye Fofana. Entrepreneuriat, immobilier, commerce et projets numériques.">
+<title>IKF | Ibrahima Khaliloulaye Fofana</title>
 <style>
-:root {
-    --noir: #080808;
-    --or: #f5bd22;
-    --or-clair: #ffe18a;
-    --blanc: #f8f8f8;
-    --gris: #bdbdbd;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background: var(--noir);
-    color: var(--blanc);
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(5, 5, 5, 0.97);
-    border-bottom: 1px solid #72520c;
-}
-
-nav {
-    max-width: 1250px;
-    margin: auto;
-    padding: 15px 22px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.brand {
-    color: var(--or);
-    font-size: 35px;
-    font-weight: 900;
-    letter-spacing: 3px;
-}
-
-.links {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 17px;
-}
-
-.links a {
-    font-size: 13px;
-    transition: color .2s;
-}
-
-.links a:hover {
-    color: var(--or);
-}
-
-.hero {
-    min-height: 510px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 20px;
-    padding: 65px max(6%, calc((100% - 1200px) / 2));
-    background:
-        radial-gradient(ellipse at 75% 45%, #49320b 0%, #171006 27%, #080808 66%);
-    border-bottom: 1px solid #76550c;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-}
-
-.surtitre {
-    color: var(--or);
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-.hero h1 {
-    color: var(--or);
-    font-size: clamp(65px, 10vw, 125px);
-    line-height: 1;
-    letter-spacing: -4px;
-    margin: 12px 0;
-}
-
-.hero h2 {
-    font-size: clamp(20px, 3vw, 30px);
-    margin-bottom: 18px;
-}
-
-.hero p {
-    max-width: 480px;
-    color: #ddd;
-    margin-bottom: 25px;
-}
-
-.bouton {
-    display: inline-block;
-    padding: 13px 23px;
-    background: linear-gradient(135deg, #ffe27c, #f0b30d, #d99500);
-    color: #111;
-    font-weight: bold;
-    border-radius: 30px;
-    transition: transform .2s;
-}
-
-.bouton:hover {
-    transform: translateY(-3px);
-}
-
-.bouton-secondaire {
-    display: inline-block;
-    padding: 11px 19px;
-    border: 1px solid var(--or);
-    border-radius: 25px;
-    color: var(--or);
-    font-weight: bold;
-}
-
-.lion {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 330px;
-    overflow: hidden;
-}
-
-.lion img {
-    width: 100%;
-    max-width: 510px;
-    max-height: 420px;
-    object-fit: contain;
-    filter: drop-shadow(0 0 35px rgba(245, 189, 34, .2));
-}
-
-.lion-placeholder {
-    text-align: center;
-    color: var(--or);
-    font-size: 100px;
-}
-
-.lion-placeholder p {
-    font-size: 13px;
-    letter-spacing: 3px;
-}
-
-.valeurs {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    max-width: 1200px;
-    margin: auto;
-    padding: 28px 22px;
-    border-bottom: 1px solid #59410b;
-}
-
-.valeur {
-    text-align: center;
-}
-
-.valeur strong {
-    display: block;
-    color: var(--or);
-    font-size: 17px;
-}
-
-.valeur span {
-    color: var(--gris);
-    font-size: 13px;
-}
-
-.section {
-    max-width: 1200px;
-    margin: auto;
-    padding: 65px 22px;
-}
-
-.section-heading {
-    text-align: center;
-    margin-bottom: 35px;
-}
-
-.section-heading span {
-    color: var(--or);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-}
-
-.section-heading h2 {
-    font-size: clamp(26px, 4vw, 40px);
-    margin-top: 8px;
-}
-
-.section-heading p {
-    color: var(--gris);
-    margin-top: 10px;
-}
-
-.cartes {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-}
-
-.carte {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #8c670e;
-    border-radius: 12px;
-    overflow: hidden;
-    background: linear-gradient(180deg, #171717, #090909);
-    transition: transform .25s, border-color .25s;
-}
-
-.carte:hover {
-    transform: translateY(-5px);
-    border-color: var(--or);
-}
-
-.carte-image {
-    min-height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 65px;
-    background: radial-gradient(circle, #48320d, #14100a 70%);
-    border-bottom: 1px solid #77550c;
-}
-
-.carte-contenu {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.carte h3 {
-    color: var(--or);
-    font-size: 18px;
-    margin-bottom: 8px;
-}
-
-.carte p {
-    color: #ccc;
-    font-size: 14px;
-    margin-bottom: 17px;
-}
-
-.carte ul {
-    list-style: none;
-    margin-bottom: 22px;
-    flex: 1;
-}
-
-.carte li {
-    font-size: 13px;
-    color: #ddd;
-    margin: 7px 0;
-}
-
-.carte li::before {
-    content: "✓ ";
-    color: var(--or);
-    font-weight: bold;
-}
-
-.carte .bouton {
-    text-align: center;
-    padding: 10px 12px;
-    font-size: 13px;
-}
-
-.apropos {
-    background: #111;
-    border-top: 1px solid #6c4c0a;
-    border-bottom: 1px solid #6c4c0a;
-}
-
-.apropos-interieur {
-    max-width: 1000px;
-    margin: auto;
-    padding: 55px 22px;
-    text-align: center;
-}
-
-.apropos h2 {
-    color: var(--or);
-    font-size: 30px;
-    margin-bottom: 15px;
-}
-
-.apropos p {
-    color: #ddd;
-    max-width: 750px;
-    margin: 0 auto 22px;
-}
-
-.contact {
-    text-align: center;
-    background: radial-gradient(ellipse at center, #2a1c05, #080808 70%);
-    padding: 55px 22px;
-}
-
-.contact h2 {
-    color: var(--or);
-    font-size: 32px;
-    margin-bottom: 12px;
-}
-
-.contact p {
-    color: #ddd;
-    margin-bottom: 22px;
-}
-
-.coordonnees {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px 30px;
-    margin: 25px 0;
-}
-
-.coordonnees a,
-.coordonnees span {
-    color: #eee;
-    font-size: 14px;
-}
-
-.coordonnees a:hover {
-    color: var(--or);
-}
-
-footer {
-    background: #030303;
-    border-top: 1px solid #77550c;
-    padding: 28px 22px;
-    text-align: center;
-}
-
-.footer-logo {
-    color: var(--or);
-    font-size: 32px;
-    font-weight: 900;
-    letter-spacing: 4px;
-}
-
-.devise {
-    color: var(--or-clair);
-    font-size: 11px;
-    letter-spacing: 2px;
-    margin: 5px 0 15px;
-}
-
-.footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin: 18px 0;
-}
-
-.footer-links a {
-    font-size: 13px;
-    color: #ccc;
-}
-
-.footer-links a:hover {
-    color: var(--or);
-}
-
-.copyright {
-    color: #888;
-    font-size: 12px;
-    border-top: 1px solid #292929;
-    padding-top: 18px;
-    margin-top: 20px;
-}
-
-@media (max-width: 950px) {
-    nav {
-        flex-direction: column;
-    }
-
-    .links {
-        justify-content: center;
-    }
-
-    .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .hero p {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .lion {
-        min-height: 220px;
-    }
-
-    .cartes {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 520px) {
-    .links {
-        gap: 12px;
-    }
-
-    .links a {
-        font-size: 12px;
-    }
-
-    .hero {
-        padding-top: 45px;
-        padding-bottom: 40px;
-    }
-
-    .hero h1 {
-        letter-spacing: -2px;
-    }
-
-    .valeurs {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .cartes {
-        grid-template-columns: 1fr;
-    }
-
-    .carte-image {
-        min-height: 180px;
-    }
-}
+:root{--bg:#080808;--panel:#111;--gold:#d4af37;--pale:#f5f0df;--muted:#c5c0b4;--line:#493916}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:95px}
+body{background:var(--bg);color:var(--pale);font-family:Arial,sans-serif;line-height:1.7}
+a{color:inherit}
+header{position:sticky;top:0;z-index:20;background:rgba(12,12,12,.96);border-bottom:1px solid var(--gold);padding:14px 5%;backdrop-filter:blur(10px)}
+nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.brand{font-family:Georgia,serif;font-size:29px;letter-spacing:4px;color:var(--gold);font-weight:bold;text-decoration:none}
+nav .links{display:flex;gap:17px;flex-wrap:wrap;align-items:center}
+nav .links a{text-decoration:none;color:#f5f0df;font-size:14px;transition:.2s}
+nav .links a:hover{color:var(--gold)}
+.hero{min-height:82vh;padding:80px 7%;display:flex;align-items:center;justify-content:center;text-align:center;background:radial-gradient(ellipse at center top,#30240c 0%,#12100b 34%,#080808 72%);border-bottom:1px solid #302718}
+.hero-inner{max-width:900px;margin:auto;animation:rise .8s ease}
+.logo-container{margin:0 auto 22px}
+.logo-ikf{display:block;width:min(250px,65vw);height:auto;max-height:190px;object-fit:contain;margin:auto}
+.eyebrow{color:var(--gold);letter-spacing:4px;text-transform:uppercase;font-size:12px;font-weight:bold}
+h1,h2,h3{font-family:Georgia,'Times New Roman',serif;line-height:1.2}
+h1{font-size:clamp(34px,6vw,64px);margin:15px 0}
+.gold{color:var(--gold)}
+.hero h1 span{display:block}
+.hero .lead{font-size:clamp(17px,2.2vw,21px);max-width:760px;margin:22px auto;color:#e1ddd2}
+.motto{color:#f5d982;font-weight:bold;letter-spacing:3px;margin:22px 0}
+.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:13px;margin-top:28px}
+.btn{display:inline-block;text-decoration:none;padding:13px 23px;border:1px solid var(--gold);border-radius:30px;color:var(--gold);font-weight:bold;transition:.25s}
+.btn.primary{background:linear-gradient(135deg,#ffe6a0,#b8860b);color:#090909}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 25px #d4af3730}
+section{padding:78px 7%;border-bottom:1px solid #241e12}
+.container{max-width:1120px;margin:auto}
+.section-head{max-width:760px;margin-bottom:32px}
+.section-head h2{font-size:clamp(30px,4.5vw,45px);margin:12px 0 16px}
+.section-head p,.muted{color:var(--muted)}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:25px;align-items:stretch}
+.panel{background:linear-gradient(145deg,#171717,#0d0d0d);border:1px solid var(--line);border-radius:18px;padding:clamp(22px,4vw,34px)}
+.panel p+p{margin-top:14px}
+.panel h3{font-size:25px;margin-bottom:13px}
+.quote{font-family:Georgia,serif;font-size:clamp(23px,3vw,32px);color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{height:100%;padding:26px;background:var(--panel);border:1px solid #3e3218;border-radius:16px;transition:.25s}
+.card:hover{transform:translateY(-4px);border-color:var(--gold)}
+.card .icon{font-size:28px;color:var(--gold);margin-bottom:8px}
+.card h3{font-size:24px;color:var(--gold);margin-bottom:10px}
+.card p{color:var(--muted)}
+.status{display:inline-block;margin-top:15px;padding:4px 10px;border:1px solid #65501f;border-radius:20px;color:#f5d982;font-size:12px}
+.steps{counter-reset:step;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.step{padding:22px;border-left:2px solid var(--gold);background:#101010;border-radius:0 12px 12px 0}
+.step h3{margin-bottom:8px;color:var(--gold);font-size:21px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.contact-link{display:block;padding:16px;margin-top:12px;background:#101010;border:1px solid #493916;border-radius:12px;text-decoration:none;overflow-wrap:anywhere}
+.contact-link strong{display:block;color:var(--gold)}
+footer{text-align:center;padding:28px 15px;color:#aaa;font-size:14px}
+footer strong{color:var(--gold)}
+.whatsapp-float{position:fixed;right:18px;bottom:18px;z-index:30;background:#25D366;color:#071b0d;padding:13px 17px;border-radius:30px;text-decoration:none;font-weight:bold;box-shadow:0 4px 18px #0008}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:760px){header{padding:12px 5%}nav{align-items:flex-start;flex-direction:column}.links{gap:12px!important}.links a{font-size:13px!important}.hero{padding:65px 6%;min-height:75vh}section{padding:58px 6%}.about-grid,.grid,.steps,.contact-grid{grid-template-columns:1fr}.motto{letter-spacing:1.5px}.whatsapp-float{right:10px;bottom:10px;font-size:13px;padding:11px 13px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
-
 <body>
-
 <header>
 <nav>
-    <a class="brand" href="#accueil" aria-label="Accueil IKF">IKF</a>
-
-    <div class="links">
-        <a href="#accueil">Accueil</a>
-        <a href="#apropos">À propos</a>
-        <a href="#services">Services</a>
-        <a href="immobilier.html">IKF Immobilier</a>
-        <a href="auto.html">IKF Auto</a>
-        <a href="commerce.html">FOFANA Commerce Service</a>
-        <a href="digital.html">IKF Digital</a>
-        <a href="#contact">Contact</a>
-    </div>
+<a class="brand" href="#accueil" aria-label="Accueil IKF">IKF</a>
+<div class="links">
+<a href="#apropos">À propos</a><a href="#ambitions">Ambitions</a><a href="#projets">Projets</a><a href="#services">Services</a>
+<a href="immobilier.html">IKF Immobilier</a>
+<a href="auto.html">IKF Auto</a>
+<a href="commerce.html">FOFANA Commerce Service</a>
+<a href="digital.html">IKF Digital</a>
+<a href="#contact">Contact</a>
+</div>
 </nav>
 </header>
-
 <main>
-
 <section class="hero" id="accueil">
-    <div class="hero-content">
-        <div class="surtitre">Bienvenue chez IKF Groupe</div>
-        <h1>IKF</h1>
-        <h2>Plus qu'un groupe, une vision !</h2>
-        <p>
-            Un groupe dynamique au service de vos besoins
-            immobiliers, automobiles, commerciaux et numériques.
-            IKF, c'est la volonté de construire un avenir meilleur.
-        </p>
-        <a class="bouton" href="#services">Découvrir nos services →</a>
-    </div>
-
-    <div class="lion">
-        <img src="lion-ikf.png"
-             alt="Lion majestueux avec une couronne dorée"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-        <div class="lion-placeholder" style="display:none;">
-            ♛
-            <p>IKF · FORCE · VISION</p>
-        </div>
-    </div>
+<div class="hero-inner">
+<div class="logo-container"><img src="logo-ikf.png" alt="Logo officiel IKF" class="logo-ikf"></div>
+<p class="eyebrow">Entrepreneuriat · Projets · Opportunités</p>
+<h1>Une vision ambitieuse.<span class="gold">Une discipline constante.</span>Un avenir à construire.</h1>
+<p class="lead">Je suis Ibrahima Khaliloulaye Fofana. À travers IKF, je construis progressivement un univers professionnel tourné vers l’entrepreneuriat, l’immobilier, le commerce et les opportunités du numérique.</p>
+<p class="motto">TRAVAIL · DISCIPLINE · RÉUSSITE</p>
+<p class="muted">Des idées à structurer, des projets à développer et des relations professionnelles à bâtir sur la confiance.</p>
+<div class="actions"><a class="btn primary" href="#services">Découvrir mes services</a><a class="btn" href="https://wa.me/221703311532?text=Bonjour%20IKF%2C%20je%20souhaite%20discuter%20d%E2%80%99un%20projet." target="_blank" rel="noopener noreferrer">Discuter de votre projet</a></div>
+</div>
 </section>
-
-<section class="valeurs">
-    <div class="valeur">
-        <strong>♢ Confiance</strong>
-        <span>Des partenaires fiables</span>
-    </div>
-    <div class="valeur">
-        <strong>◇ Qualité</strong>
-        <span>Le souci du travail bien fait</span>
-    </div>
-    <div class="valeur">
-        <strong>♧ Proximité</strong>
-        <span>Une équipe à votre écoute</span>
-    </div>
-    <div class="valeur">
-        <strong>↗ Croissance</strong>
-        <span>Ensemble vers la réussite</span>
-    </div>
+<section id="apropos">
+<div class="container">
+<div class="section-head"><p class="eyebrow">Qui suis-je ?</p><h2>Une ambition guidée par <span class="gold">le travail et la discipline</span></h2><p>Découvrir la personne et les principes qui donnent une direction à IKF.</p></div>
+<div class="about-grid">
+<div class="panel">
+<h3>À propos d’<span class="gold">Ibrahima Fofana</span></h3>
+<p>Je suis Ibrahima Khaliloulaye Fofana, entrepreneur et porteur de projets, animé par la volonté d’apprendre, de construire et de développer des activités utiles.</p>
+<p>Je m’intéresse particulièrement à l’entrepreneuriat, à l’immobilier, au commerce et aux possibilités offertes par les outils numériques. Je développe progressivement mes idées et mes compétences, avec l’ambition de transformer mes objectifs en projets concrets.</p>
+<p>Je crois qu’une marque professionnelle se construit par la transparence, l’écoute, le sérieux et le respect des engagements. Je souhaite bâtir des relations durables avec les personnes qui me font confiance.</p>
+</div>
+<div class="panel">
+<p class="eyebrow">Ma philosophie</p><p class="quote">« Apprendre aujourd’hui, construire avec méthode et progresser durablement. »</p>
+<p class="muted">La réussite n’est pas un raccourci : elle se prépare par l’effort, l’expérience et la constance.</p>
+</div>
+</div>
+</div>
 </section>
-
-<section class="section" id="services">
-    <div class="section-heading">
-        <span>Nos activités</span>
-        <h2>Découvrez nos domaines d'expertise</h2>
-        <p>Des solutions adaptées à vos projets et à vos ambitions.</p>
-    </div>
-
-    <div class="cartes">
-
-        <article class="carte">
-            <div class="carte-image">🏠</div>
-            <div class="carte-contenu">
-                <h3>IKF Immobilier</h3>
-                <p>Vente et location de biens immobiliers.</p>
-                <ul>
-                    <li>Villas et maisons</li>
-                    <li>Appartements</li>
-                    <li>Terrains</li>
-                    <li>Locaux commerciaux</li>
-                </ul>
-                <a class="bouton" href="immobilier.html">Découvrir l'immobilier →</a>
-            </div>
-        </article>
-
-        <article class="carte">
-            <div class="carte-image">🚘</div>
-            <div class="carte-contenu">
-                <h3>IKF Auto</h3>
-                <p>Vente et location de véhicules.</p>
-                <ul>
-                    <li>Véhicules neufs et d'occasion</li>
-                    <li>Location courte durée</li>
-                    <li>Location longue durée</li>
-                    <li>Mise en relation avec des propriétaires</li>
-                </ul>
-                <a class="bouton" href="auto.html">Découvrir IKF Auto →</a>
-            </div>
-        </article>
-
-        <article class="carte">
-            <div class="carte-image">🛒</div>
-            <div class="carte-contenu">
-                <h3>FOFANA Commerce Service</h3>
-                <p>Des solutions commerciales adaptées à vos besoins.</p>
-                <ul>
-                    <li>Produits et services divers</li>
-                    <li>Commerce général</li>
-                    <li>Partenariats commerciaux</li>
-                    <li>Projets de développement</li>
-                </ul>
-                <a class="bouton" href="commerce.html">Découvrir le commerce →</a>
-            </div>
-        </article>
-
-        <article class="carte">
-            <div class="carte-image">💻</div>
-            <div class="carte-contenu">
-                <h3>IKF Digital</h3>
-                <p>Des solutions numériques pour particuliers et entreprises.</p>
-                <ul>
-                    <li>Création de sites web</li>
-                    <li>Graphisme et design</li>
-                    <li>Communication numérique</li>
-                    <li>Accompagnement informatique</li>
-                </ul>
-                <a class="bouton" href="digital.html">Découvrir IKF Digital →</a>
-            </div>
-        </article>
-
-    </div>
+<section id="ambitions">
+<div class="container">
+<div class="section-head"><p class="eyebrow">Ma vision pour demain</p><h2>Des ambitions à transformer en <span class="gold">actions concrètes</span></h2><p>Une vision à long terme, construite étape par étape et avec une volonté d’apporter de la valeur.</p></div>
+<div class="grid">
+<article class="card"><div class="icon">◆</div><h3>Entrepreneuriat</h3><p>Développer des activités durables qui répondent à des besoins réels, créer de la valeur et bâtir des relations professionnelles fondées sur la confiance.</p></article>
+<article class="card"><div class="icon">⌂</div><h3>Immobilier</h3><p>Faciliter la recherche d’opportunités immobilières grâce à une présentation claire des biens et à une mise en relation attentive entre les personnes concernées.</p></article>
+<article class="card"><div class="icon">◇</div><h3>Commerce</h3><p>Développer des activités commerciales structurées, rapprocher vendeurs et acheteurs et explorer progressivement de nouvelles opportunités de marché.</p></article>
+<article class="card"><div class="icon">✦</div><h3>Numérique</h3><p>Apprendre et explorer les solutions numériques qui peuvent aider les projets professionnels à mieux présenter leurs offres et à communiquer avec leurs clients.</p></article>
+</div>
+</div>
 </section>
-
-<section class="apropos" id="apropos">
-    <div class="apropos-interieur">
-        <h2>Ensemble, réalisons vos projets !</h2>
-        <p>
-            IKF Groupe développe une vision fondée sur le travail,
-            la discipline et la réussite. Notre objectif est de faciliter
-            vos démarches et de vous accompagner dans vos projets,
-            grâce à nos différentes activités et à nos partenaires.
-        </p>
-        <a class="bouton" href="#contact">Parlons de votre projet →</a>
-    </div>
+<section id="projets">
+<div class="container">
+<div class="section-head"><p class="eyebrow">Ce que je construis</p><h2>Mes <span class="gold">projets</span></h2><p>Des initiatives à développer progressivement. Leur présentation évoluera avec les services réellement disponibles et les résultats obtenus.</p></div>
+<div class="grid">
+<article class="card"><div class="icon">♛</div><h3>IKF — Marque personnelle</h3><p>Mon espace professionnel pour présenter ma vision, mes ambitions, mes projets et les moyens de me contacter.</p><a class="btn" href="#contact" style="margin-top:18px">Prendre contact</a><br><span class="status">Site en développement</span></article>
+<article class="card"><div class="icon">⌂</div><h3>IKF Immobilier</h3><p>Un projet de vitrine immobilière destiné à présenter des opportunités de vente, de location et de recherche de terrains, selon les annonces disponibles.</p><a class="btn" href="immobilier.html" style="margin-top:18px">Découvrir IKF Immobilier</a><br><span class="status">Projet en développement</span></article>
+<article class="card"><div class="icon">▣</div><h3>FOFANA COMMERCE SERVICE</h3><p>Un projet commercial visant à structurer une activité de vente et à explorer des possibilités de développement commercial.</p><a class="btn" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20FOFANA%20COMMERCE%20SERVICE." target="_blank" rel="noopener noreferrer" style="margin-top:18px">Parler du projet</a><br><span class="status">Projet en développement</span></article>
+<article class="card"><div class="icon">⌘</div><h3>Initiatives numériques</h3><p>Explorer des outils et des solutions numériques utiles aux entrepreneurs et aux petites activités professionnelles.</p><a class="btn" href="#contact" style="margin-top:18px">Proposer une idée</a><br><span class="status">En exploration</span></article>
+</div>
+</div>
 </section>
-
-<section class="contact" id="contact">
-    <h2>Contactez IKF</h2>
-    <p>Vous avez un projet ou une question ? Échangeons ensemble.</p>
-
-    <div class="coordonnees">
-        <a href="tel:+22177877857">☎ +221 77 877 78 57</a>
-        <a href="mailto:khalilfofana2002@gmail.com">✉ khalilfofana2002@gmail.com</a>
-        <span>📍 Keur Massar, Dakar, Sénégal</span>
-    </div>
-
-    <a class="bouton"
-       href="https://wa.me/221703311532"
-       target="_blank"
-       rel="noopener noreferrer">
-       Écrire sur WhatsApp →
-    </a>
+<section id="services">
+<div class="container">
+<div class="section-head"><p class="eyebrow">Travaillons ensemble</p><h2>Comment pouvons-nous <span class="gold">avancer ensemble ?</span></h2><p>Vous avez une idée, une recherche ou une opportunité à discuter ? Contactez-moi pour présenter votre besoin. Nous pourrons vérifier ensemble si je peux vous accompagner.</p></div>
+<div class="grid">
+<article class="card"><h3>Recherche immobilière</h3><p>Discuter d’un besoin de logement, de location ou de terrain et préciser les critères recherchés.</p><a class="btn" href="immobilier.html" style="margin-top:18px">Voir IKF Immobilier</a></article>
+<article class="card"><h3>Projet commercial</h3><p>Échanger sur une idée de vente, une opportunité commerciale ou une éventuelle collaboration.</p><a class="btn" href="https://wa.me/221703311532?text=Bonjour%20IKF%2C%20je%20souhaite%20discuter%20d%E2%80%99un%20projet%20commercial." target="_blank" rel="noopener noreferrer" style="margin-top:18px">Discuter d’un projet</a></article>
+<article class="card"><h3>Partenariat</h3><p>Présenter une proposition de collaboration, un projet ou une opportunité professionnelle.</p><a class="btn" href="https://wa.me/221703311532?text=Bonjour%20IKF%2C%20je%20souhaite%20discuter%20d%E2%80%99un%20partenariat." target="_blank" rel="noopener noreferrer" style="margin-top:18px">Proposer un partenariat</a></article>
+<article class="card"><h3>Autre demande</h3><p>Expliquez votre besoin simplement. Nous commencerons par un échange pour mieux comprendre votre demande.</p><a class="btn" href="#contact" style="margin-top:18px">Me contacter</a></article>
+</div>
+</div>
 </section>
-
+<section id="engagements">
+<div class="container">
+<div class="section-head"><p class="eyebrow">Mes engagements</p><h2>La confiance se construit <span class="gold">dans les actes</span></h2></div>
+<div class="steps">
+<div class="step"><h3>01 · Transparence</h3><p class="muted">Présenter clairement les informations, les conditions et les limites de chaque service.</p></div>
+<div class="step"><h3>02 · Écoute</h3><p class="muted">Comprendre le besoin avant de discuter des solutions possibles.</p></div>
+<div class="step"><h3>03 · Sérieux</h3><p class="muted">Avancer avec méthode, communiquer avec respect et tenir les engagements convenus.</p></div>
+</div>
+</div>
+</section>
+<section id="contact">
+<div class="container">
+<div class="section-head"><p class="eyebrow">Entrons en contact</p><h2>Votre prochain projet commence <span class="gold">par une conversation</span></h2><p>Présentez votre besoin ou votre idée. Je vous répondrai pour que nous puissions en discuter.</p></div>
+<div class="contact-grid">
+<div class="panel">
+<a class="contact-link" href="https://wa.me/221703311532" target="_blank" rel="noopener noreferrer"><strong>WhatsApp professionnel</strong>+221 70 331 15 32 — Envoyer un message</a>
+<a class="contact-link" href="tel:+221778777857"><strong>Téléphone</strong>+221 77 877 78 57</a>
+<a class="contact-link" href="mailto:khalilfofana2002@gmail.com"><strong>E-mail</strong>khalilfofana2002@gmail.com</a>
+<p class="muted" style="margin-top:14px">Localisation : Keur Massar, Medina Gana Sarr, Sénégal.</p>
+</div>
+<div class="panel">
+<p class="eyebrow">IKF</p><h3 style="font-size:29px;margin:12px 0">Construisons la suite ensemble.</h3>
+<p>Que vous soyez un particulier, un entrepreneur ou un partenaire potentiel, le premier pas est d’échanger clairement sur votre besoin.</p>
+<div class="actions" style="justify-content:flex-start"><a class="btn primary" href="https://wa.me/221703311532?text=Bonjour%20IKF%2C%20je%20viens%20de%20visiter%20votre%20site%20et%20je%20souhaite%20discuter%20d%E2%80%99un%20projet." target="_blank" rel="noopener noreferrer">Contacter IKF</a></div>
+</div>
+</div>
+</div>
+</section>
 </main>
-
-<footer>
-    <div class="footer-logo">♛ IKF</div>
-    <div class="devise">TRAVAIL · DISCIPLINE · RÉUSSITE</div>
-
-    <div class="footer-links">
-        <a href="#accueil">Accueil</a>
-        <a href="#apropos">À propos</a>
-        <a href="immobilier.html">Immobilier</a>
-        <a href="auto.html">Auto</a>
-        <a href="commerce.html">Commerce</a>
-        <a href="digital.html">Digital</a>
-        <a href="#contact">Contact</a>
-    </div>
-
-    <div class="copyright">
-        © 2026 IKF Groupe — Tous droits réservés.
-        <br>Conçu avec ambition au Sénégal.
-    </div>
-</footer>
-
+<footer>© <span id="annee"></span> <strong>IKF</strong> — Ibrahima Khaliloulaye Fofana. Tous droits réservés.</footer>
+<a class="whatsapp-float" href="https://wa.me/221703311532" target="_blank" rel="noopener noreferrer">WhatsApp · IKF</a>
+<script>document.getElementById("annee").textContent=new Date().getFullYear();</script>
 </body>
 </html>
