@@ -78,6 +78,38 @@ section {
     margin: 18px 0;
 }
 
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background: #151515;
+    border: 1px solid #8f7523;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-card h3 {
+    color: #d4af37;
+    margin-top: 12px;
+}
+
+.product-price {
+    color: #d4af37;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
 p {
     margin-top: 12px;
 }
@@ -139,7 +171,37 @@ footer {
 
 <section>
 
-    <div class="card">
+   
+<h2 style="text-align:center; margin-bottom:20px;">Nos produits</h2>
+
+<div class="products">
+
+    <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=800&q=80" alt="Poulets de chair">
+        <h3>Poulets de chair</h3>
+        <p>Des poulets pour vos besoins et vos commandes.</p>
+        <p class="product-price">Prix : nous consulter</p>
+        <a class="button" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20les%20poulets%20de%20chair.">Commander sur WhatsApp</a>
+    </div>
+
+    <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1543168256-418811576931?auto=format&fit=crop&w=800&q=80" alt="Produits alimentaires">
+        <h3>Produits alimentaires</h3>
+        <p>Riz, huile, sucre et autres produits selon les disponibilités.</p>
+        <p class="product-price">Prix : nous consulter</p>
+        <a class="button" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20les%20produits%20alimentaires.">Demander un prix</a>
+    </div>
+
+    <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" alt="Accessoires et produits divers">
+        <h3>Accessoires et produits divers</h3>
+        <p>Des accessoires et articles variés selon les offres disponibles.</p>
+        <p class="product-price">Prix : nous consulter</p>
+        <a class="button" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20les%20accessoires.">Demander un prix</a>
+    </div>
+
+</div>
+ <div class="card">
         <h2>Commerce général</h2>
         <p>
             FOFANA COMMERCE SERVICE a pour ambition de développer
