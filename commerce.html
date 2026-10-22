@@ -297,5 +297,39 @@ footer {
     <p class="small">TRAVAIL · DISCIPLINE · RÉUSSITE</p>
 </footer>
 
+<script>
+document.getElementById("order-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const nom = document.getElementById("client-nom").value.trim();
+    const telephone = document.getElementById("client-telephone").value.trim();
+    const adresse = document.getElementById("client-adresse").value.trim();
+
+    const poulets = Number(document.getElementById("q-poulet").value) || 0;
+    const alimentaires = Number(document.getElementById("q-alimentaire").value) || 0;
+    const accessoires = Number(document.getElementById("q-accessoires").value) || 0;
+
+    if (poulets + alimentaires + accessoires === 0) {
+        alert("Veuillez choisir au moins un produit et indiquer sa quantité.");
+        return;
+    }
+
+    let message = "Bonjour FOFANA COMMERCE SERVICE, je souhaite passer une commande.\n\n";
+    message += "Nom : " + nom + "\n";
+    message += "Téléphone : " + telephone + "\n";
+    message += "Adresse de livraison : " + adresse + "\n\n";
+    message += "Ma commande :\n";
+
+    if (poulets > 0) message += "- Poulets de chair : " + poulets + "\n";
+    if (alimentaires > 0) message += "- Produits alimentaires : " + alimentaires + "\n";
+    if (accessoires > 0) message += "- Accessoires et produits divers : " + accessoires + "\n";
+
+    message += "\nMerci de me confirmer les prix et la disponibilité.";
+
+    const url = "https://wa.me/221703311532?text=" + encodeURIComponent(message);
+    window.open(url, "_blank");
+});
+</script>
+
 </body>
 </html>
