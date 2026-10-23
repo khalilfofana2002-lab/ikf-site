@@ -156,6 +156,73 @@ const photos = [
 
 const catalogue = document.getElementById("catalogue");
 const compteur = document.getElementById("compteur");
+    const imagesProduits = {
+    tshirt: "photo-1521572163474-6864f9cf17ab",
+    polo: "photo-1521572163474-6864f9cf17ab",
+    chemise: "photo-1596755094514-f87e34085b2c",
+    pantalon: "photo-1624378439575-d8705ad7ae80",
+    jean: "photo-1542272604-787c3835535d",
+    short: "photo-1591195853828-11db59a44f6b",
+    veste: "photo-1591047139829-d91aecb6caea",
+    sweat: "photo-1556821840-3a63f95609a7",
+    pull: "photo-1576566588028-4147f3842f27",
+    robe: "photo-1539008835657-9e8e9680c956",
+    jupe: "photo-1583496661160-fb5886a0aaaa",
+    chaussure: "photo-1542291026-7eec264c27ff",
+    sandale: "photo-1603487742131-4160ec999306",
+    montre: "photo-1523275335684-37898b6baf30",
+    lunettes: "photo-1511499767150-a48a237f0083",
+    ceinture: "photo-1624222247344-550fb8b7a3c8",
+    chaussette: "photo-1586350977771-b3b0abd50c82",
+    casquette: "photo-1588850561407-ed78c282e89b",
+    sac: "photo-1553062407-98eeb64c6a62",
+    portefeuille: "photo-1627123424574-724758594e93",
+    parfum: "photo-1541643600914-78b084683601",
+    ecouteurs: "photo-1505740420928-5e560c06d30e",
+    casque: "photo-1505740420928-5e560c06d30e",
+    telephone: "photo-1511707171634-5f897ff02aa9",
+    chargeur: "photo-1583863788434-e58a36330cf0",
+    batterie: "photo-1609091839311-d5365f9ff1c5",
+    enceinte: "photo-1608043152269-423dbba4e7e1",
+    accessoires: "photo-1529139574466-a303027c1d8b"
+};
+    function choisirPhoto(nom, categorie) {
+    const texte = nom.toLowerCase();
+    let cle = "accessoires";
+
+    if (texte.includes("t-shirt")) cle = "tshirt";
+    else if (texte.includes("polo")) cle = "polo";
+    else if (texte.includes("chemise")) cle = "chemise";
+    else if (texte.includes("jean")) cle = "jean";
+    else if (texte.includes("pantalon")) cle = "pantalon";
+    else if (texte.includes("short") || texte.includes("bermuda")) cle = "short";
+    else if (texte.includes("veste")) cle = "veste";
+    else if (texte.includes("sweat")) cle = "sweat";
+    else if (texte.includes("pull")) cle = "pull";
+    else if (texte.includes("robe")) cle = "robe";
+    else if (texte.includes("jupe")) cle = "jupe";
+    else if (texte.includes("chaussure") || texte.includes("basket") ||
+             texte.includes("mocassin") || texte.includes("espadrille")) cle = "chaussure";
+    else if (texte.includes("sandale") || texte.includes("claquette") ||
+             texte.includes("mule")) cle = "sandale";
+    else if (texte.includes("montre")) cle = "montre";
+    else if (texte.includes("lunette")) cle = "lunettes";
+    else if (texte.includes("ceinture")) cle = "ceinture";
+    else if (texte.includes("chaussette")) cle = "chaussette";
+    else if (texte.includes("casquette") || texte.includes("bonnet")) cle = "casquette";
+    else if (texte.includes("sac")) cle = "sac";
+    else if (texte.includes("portefeuille") || texte.includes("porte-cartes")) cle = "portefeuille";
+    else if (texte.includes("parfum")) cle = "parfum";
+    else if (texte.includes("écouteur")) cle = "ecouteurs";
+    else if (texte.includes("casque")) cle = "casque";
+    else if (texte.includes("coque")) cle = "telephone";
+    else if (texte.includes("chargeur") || texte.includes("câble")) cle = "chargeur";
+    else if (texte.includes("batterie")) cle = "batterie";
+    else if (texte.includes("enceinte")) cle = "enceinte";
+
+    return "https://images.unsplash.com/" + imagesProduits[cle] +
+           "?auto=format&fit=crop&w=700&q=80";
+}
 
 function afficher(categorie = "Tous") {
     catalogue.innerHTML = "";
@@ -170,7 +237,9 @@ function afficher(categorie = "Tous") {
         carte.className = "card";
 
         const image = document.createElement("img");
-        image.src = photos[index];
+        
+
+image.src = choisirPhoto(nom, cat);
         image.alt = nom;
         image.loading = "lazy";
         image.onerror = function() {
