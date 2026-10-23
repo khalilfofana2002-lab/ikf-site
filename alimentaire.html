@@ -1,143 +1,239 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produits alimentaires | FCS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produits alimentaires | FOFANA COMMERCE SERVICE</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #111;
-            color: white;
-        }
-
-        header {
-            background: #000;
-            color: #d4af37;
-            text-align: center;
-            padding: 25px 15px;
-            border-bottom: 2px solid #d4af37;
-        }
-
-        header h1 {
-            margin: 0 0 10px;
-        }
-
-        .retour {
-            display: inline-block;
-            margin-top: 12px;
-            color: #d4af37;
-        }
-
-        main {
-            max-width: 1100px;
-            margin: auto;
-            padding: 25px 15px;
-        }
-
-        .produits {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 20px;
-        }
-
-        .carte {
-            background: #202020;
-            border: 1px solid #d4af37;
-            border-radius: 12px;
-            overflow: hidden;
-            padding-bottom: 15px;
-            text-align: center;
-        }
-
-        .carte img {
-            width: 100%;
-            height: 190px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .carte h2 {
-            color: #d4af37;
-            font-size: 20px;
-            margin: 15px 8px 8px;
-        }
-
-        .prix {
-            margin: 10px;
-            font-weight: bold;
-        }
-
-        .commande {
-            display: inline-block;
-            background: #d4af37;
-            color: #000;
-            padding: 10px 15px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-    </style>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #101010;
+    color: white;
+    padding: 20px;
+}
+header {
+    text-align: center;
+    padding: 25px 10px;
+    border-bottom: 2px solid #d4af37;
+    margin-bottom: 25px;
+}
+header h1 {
+    color: #d4af37;
+    margin-bottom: 10px;
+}
+header p {
+    line-height: 1.6;
+    margin: 5px;
+}
+.retour {
+    display: inline-block;
+    margin-top: 18px;
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: bold;
+}
+h2 {
+    color: #d4af37;
+    text-align: center;
+    margin: 25px 0;
+}
+.produits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+.produit {
+    background: #1c1c1c;
+    border: 1px solid #d4af37;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+}
+.produit img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+.produit h3 {
+    color: #d4af37;
+    margin-bottom: 10px;
+}
+.produit p {
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+.prix {
+    font-weight: bold;
+    color: #f3d778;
+}
+.bouton {
+    display: inline-block;
+    background: #d4af37;
+    color: #111;
+    padding: 11px 14px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 5px;
+}
+footer {
+    text-align: center;
+    padding: 25px 10px;
+    margin-top: 30px;
+    border-top: 1px solid #d4af37;
+}
+</style>
 </head>
 
 <body>
-    <header>
-        <h1>FOFANA COMMERCE SERVICE</h1>
-        <p>Nos produits alimentaires</p>
-        <a class="retour" href="commerce.html">← Retour à FCS</a>
-    </header>
 
-    <main>
-        <div class="produits">
+<header>
+    <h1>FOFANA COMMERCE SERVICE</h1>
+    <p>Découvrez nos produits alimentaires.</p>
+    <p>Des produits pour votre quotidien, à des prix clairement affichés.</p>
+    <a class="retour" href="commerce.html">← Retour à FCS</a>
+</header>
 
-            <article class="carte">
-                <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80"
-                     alt="Riz">
-                <h2>Riz</h2>
-                <p class="prix">Prix : à confirmer</p>
-                <a class="commande" href="https://wa.me/221703311532?text=Bonjour%20FCS%2C%20je%20souhaite%20connaitre%20le%20prix%20du%20riz">
-                    Commander
-                </a>
-            </article>
+<h2>Nos 15 produits alimentaires</h2>
 
-            <article class="carte">
-                <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80"
-                     alt="Huile alimentaire">
-                <h2>Huile alimentaire</h2>
-                <p class="prix">Prix : à confirmer</p>
-                <a class="commande" href="https://wa.me/221703311532?text=Bonjour%20FCS%2C%20je%20souhaite%20connaitre%20le%20prix%20de%20l%27huile">
-                    Commander
-                </a>
-            </article>
+<main class="produits">
 
-            <article class="carte">
-                <img src="https://images.unsplash.com/photo-1587049352851-8d4e89133924?auto=format&fit=crop&w=600&q=80"
-                     alt="Miel">
-                <h2>Miel</h2>
-                <p class="prix">Prix : à confirmer</p>
-                <a class="commande" href="https://wa.me/221703311532?text=Bonjour%20FCS%2C%20je%20souhaite%20connaitre%20le%20prix%20du%20miel">
-                    Commander
-                </a>
-            </article>
+<div class="produit">
+<img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=700&q=80" alt="Riz">
+<h3>1. Riz</h3>
+<p>Riz selon les variétés disponibles.</p>
+<p class="prix">500 FCFA / kg</p>
+<a class="bouton" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20commander%20du%20riz%20a%20500%20FCFA%20le%20kg." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+</div>
 
-            <article class="carte">
-                <img src="https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=600&q=80"
-                     alt="Maïs">
-                <h2>Maïs</h2>
-                <p class="prix">Prix : à confirmer</p>
-                <a class="commande" href="https://wa.me/221703311532?text=Bonjour%20FCS%2C%20je%20souhaite%20connaitre%20le%20prix%20du%20mais">
-                    Commander
-                </a>
-            </article>
+<div class="produit">
+<img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=700&q=80" alt="Huile alimentaire">
+<h3>2. Huile alimentaire</h3>
+<p>Bouteille d'huile de cuisine de 1 litre.</p>
+<p class="prix">1 200 FCFA / bouteille de 1 L</p>
+<a class="bouton" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20commander%20une%20bouteille%20d%27huile%20de%201L%20a%201200%20FCFA." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+</div>
 
-        </div>
-    </main>
+<div class="produit">
+<img src="https://images.unsplash.com/photo-1581441363689-1f3c3c414635?auto=format&fit=crop&w=700&q=80" alt="Sucre">
+<h3>3. Sucre</h3>
+<p>Sucre pour les boissons et les préparations.</p>
+<p class="prix">650 FCFA / kg</p>
+<a class="bouton" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20commander%20du%20sucre%20a%20650%20FCFA%20le%20kg." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+</div>
+
+<div class="produit">
+<img src="https://images.unsplash.com/photo-1627485937980-221c88ac04f9?auto=format&fit=crop&w=700&q=80" alt="Farine">
+<h3>4. Farine</h3>
+<p>Farine pour la cuisine et la pâtisserie.</p>
+<p class="prix">400 FCFA / kg</p>
+<a class="bouton" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20commander%20de%20la%20farine%20a%20400%20FCFA%20le%20kg." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+</div>
+
+<div class="produit">
+<img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=700&q=80" alt="Lait Laïcran">
+<h3>5. Lait Laïcran</h3>
+<p>Sachet de lait Laïcran.</p>
+<p class="prix">100 FCFA / sachet</p>
+<a class="bouton" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20commander%20du%20lait%20Laicran%20a%20100%20FCFA%20le%20sachet." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+</div>
+
+<div class="produit">
+<img src="https://images.unsplash.com/photo-1551462147-ff29053bfc14?auto=format&fit=crop&w=700&q=80" alt="Pâtes alimentaires">
+<h3>6. Pâtes alimentaires</h3>
+<p>Pâtes en sachet.</p>
+<p class="prix">250 FCFA / sachet</p>
+<a class="bouton" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20commander%20des%20pates%20a%20250%20FCFA%20le%20sachet." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+</div>
+
+<div class="produit">
+<img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=700&q=80" alt="Oignons">
+<h3>7. Oignons</h3>
+<p>Vente par sac.</p>
+<p class="prix">13 000 FCFA / sac</p>
+<a class="bouton" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20commander%20un%20sac%20d%27oignons%20a%2013000%20FCFA." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+</div>
+
+<div class="produit">
+<img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=700&q=80" alt="Pommes de terre">
+<h3>8. Pommes de terre</h3>
+<p>Pommes de terre vendues au kilogramme.</p>
+<p class="prix">500 FCFA / kg</p>
+<a class="bouton" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20commander%20des%20pommes%20de%20terre%20a%20500%20FCFA%20le%20kg." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+</div>
+
+<div class="produit">
+<img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=700&q=80" alt="Concentré de tomate">
+<h3>9. Concentré de tomate</h3>
+<p>Format de 1 kg.</p>
+<p class="prix">1 200 FCFA / format de 1 kg</p>
+<a class="bouton" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20commander%20du%20concentre%20de%20tomate%20de%201kg%20a%201200%20FCFA." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+</div>
+
+<div class="produit">
+<img src="https://images.unsplash.com/photo-1518110925495-5fe2fda0442e?auto=format&fit=crop&w=700&q=80" alt="Sel">
+<h3>10. Sel</h3>
+<p>Vente par sac.</p>
+<p class="prix">400 FCFA / sac</p>
+<a class="bouton" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20commander%20un%20sac%20de%20sel%20a%20400%20FCFA." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+</div>
+
+<div class="produit">
+<img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=700&q=80" alt="Café">
+<h3>11. Café</h3>
+<p>Café vendu à l'unité.</p>
+<p class="prix">200 FCFA / unité</p>
+<a class="bouton" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20commander%20du%20cafe%20a%20200%20FCFA%20l%27unite." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+</div>
+
+<div class="produit">
+<img src="https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?auto=format&fit=crop&w=700&q=80" alt="Thé Flechat">
+<h3>12. Thé Flechat</h3>
+<p>Thé vendu à l'unité.</p>
+<p class="prix">100 FCFA / unité</p>
+<a class="bouton" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20commander%20du%20the%20Flechat%20a%20100%20FCFA." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+</div>
+
+<div class="produit">
+<img src="https://images.unsplash.com/photo-1534483509719-3feaee7c30da?auto=format&fit=crop&w=700&q=80" alt="Sardines en conserve">
+<h3>13. Sardines en conserve</h3>
+<p>Sardines vendues à l'unité.</p>
+<p class="prix">250 FCFA / unité</p>
+<a class="bouton" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20commander%20des%20sardines%20a%20250%20FCFA%20l%27unite." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+</div>
+
+<div class="produit">
+<img src="https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=700&q=80" alt="Maïs">
+<h3>14. Maïs</h3>
+<p>Maïs vendu au kilogramme.</p>
+<p class="prix">200 FCFA / kg</p>
+<a class="bouton" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20commander%20du%20mais%20a%20200%20FCFA%20le%20kg." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+</div>
+
+<div class="produit">
+<img src="https://images.unsplash.com/photo-1587049352851-8d4e89133924?auto=format&fit=crop&w=700&q=80" alt="Miel">
+<h3>15. Miel</h3>
+<p>Le prix varie selon la quantité commandée.</p>
+<p class="prix">De 500 à 10 000 FCFA selon la quantité</p>
+<a class="bouton" href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20commander%20du%20miel.%20Merci%20de%20me%20preciser%20les%20quantites%20disponibles." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+</div>
+
+</main>
+
+<footer>
+<p>FOFANA COMMERCE SERVICE — Le commerce en toute simplicité.</p>
+<p>WhatsApp : +221 70 331 15 32</p>
+</footer>
+
 </body>
 </html>
-
