@@ -1,1 +1,144 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produits alimentaires | FCS</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+        }
+
+        header {
+            background: #000;
+            color: #d4af37;
+            text-align: center;
+            padding: 25px 15px;
+            border-bottom: 2px solid #d4af37;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+        }
+
+        .retour {
+            display: inline-block;
+            margin-top: 12px;
+            color: #d4af37;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 25px 15px;
+        }
+
+        .produits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 20px;
+        }
+
+        .carte {
+            background: #202020;
+            border: 1px solid #d4af37;
+            border-radius: 12px;
+            overflow: hidden;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        .carte img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carte h2 {
+            color: #d4af37;
+            font-size: 20px;
+            margin: 15px 8px 8px;
+        }
+
+        .prix {
+            margin: 10px;
+            font-weight: bold;
+        }
+
+        .commande {
+            display: inline-block;
+            background: #d4af37;
+            color: #000;
+            padding: 10px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>FOFANA COMMERCE SERVICE</h1>
+        <p>Nos produits alimentaires</p>
+        <a class="retour" href="commerce.html">← Retour à FCS</a>
+    </header>
+
+    <main>
+        <div class="produits">
+
+            <article class="carte">
+                <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80"
+                     alt="Riz">
+                <h2>Riz</h2>
+                <p class="prix">Prix : à confirmer</p>
+                <a class="commande" href="https://wa.me/221703311532?text=Bonjour%20FCS%2C%20je%20souhaite%20connaitre%20le%20prix%20du%20riz">
+                    Commander
+                </a>
+            </article>
+
+            <article class="carte">
+                <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80"
+                     alt="Huile alimentaire">
+                <h2>Huile alimentaire</h2>
+                <p class="prix">Prix : à confirmer</p>
+                <a class="commande" href="https://wa.me/221703311532?text=Bonjour%20FCS%2C%20je%20souhaite%20connaitre%20le%20prix%20de%20l%27huile">
+                    Commander
+                </a>
+            </article>
+
+            <article class="carte">
+                <img src="https://images.unsplash.com/photo-1587049352851-8d4e89133924?auto=format&fit=crop&w=600&q=80"
+                     alt="Miel">
+                <h2>Miel</h2>
+                <p class="prix">Prix : à confirmer</p>
+                <a class="commande" href="https://wa.me/221703311532?text=Bonjour%20FCS%2C%20je%20souhaite%20connaitre%20le%20prix%20du%20miel">
+                    Commander
+                </a>
+            </article>
+
+            <article class="carte">
+                <img src="https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=600&q=80"
+                     alt="Maïs">
+                <h2>Maïs</h2>
+                <p class="prix">Prix : à confirmer</p>
+                <a class="commande" href="https://wa.me/221703311532?text=Bonjour%20FCS%2C%20je%20souhaite%20connaitre%20le%20prix%20du%20mais">
+                    Commander
+                </a>
+            </article>
+
+        </div>
+    </main>
+</body>
+</html>
+
