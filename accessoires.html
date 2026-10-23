@@ -170,7 +170,7 @@ function afficher(categorie = "Tous") {
         carte.className = "card";
 
         const image = document.createElement("img");
-        image.src = photos[index % photos.length];
+        image.src = photos[index];
         image.alt = nom;
         image.loading = "lazy";
         image.onerror = function() {
