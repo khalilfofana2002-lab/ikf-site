@@ -306,6 +306,16 @@ footer {
 </footer>
 
 <script>
+    const champPoulet = document.getElementById("q-poulet");
+const totalPoulet = document.getElementById("total-poulet");
+
+function calculerTotalPoulet() {
+    const quantite = Number(champPoulet.value) || 0;
+    totalPoulet.textContent = (quantite * 3500).toLocaleString("fr-FR") + " FCFA";
+}
+
+champPoulet.addEventListener("input", calculerTotalPoulet);
+calculerTotalPoulet();
 document.getElementById("order-form").addEventListener("submit", function(event) {
     event.preventDefault();
 
