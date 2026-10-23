@@ -214,6 +214,8 @@ function choisirPhoto(nom, categorie) {
             imagesChaussures[nom] +
             "?auto=format&fit=crop&w=700&q=80";
     }
+    function afficher(categorie = "Tous") {
+    catalogue.innerHTML = "";
 
     const texte = nom.toLowerCase();
     let cle = "accessoires";
@@ -257,8 +259,11 @@ function choisirPhoto(nom, categorie) {
 
     return "https://images.unsplash.com/" +
         imagesProduits[cle] +
+        
         "?auto=format&fit=crop&w=700&q=80";
 }
+
+function afficher(categorie = "Tous") {
     catalogue.innerHTML = "";
     let nombre = 0;
 
