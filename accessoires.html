@@ -1,1 +1,384 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accessoires & Mode | FOFANA COMMERCE SERVICE</title>
 
+<style>
+:root {
+    --or: #d4af37;
+    --noir: #101010;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f3f3;
+    color: #222;
+    line-height: 1.5;
+}
+header {
+    background: var(--noir);
+    color: white;
+    text-align: center;
+    padding: 28px 15px;
+    border-bottom: 4px solid var(--or);
+}
+.brand {
+    color: var(--or);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+header h1 {
+    margin: 10px 0;
+    font-size: clamp(25px, 4vw, 38px);
+}
+header p {
+    max-width: 750px;
+    margin: auto;
+    color: #ddd;
+}
+nav {
+    background: #202020;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 9px 14px;
+    border: 1px solid #555;
+    border-radius: 6px;
+}
+nav a:hover {
+    background: var(--or);
+    color: #111;
+}
+main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 25px 15px;
+}
+.intro {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.intro h2 {
+    font-size: 27px;
+}
+.intro p {
+    color: #555;
+}
+.filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 22px 0;
+}
+.filters button {
+    padding: 10px 17px;
+    border: 1px solid var(--or);
+    background: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.filters button.active,
+.filters button:hover {
+    background: var(--or);
+    color: #111;
+}
+#catalogue {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+.card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px #00000012;
+    border: 1px solid #e5e5e5;
+    display: flex;
+    flex-direction: column;
+}
+.card img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    background: #ddd;
+}
+.card-content {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 8px;
+}
+.category {
+    color: #666;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+.card h3 {
+    font-size: 17px;
+}
+.price {
+    color: #9b7810;
+    font-weight: bold;
+    font-size: 20px;
+}
+.order {
+    display: block;
+    text-align: center;
+    background: #138b48;
+    color: white;
+    text-decoration: none;
+    padding: 11px;
+    border-radius: 7px;
+    font-weight: bold;
+    margin-top: auto;
+}
+.order:hover {
+    background: #0d6b36;
+}
+.notice {
+    text-align: center;
+    background: #fff8dc;
+    border: 1px solid #ecd98a;
+    padding: 14px;
+    border-radius: 8px;
+    margin-top: 25px;
+}
+footer {
+    background: #101010;
+    color: #ddd;
+    text-align: center;
+    padding: 25px 15px;
+    margin-top: 25px;
+}
+footer strong,
+footer a {
+    color: var(--or);
+}
+@media(max-width:480px) {
+    main {
+        padding: 18px 10px;
+    }
+    #catalogue {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+    .card img {
+        height: 145px;
+    }
+    .card-content {
+        padding: 10px;
+    }
+    .card h3 {
+        font-size: 15px;
+    }
+    .price {
+        font-size: 16px;
+    }
+    .order {
+        font-size: 12px;
+        padding: 9px 5px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="brand">FCS • FOFANA COMMERCE SERVICE</div>
+    <h1>Mode, chaussures et accessoires</h1>
+    <p>Découvrez notre sélection de produits et commandez directement sur WhatsApp.</p>
+</header>
+
+<nav>
+    <a href="index.html">Accueil FCS</a>
+    <a href="accessoires.html">Catalogue</a>
+    <a href="https://wa.me/221703311532">Contact WhatsApp</a>
+</nav>
+
+<main>
+    <section class="intro">
+        <h2>Notre catalogue</h2>
+        <p>Choisissez votre article et contactez-nous pour confirmer sa disponibilité.</p>
+    </section>
+
+    <div class="filters">
+        <button class="active" data-filter="Tous">Tout voir</button>
+        <button data-filter="Habillement">Habillement</button>
+        <button data-filter="Chaussures">Chaussures</button>
+        <button data-filter="Accessoires">Accessoires</button>
+    </div>
+
+    <section id="catalogue"></section>
+
+    <div class="notice">
+        Les prix sont indicatifs et peuvent varier selon le modèle et la disponibilité.
+        Confirmez le prix avant toute commande.
+    </div>
+</main>
+
+<footer>
+    <p><strong>FOFANA COMMERCE SERVICE (FCS)</strong></p>
+    <p>Votre commerce, plus simple.</p>
+    <p>WhatsApp : <a href="https://wa.me/221703311532">+221 70 331 15 32</a></p>
+    <p>© <span id="annee"></span> FCS — Tous droits réservés.</p>
+</footer>
+
+<script>
+const produits = [
+{nom:"T-shirt classique",categorie:"Habillement",prix:5000,image:"photo-1521572163474-6864f9cf17ab"},
+{nom:"Polo élégant",categorie:"Habillement",prix:8000,image:"photo-1625910513413-5fc45e2f7b98"},
+{nom:"Chemise homme",categorie:"Habillement",prix:10000,image:"photo-1598033129183-c4f50c736f10"},
+{nom:"Chemise femme",categorie:"Habillement",prix:10000,image:"photo-1598554747436-c9293d6a588f"},
+{nom:"Jean classique",categorie:"Habillement",prix:12000,image:"photo-1542272604-787c3835535d"},
+{nom:"Pantalon habillé",categorie:"Habillement",prix:10000,image:"photo-1473966968600-fa801b869a1a"},
+{nom:"Short décontracté",categorie:"Habillement",prix:6000,image:"photo-1591195853828-11db59a44f6b"},
+{nom:"Robe élégante",categorie:"Habillement",prix:15000,image:"photo-1595777457583-95e059d581b8"},
+{nom:"Jupe moderne",categorie:"Habillement",prix:8000,image:"photo-1583496661160-fb5886a0aaaa"},
+{nom:"Sweat-shirt",categorie:"Habillement",prix:12000,image:"photo-1556821840-3a63f95609a7"},
+{nom:"Hoodie",categorie:"Habillement",prix:15000,image:"photo-1556821840-3a63f95609a7"},
+{nom:"Veste légère",categorie:"Habillement",prix:18000,image:"photo-1544923246-77307dd654cb"},
+{nom:"Tenue de sport",categorie:"Habillement",prix:15000,image:"photo-1517836357463-d25dfeac3438"},
+{nom:"Legging",categorie:"Habillement",prix:7000,image:"photo-1506629905607-d9a7e6e3b0a4"},
+{nom:"Ensemble deux pièces",categorie:"Habillement",prix:18000,image:"photo-1483985988355-763728e1935b"},
+{nom:"Boubou moderne",categorie:"Habillement",prix:20000,image:"photo-1539109136881-3be0616acf4b"},
+{nom:"Tenue traditionnelle",categorie:"Habillement",prix:25000,image:"photo-1490481651871-ab68de25d43d"},
+{nom:"Pyjama",categorie:"Habillement",prix:8000,image:"photo-1551488831-00ddcb6c6bd3"},
+{nom:"Sous-vêtements",categorie:"Habillement",prix:4000,image:"photo-1515886657613-9f3515b0c78f"},
+{nom:"Casquette",categorie:"Habillement",prix:4000,image:"photo-1588850561407-ed78c282e89b"},
+
+{nom:"Baskets",categorie:"Chaussures",prix:15000,image:"photo-1542291026-7eec264c27ff"},
+{nom:"Chaussures de ville",categorie:"Chaussures",prix:18000,image:"photo-1614252235316-8c857d38b5f4"},
+{nom:"Mocassins",categorie:"Chaussures",prix:15000,image:"photo-1533867617858-e7b97e060509"},
+{nom:"Sandales",categorie:"Chaussures",prix:5000,image:"photo-1603487742131-4160ec999306"},
+{nom:"Claquettes",categorie:"Chaussures",prix:3000,image:"photo-1603487742131-4160ec999306"},
+{nom:"Talons hauts",categorie:"Chaussures",prix:12000,image:"photo-1543163521-1bf539c55dd2"},
+{nom:"Ballerines",categorie:"Chaussures",prix:8000,image:"photo-1543163521-1bf539c55dd2"},
+{nom:"Bottes",categorie:"Chaussures",prix:20000,image:"photo-1543163521-1bf539c55dd2"},
+{nom:"Chaussures de sport",categorie:"Chaussures",prix:16000,image:"photo-1542291026-7eec264c27ff"},
+{nom:"Chaussures pour enfants",categorie:"Chaussures",prix:7000,image:"photo-1514989940723-e8e51635b782"},
+{nom:"Chaussures en cuir",categorie:"Chaussures",prix:25000,image:"photo-1614252235316-8c857d38b5f4"},
+{nom:"Espadrilles",categorie:"Chaussures",prix:8000,image:"photo-1525966222134-fcfa99b8ae77"},
+{nom:"Pantoufles",categorie:"Chaussures",prix:4000,image:"photo-1543163521-1bf539c55dd2"},
+{nom:"Chaussures de cérémonie",categorie:"Chaussures",prix:22000,image:"photo-1614252235316-8c857d38b5f4"},
+{nom:"Sandales en cuir",categorie:"Chaussures",prix:10000,image:"photo-1603487742131-4160ec999306"},
+
+{nom:"Sac à main",categorie:"Accessoires",prix:12000,image:"photo-1584917865442-de89df76afd3"},
+{nom:"Sac à dos",categorie:"Accessoires",prix:10000,image:"photo-1553062407-98eeb64c6a62"},
+{nom:"Portefeuille",categorie:"Accessoires",prix:5000,image:"photo-1627123424574-724758594e93"},
+{nom:"Ceinture",categorie:"Accessoires",prix:4000,image:"photo-1624222247344-550fb8d8b2f7"},
+{nom:"Lunettes de soleil",categorie:"Accessoires",prix:5000,image:"photo-1511499767150-a48a237f0083"},
+{nom:"Montre",categorie:"Accessoires",prix:12000,image:"photo-1523275335684-37898b6baf30"},
+{nom:"Bijoux fantaisie",categorie:"Accessoires",prix:3000,image:"photo-1535632066927-ab7c9ab60908"},
+{nom:"Collier",categorie:"Accessoires",prix:4000,image:"photo-1611652022419-a9419f74343d"},
+{nom:"Bracelet",categorie:"Accessoires",prix:2500,image:"photo-1611591437281-460bfbe1220a"},
+{nom:"Boucles d’oreilles",categorie:"Accessoires",prix:3000,image:"photo-1535632066927-ab7c9ab60908"},
+{nom:"Foulard",categorie:"Accessoires",prix:3500,image:"photo-1601924994987-69e26d50dc26"},
+{nom:"Écharpe",categorie:"Accessoires",prix:4000,image:"photo-1601924994987-69e26d50dc26"},
+{nom:"Chapeau",categorie:"Accessoires",prix:5000,image:"photo-1521369909029-2afed882baee"},
+{nom:"Porte-clés",categorie:"Accessoires",prix:1500,image:"photo-1582562124811-c09040d0a901"},
+{nom:"Parapluie",categorie:"Accessoires",prix:5000,image:"photo-1534274988757-a28bf1a57c17"},
+{nom:"Étui à lunettes",categorie:"Accessoires",prix:2500,image:"photo-1511499767150-a48a237f0083"},
+{nom:"Trousse",categorie:"Accessoires",prix:3000,image:"photo-1544816155-12df9643f363"},
+{nom:"Pochette de soirée",categorie:"Accessoires",prix:7000,image:"photo-1566150905458-1bf1fc113f0d"},
+{nom:"Cravate",categorie:"Accessoires",prix:4000,image:"photo-1589756823695-278bc923f962"},
+{nom:"Nœud papillon",categorie:"Accessoires",prix:3000,image:"photo-1589756823695-278bc923f962"},
+{nom:"Coque de téléphone",categorie:"Accessoires",prix:2500,image:"photo-1601593346740-925612772716"},
+{nom:"Chargeur de téléphone",categorie:"Accessoires",prix:3000,image:"photo-1583863788434-e58a36330cf0"},
+{nom:"Câble USB",categorie:"Accessoires",prix:1500,image:"photo-1583863788434-e58a36330cf0"},
+{nom:"Batterie externe",categorie:"Accessoires",prix:8000,image:"photo-1609091839311-d5365f9ff1c5"},
+{nom:"Enceinte portable",categorie:"Accessoires",prix:10000,image:"photo-1608043152269-423dbba4e7e1"}
+];
+
+const catalogue = document.getElementById("catalogue");
+
+function formatPrix(prix) {
+    return new Intl.NumberFormat("fr-FR").format(prix) + " FCFA";
+}
+
+function afficher(categorie = "Tous") {
+    catalogue.innerHTML = "";
+
+    const liste = categorie === "Tous"
+        ? produits
+        : produits.filter(p => p.categorie === categorie);
+
+    liste.forEach(p => {
+        const carte = document.createElement("article");
+        carte.className = "card";
+
+        const image = document.createElement("img");
+        image.loading = "lazy";
+        image.alt = p.nom;
+        image.src = "https://images.unsplash.com/" + p.image +
+            "?auto=format&fit=crop&w=600&q=75";
+
+        image.onerror = function() {
+            this.onerror = null;
+            this.src = "https://placehold.co/600x400/1c1c1c/d4af37?text=FCS";
+        };
+
+        const contenu = document.createElement("div");
+        contenu.className = "card-content";
+
+        const categorieElement = document.createElement("div");
+        categorieElement.className = "category";
+        categorieElement.textContent = p.categorie;
+
+        const titre = document.createElement("h3");
+        titre.textContent = p.nom;
+
+        const prix = document.createElement("p");
+        prix.className = "price";
+        prix.textContent = formatPrix(p.prix);
+
+        const lien = document.createElement("a");
+        lien.className = "order";
+        lien.target = "_blank";
+        lien.rel = "noopener";
+        lien.href = "https://wa.me/221703311532?text=" +
+            encodeURIComponent(
+                "Bonjour FCS, je souhaite commander : " + p.nom +
+                ". Prix affiché : " + formatPrix(p.prix) +
+                ". Est-il disponible ?"
+            );
+        lien.textContent = "Commander sur WhatsApp";
+
+        contenu.append(categorieElement, titre, prix, lien);
+        carte.append(image, contenu);
+        catalogue.append(carte);
+    });
+}
+
+document.querySelectorAll("[data-filter]").forEach(b => {
+    b.addEventListener("click", () => {
+        document.querySelectorAll("[data-filter]").forEach(x => {
+            x.classList.remove("active");
+        });
+        b.classList.add("active");
+        afficher(b.dataset.filter);
+    });
+});
+
+document.getElementById("annee").textContent = new Date().getFullYear();
+
+afficher();
+</script>
+
+</body>
+</html>
