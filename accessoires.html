@@ -156,7 +156,8 @@ const photos = [
 
 const catalogue = document.getElementById("catalogue");
 const compteur = document.getElementById("compteur");
-    const imagesProduits = {
+    
+const imagesProduits = {
     tshirt: "photo-1521572163474-6864f9cf17ab",
     polo: "photo-1521572163474-6864f9cf17ab",
     chemise: "photo-1596755094514-f87e34085b2c",
@@ -168,8 +169,10 @@ const compteur = document.getElementById("compteur");
     pull: "photo-1576566588028-4147f3842f27",
     robe: "photo-1539008835657-9e8e9680c956",
     jupe: "photo-1583496661160-fb5886a0aaaa",
+
     chaussure: "photo-1542291026-7eec264c27ff",
     sandale: "photo-1603487742131-4160ec999306",
+
     montre: "photo-1523275335684-37898b6baf30",
     lunettes: "photo-1511499767150-a48a237f0083",
     ceinture: "photo-1624222247344-550fb8b7a3c8",
@@ -186,7 +189,32 @@ const compteur = document.getElementById("compteur");
     enceinte: "photo-1608043152269-423dbba4e7e1",
     accessoires: "photo-1529139574466-a303027c1d8b"
 };
-    function choisirPhoto(nom, categorie) {
+
+const imagesChaussures = {
+    "Baskets sport": "photo-1542291026-7eec264c27ff",
+    "Baskets décontractées": "photo-1525966222134-fcfa99b8ae77",
+    "Chaussures de ville": "photo-1614252369475-531eba835eb1",
+    "Mocassins": "photo-1531310197839-ccf54634509e",
+    "Sandales homme": "photo-1603487742131-4160ec999306",
+    "Sandales femme": "photo-1543163521-1bf539c55dd2",
+    "Claquettes": "photo-1603487742131-4160ec999306",
+    "Chaussures de cérémonie": "photo-1614252369475-531eba835eb1",
+    "Chaussures enfants": "photo-1514989940723-e8e51635b782",
+    "Bottes": "photo-1608256246200-53e635b5b65f",
+    "Chaussures de marche": "photo-1551107696-a4b0c5a0d9a2",
+    "Espadrilles": "photo-1525966222134-fcfa99b8ae77",
+    "Chaussures à talons": "photo-1543163521-1bf539c55dd2",
+    "Chaussures scolaires": "photo-1514989940723-e8e51635b782",
+    "Mules": "photo-1603487742131-4160ec999306"
+};
+
+function choisirPhoto(nom, categorie) {
+    if (categorie === "Chaussures" && imagesChaussures[nom]) {
+        return "https://images.unsplash.com/" +
+            imagesChaussures[nom] +
+            "?auto=format&fit=crop&w=700&q=80";
+    }
+
     const texte = nom.toLowerCase();
     let cle = "accessoires";
 
@@ -201,10 +229,17 @@ const compteur = document.getElementById("compteur");
     else if (texte.includes("pull")) cle = "pull";
     else if (texte.includes("robe")) cle = "robe";
     else if (texte.includes("jupe")) cle = "jupe";
-    else if (texte.includes("chaussure") || texte.includes("basket") ||
-             texte.includes("mocassin") || texte.includes("espadrille")) cle = "chaussure";
-    else if (texte.includes("sandale") || texte.includes("claquette") ||
-             texte.includes("mule")) cle = "sandale";
+    else if (
+        texte.includes("chaussure") ||
+        texte.includes("basket") ||
+        texte.includes("mocassin") ||
+        texte.includes("espadrille")
+    ) cle = "chaussure";
+    else if (
+        texte.includes("sandale") ||
+        texte.includes("claquette") ||
+        texte.includes("mule")
+    ) cle = "sandale";
     else if (texte.includes("montre")) cle = "montre";
     else if (texte.includes("lunette")) cle = "lunettes";
     else if (texte.includes("ceinture")) cle = "ceinture";
@@ -213,18 +248,17 @@ const compteur = document.getElementById("compteur");
     else if (texte.includes("sac")) cle = "sac";
     else if (texte.includes("portefeuille") || texte.includes("porte-cartes")) cle = "portefeuille";
     else if (texte.includes("parfum")) cle = "parfum";
-    else if (texte.includes("écouteur")) cle = "ecouteurs";
+    else if (texte.includes("écouteur") || texte.includes("ecouteur")) cle = "ecouteurs";
     else if (texte.includes("casque")) cle = "casque";
-    else if (texte.includes("coque")) cle = "telephone";
-    else if (texte.includes("chargeur") || texte.includes("câble")) cle = "chargeur";
+    else if (texte.includes("coque") || texte.includes("téléphone") || texte.includes("telephone")) cle = "telephone";
+    else if (texte.includes("chargeur") || texte.includes("câble") || texte.includes("cable")) cle = "chargeur";
     else if (texte.includes("batterie")) cle = "batterie";
     else if (texte.includes("enceinte")) cle = "enceinte";
 
-    return "https://images.unsplash.com/" + imagesProduits[cle] +
-           "?auto=format&fit=crop&w=700&q=80";
+    return "https://images.unsplash.com/" +
+        imagesProduits[cle] +
+        "?auto=format&fit=crop&w=700&q=80";
 }
-
-function afficher(categorie = "Tous") {
     catalogue.innerHTML = "";
     let nombre = 0;
 
