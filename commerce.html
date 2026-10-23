@@ -306,17 +306,20 @@ footer {
     <p class="small">TRAVAIL · DISCIPLINE · RÉUSSITE</p>
 </footer>
 
+
 <script>
-    const champPoulet = document.getElementById("q-poulet");
+const champPoulet = document.getElementById("q-poulet");
 const totalPoulet = document.getElementById("total-poulet");
 
 function calculerTotalPoulet() {
     const quantite = Number(champPoulet.value) || 0;
-    totalPoulet.textContent = (quantite * 3500).toLocaleString("fr-FR") + " FCFA";
+    totalPoulet.textContent =
+        (quantite * 3500).toLocaleString("fr-FR") + " FCFA";
 }
 
 champPoulet.addEventListener("input", calculerTotalPoulet);
 calculerTotalPoulet();
+
 document.getElementById("order-form").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -339,11 +342,22 @@ document.getElementById("order-form").addEventListener("submit", function(event)
     message += "Adresse de livraison : " + adresse + "\n\n";
     message += "Ma commande :\n";
 
-    if (poulets > 0) message += "- Poulets de chair : " + poulets + "\n";
-    if (alimentaires > 0) message += "- Produits alimentaires : " + alimentaires + "\n";
-    if (accessoires > 0) message += "- Accessoires et produits divers : " + accessoires + "\n";
+    if (poulets > 0) {
+        message += "- Poulets de chair : " + poulets +
+            " x 3500 FCFA = " + (poulets * 3500).toLocaleString("fr-FR") + " FCFA\n";
+    }
 
-    message += "\nMerci de me confirmer les prix et la disponibilité.";
+    if (alimentaires > 0) {
+        message += "- Produits alimentaires : " + alimentaires + " (prix à confirmer)\n";
+    }
+
+    if (accessoires > 0) {
+        message += "- Accessoires et produits divers : " + accessoires + " (prix à confirmer)\n";
+    }
+
+    message += "\nTotal connu : " +
+        (poulets * 3500).toLocaleString("fr-FR") +
+        " FCFA, hors produits dont le prix reste à confirmer.";
 
     const url = "https://wa.me/221703311532?text=" + encodeURIComponent(message);
     window.location.href = url;
