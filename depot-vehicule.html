@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Proposer un véhicule | IKF Auto</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #101010;
+            color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #050505;
+            border-bottom: 2px solid #d4af37;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header a {
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 35px auto;
+            padding: 25px;
+        }
+
+        .form-card {
+            background: #1b1b1b;
+            border: 1px solid #d4af37;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 0 18px rgba(212, 175, 55, 0.12);
+        }
+
+        h1, h2 {
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #e7c75a;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #555;
+            border-radius: 8px;
+            background: #101010;
+            color: white;
+            font-size: 16px;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-weight: normal;
+            color: #f5f5f5;
+        }
+
+        .checkbox-label input {
+            margin-top: 6px;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            background: #d4af37;
+            color: #111;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #f1d675;
+        }
+
+        .note {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #aaa;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 15px auto;
+                padding: 12px;
+            }
+
+            .form-card {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <p><a href="auto.html">← Retour à IKF Auto</a></p>
+</header>
+
+<main class="container">
+    <section class="form-card">
+
+        <h1>🚘 Proposer un véhicule</h1>
+
+        <p class="intro">
+            Vous souhaitez vendre ou louer votre véhicule avec IKF Auto ?
+            Remplissez les informations ci-dessous pour nous soumettre votre proposition.
+        </p>
+
+        <form id="vehicleForm">
+
+            <label for="mode">Type de proposition</label>
+            <select id="mode" required>
+                <option value="">Choisir une option</option>
+                <option value="Vente">Vente</option>
+                <option value="Location">Location</option>
+            </select>
+
+            <label for="marque">1. 🚘 Marque et modèle du véhicule</label>
+            <input type="text" id="marque" placeholder="Ex. Toyota Corolla" required>
+
+            <label for="annee">2. 📅 Année de fabrication</label>
+            <input type="number" id="annee" min="1950" max="2035" placeholder="Ex. 2022" required>
+
+            <label for="prix">3. 💰 Prix de vente ou tarif de location (FCFA)</label>
+            <input type="number" id="prix" min="1" placeholder="Ex. 5000000" required>
+
+            <label for="localisation">4. 📍 Localisation du véhicule</label>
+            <input type="text" id="localisation" placeholder="Ex. Keur Massar, Dakar" required>
+
+            <label for="photo">5. 📸 Photo du véhicule (facultatif)</label>
+            <input type="file" id="photo" accept="image/*">
+
+            <p class="note">
+                Important : la photo ne sera pas jointe automatiquement au message WhatsApp.
+                Après l'envoi du formulaire, vous pourrez la joindre directement dans WhatsApp.
+            </p>
+
+            <label for="documents">6. 📄 Documents légaux</label>
+            <label class="checkbox-label">
+                <input type="checkbox" id="documents" required>
+                Je confirme que les documents légaux du véhicule sont disponibles.
+            </label>
+
+            <label for="nom">7. 📞 Nom du partenaire</label>
+            <input type="text" id="nom" placeholder="Votre nom complet" required>
+
+            <label for="telephone">Numéro de téléphone / WhatsApp</label>
+            <input type="tel" id="telephone" placeholder="Ex. +221 77 000 00 00" required>
+
+            <label for="description">Description complémentaire (facultatif)</label>
+            <textarea id="description" rows="4" placeholder="État du véhicule, kilométrage, conditions..."></textarea>
+
+            <button type="submit" class="button">
+                Envoyer ma proposition sur WhatsApp
+            </button>
+
+        </form>
+
+        <p class="note">
+            En envoyant votre proposition, vous autorisez IKF Auto à vous contacter
+            pour examiner les informations fournies.
+        </p>
+
+    </section>
+</main>
+
+<footer>
+    <p>© IKF Auto — TRAVAIL · DISCIPLINE · RÉUSSITE</p>
+</footer>
+
+<script>
+    document.getElementById("vehicleForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const mode = document.getElementById("mode").value;
+        const marque = document.getElementById("marque").value.trim();
+        const annee = document.getElementById("annee").value;
+        const prix = document.getElementById("prix").value;
+        const localisation = document.getElementById("localisation").value.trim();
+        const documents = document.getElementById("documents").checked
+            ? "Oui, disponibles"
+            : "Non confirmé";
+        const nom = document.getElementById("nom").value.trim();
+        const telephone = document.getElementById("telephone").value.trim();
+        const description = document.getElementById("description").value.trim();
+        const photo = document.getElementById("photo").files.length > 0
+            ? "Une photo a été sélectionnée. Je l'enverrai séparément sur WhatsApp."
+            : "Aucune photo sélectionnée.";
+
+        const message =
+            "Bonjour IKF Auto, je souhaite proposer un véhicule.\n\n" +
+            "Type : " + mode + "\n" +
+            "Marque et modèle : " + marque + "\n" +
+            "Année : " + annee + "\n" +
+            "Prix (FCFA) : " + prix + "\n" +
+            "Localisation : " + localisation + "\n" +
+            "Photo : " + photo + "\n" +
+            "Documents légaux : " + documents + "\n" +
+            "Nom du partenaire : " + nom + "\n" +
+            "Téléphone : " + telephone + "\n" +
+            "Description : " + (description || "Non précisée");
+
+        const whatsappURL =
+            "https://wa.me/221703311532?text=" + encodeURIComponent(message);
+
+        window.open(whatsappURL, "_blank");
+    });
+</script>
+
+</body>
+</html>
