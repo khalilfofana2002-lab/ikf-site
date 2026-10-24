@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IKF Auto | Véhicules à vendre</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080808;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+header {
+    background: #111111;
+    padding: 22px 15px;
+    text-align: center;
+    border-bottom: 2px solid #d4af37;
+}
+
+.logo {
+    color: #d4af37;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 18px;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #d4af37;
+}
+
+.hero {
+    text-align: center;
+    padding: 65px 20px;
+    background: linear-gradient(135deg, #111111, #29210b);
+}
+
+h1, h2 {
+    color: #d4af37;
+}
+
+h1 {
+    font-size: clamp(30px, 5vw, 44px);
+}
+
+.hero p {
+    max-width: 650px;
+    margin: 15px auto;
+    color: #dddddd;
+}
+
+section {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.intro {
+    text-align: center;
+    color: #cccccc;
+    margin-bottom: 25px;
+}
+
+.vehicles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: #151515;
+    border: 1px solid #6f5b1d;
+    border-radius: 12px;
+    padding: 25px;
+}
+
+.card h2 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #cccccc;
+    margin-bottom: 10px;
+}
+
+.button {
+    display: inline-block;
+    background: #d4af37;
+    color: #080808;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+.button:hover {
+    background: #ffffff;
+}
+
+.back {
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    background: #111111;
+    border-top: 1px solid #d4af37;
+    padding: 25px 15px;
+}
+
+footer p {
+    margin: 7px 0;
+    color: #cccccc;
+    overflow-wrap: anywhere;
+}
+
+.small {
+    color: #999999;
+    font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">IKF AUTO</div>
+
+    <nav>
+        <a href="index.html">Accueil IKF</a>
+        <a href="auto.html">IKF Auto</a>
+        <a href="vente.html">Vente</a>
+        <a href="location.html">Location</a>
+        <a href="partenaires.html">Partenaires</a>
+    </nav>
+</header>
+
+<div class="hero">
+    <h1>Véhicules à vendre</h1>
+
+    <p>
+        Vous recherchez une voiture à acheter au Sénégal ?
+        Contactez IKF Auto pour discuter de votre besoin
+        et connaître les offres disponibles.
+    </p>
+
+    <a class="button"
+       href="https://wa.me/221703311532?text=Bonjour%2C%20je%20recherche%20un%20v%C3%A9hicule%20%C3%A0%20acheter.">
+       Rechercher un véhicule
+    </a>
+</div>
+
+<section>
+    <p class="intro">
+        Les catégories ci-dessous permettent de préciser votre recherche.
+        Les véhicules, prix et disponibilités seront ajoutés au fur et à mesure.
+    </p>
+
+    <div class="vehicles">
+
+        <article class="card">
+            <h2>🚘 Voitures de ville</h2>
+            <p>Pour les déplacements quotidiens et les petits trajets.</p>
+            <a class="button"
+               href="https://wa.me/221703311532?text=Bonjour%2C%20je%20cherche%20une%20voiture%20de%20ville%20%C3%A0%20acheter.">
+               Demander des informations
+            </a>
+        </article>
+
+        <article class="card">
+            <h2>🚗 Berlines</h2>
+            <p>Pour vos déplacements personnels et professionnels.</p>
+            <a class="button"
+               href="https://wa.me/221703311532?text=Bonjour%2C%20je%20cherche%20une%20berline%20%C3%A0%20acheter.">
+               Demander des informations
+            </a>
+        </article>
+
+        <article class="card">
+            <h2>🚙 SUV et 4x4</h2>
+            <p>Pour davantage d'espace et différents types de trajets.</p>
+            <a class="button"
+               href="https://wa.me/221703311532?text=Bonjour%2C%20je%20cherche%20un%20SUV%20ou%204x4%20%C3%A0%20acheter.">
+               Demander des informations
+            </a>
+        </article>
+
+        <article class="card">
+            <h2>🚐 Véhicules familiaux</h2>
+            <p>Pour les familles et les déplacements en groupe.</p>
+            <a class="button"
+               href="https://wa.me/221703311532?text=Bonjour%2C%20je%20cherche%20un%20v%C3%A9hicule%20familial%20%C3%A0%20acheter.">
+               Demander des informations
+            </a>
+        </article>
+
+        <article class="card">
+            <h2>🚚 Véhicules utilitaires</h2>
+            <p>Pour les activités professionnelles et le transport de matériel.</p>
+            <a class="button"
+               href="https://wa.me/221703311532?text=Bonjour%2C%20je%20cherche%20un%20v%C3%A9hicule%20utilitaire%20%C3%A0%20acheter.">
+               Demander des informations
+            </a>
+        </article>
+
+        <article class="card">
+            <h2>🏍️ Motos</h2>
+            <p>Pour vos déplacements et vos besoins de mobilité.</p>
+            <a class="button"
+               href="https://wa.me/221703311532?text=Bonjour%2C%20je%20cherche%20une%20moto%20%C3%A0%20acheter.">
+               Demander des informations
+            </a>
+        </article>
+
+    </div>
+</section>
+
+<section class="back">
+    <a class="button" href="auto.html">← Retour à IKF Auto</a>
+</section>
+
+<footer>
+    <p><strong>IBRAHIMA KHALILOULAYE FOFANA</strong></p>
+    <p>WhatsApp : +221 70 331 15 32</p>
+    <p>Téléphone : +221 77 877 78 57</p>
+    <p>Email : khalilfofana2002@gmail.com</p>
+    <p>Adresse : Keur Massar, Medina Gana Sarr, Sénégal</p>
+    <p class="small">TRAVAIL · DISCIPLINE · RÉUSSITE</p>
+</footer>
+
+</body>
+</html>
+```
