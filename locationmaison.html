@@ -1,249 +1,365 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Location de maisons | IKF Immobilier</title>
+<title>Location de véhicules | IKF Auto</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #080808;
-            color: white;
-            line-height: 1.6;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: #fff;
+    line-height: 1.7;
+}
 
-        header {
-            background: #111;
-            padding: 18px 7%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            border-bottom: 2px solid #d4af37;
-        }
+header {
+    background: #000;
+    text-align: center;
+    padding: 25px 15px;
+    border-bottom: 3px solid #d4af37;
+}
 
-        .brand {
-            color: #d4af37;
-            font-size: 24px;
-            font-weight: bold;
-        }
+header h1 {
+    color: #d4af37;
+    font-size: 32px;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 5px 10px;
-        }
+header p {
+    margin: 8px 0;
+}
 
-        nav a:hover {
-            color: #d4af37;
-        }
+nav {
+    margin-top: 15px;
+}
 
-        .hero {
-            text-align: center;
-            padding: 55px 7%;
-            background: linear-gradient(135deg, #211b0c, #080808);
-        }
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 8px;
+    display: inline-block;
+}
 
-        h1, h2, h3 {
-            color: #d4af37;
-        }
+nav a:hover {
+    color: #d4af37;
+}
 
-        h1 {
-            font-size: clamp(30px, 5vw, 44px);
-            margin-bottom: 12px;
-        }
+.hero {
+    text-align: center;
+    padding: 55px 20px;
+    background: linear-gradient(135deg, #000, #29220d);
+}
 
-        .hero p {
-            max-width: 700px;
-            margin: 0 auto;
-            color: #ddd;
-        }
+.hero h2 {
+    color: #d4af37;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
 
-        section {
-            padding: 40px 7%;
-        }
+.hero p {
+    max-width: 700px;
+    margin: auto;
+}
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 28px;
-        }
+.button {
+    display: inline-block;
+    background: #d4af37;
+    color: #111;
+    padding: 12px 20px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+}
 
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 22px;
-        }
+.button:hover {
+    background: #f1d675;
+}
 
-        .card {
-            background: #151515;
-            border: 1px solid #55451d;
-            border-radius: 10px;
-            padding: 18px;
-        }
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 18px;
+}
 
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 12px;
-        }
+.section-title {
+    text-align: center;
+    color: #d4af37;
+    margin: 25px 0;
+    font-size: 27px;
+}
 
-        .card h3 {
-            margin-bottom: 10px;
-        }
+.cars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
 
-        .card p {
-            color: #ddd;
-            margin-bottom: 12px;
-        }
+.card {
+    background: #1c1c1c;
+    border: 1px solid #d4af37;
+    border-radius: 12px;
+    overflow: hidden;
+    padding-bottom: 22px;
+}
 
-        .button {
-            display: inline-block;
-            background: #d4af37;
-            color: #080808;
-            padding: 12px 18px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 8px;
-        }
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
 
-        .contact {
-            text-align: center;
-            background: #111;
-        }
+.card-content {
+    padding: 20px;
+}
 
-        footer {
-            text-align: center;
-            padding: 22px;
-            color: #bbb;
-            border-top: 1px solid #55451d;
-        }
-    </style>
+.card h3 {
+    color: #d4af37;
+    margin-bottom: 12px;
+    font-size: 21px;
+}
+
+.card p {
+    margin-bottom: 10px;
+}
+
+.info {
+    background: #1c1c1c;
+    border: 1px solid #d4af37;
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 35px;
+}
+
+.info h3,
+.info h4 {
+    color: #d4af37;
+    margin: 18px 0 8px;
+}
+
+.info ul {
+    padding-left: 22px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px 15px;
+    background: #000;
+    border-top: 3px solid #d4af37;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 5px;
+}
+
+@media (max-width: 600px) {
+    .hero h2 {
+        font-size: 24px;
+    }
+
+    header h1 {
+        font-size: 27px;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <div class="brand">IKF IMMOBILIER</div>
+    <h1>IKF AUTO</h1>
+    <p>Location de véhicules au Sénégal</p>
+    <p><em>TRAVAIL · DISCIPLINE · RÉUSSITE</em></p>
 
     <nav>
         <a href="index.html">Accueil IKF</a>
-        <a href="immobilier.html">Immobilier</a>
-        <a href="#contact">Contact</a>
+        <a href="auto.html">IKF Auto</a>
+        <a href="vente.html">Vente de véhicules</a>
+        <a href="location.html">Location</a>
     </nav>
 </header>
 
+<section class="hero">
+    <h2>Louez votre véhicule en toute simplicité</h2>
+    <p>
+        Vous recherchez une voiture pour vos déplacements,
+        vos voyages ou vos activités professionnelles ?
+        IKF Auto vous accompagne dans votre recherche.
+    </p>
+    <a class="button"
+       href="https://wa.me/221703311532?text=Bonjour%20IKF%20Auto%2C%20je%20souhaite%20louer%20un%20vehicule.">
+        Réserver sur WhatsApp
+    </a>
+</section>
+
 <main>
-    <div class="hero">
-        <h1>Location de maisons et logements</h1>
-        <p>
-            Vous recherchez une maison ou un logement à louer au Sénégal ?
-            IKF Immobilier vous accompagne dans votre recherche.
-        </p>
-    </div>
 
-    <section>
-        <h2 class="section-title">Nos logements en location</h2>
+    <h2 class="section-title">Nos solutions de location</h2>
 
-        <div class="services">
+    <section class="cars">
 
-            <article class="card">
-                <img
-                    src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80"
-                    alt="Intérieur moderne d'un logement"
-                    loading="lazy">
+        <article class="card">
+            <img
+                src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=80"
+                alt="Voiture pour location courte durée"
+                loading="lazy">
 
-                <h3>Logement moderne</h3>
-
+            <div class="card-content">
+                <h3>🚗 Location courte durée</h3>
                 <p>
-                    Un exemple de logement pour vous inspirer.
-                    Contactez-nous pour connaître les offres disponibles.
+                    Pour vos sorties, rendez-vous, déplacements
+                    et voyages de courte durée.
                 </p>
+                <p><strong>Tarif :</strong> sur demande.</p>
 
                 <a class="button"
-                   href="https://wa.me/221703311532?text=Bonjour%20IKF%20Immobilier%2C%20je%20cherche%20un%20logement%20%C3%A0%20louer."
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    Demander des informations
+                   href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20connaitre%20les%20tarifs%20de%20location%20courte%20duree.">
+                    Demander le tarif
                 </a>
-            </article>
+            </div>
+        </article>
 
-            <article class="card">
-                <img
-                    src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80"
-                    alt="Salon d'une maison contemporaine"
-                    loading="lazy">
+        <article class="card">
+            <img
+                src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80"
+                alt="Voiture pour location longue durée"
+                loading="lazy">
 
-                <h3>Maison contemporaine</h3>
-
+            <div class="card-content">
+                <h3>🗓️ Location longue durée</h3>
                 <p>
-                    Vous avez un budget ou un quartier précis en tête ?
-                    Échangeons sur votre recherche.
+                    Une solution à étudier pour vos besoins
+                    personnels ou professionnels sur une période prolongée.
                 </p>
+                <p><strong>Tarif :</strong> sur demande.</p>
 
                 <a class="button"
-                   href="https://wa.me/221703311532?text=Bonjour%20IKF%20Immobilier%2C%20je%20souhaite%20des%20informations%20sur%20la%20location%20d%27une%20maison."
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    Contacter IKF
+                   href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20connaitre%20les%20conditions%20de%20location%20longue%20duree.">
+                    Contacter IKF Auto
                 </a>
-            </article>
+            </div>
+        </article>
 
-            <article class="card">
-                <img
-                    src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"
-                    alt="Villa moderne avec jardin"
-                    loading="lazy">
+        <article class="card">
+            <img
+                src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80"
+                alt="Voiture de gamme supérieure"
+                loading="lazy">
 
-                <h3>Villa avec jardin</h3>
-
+            <div class="card-content">
+                <h3>✨ Véhicules de gamme supérieure</h3>
                 <p>
-                    Cette photo est illustrative. Contactez IKF pour
-                    rechercher une villa correspondant à vos critères.
+                    Faites-nous part de vos préférences pour rechercher
+                    un véhicule adapté à vos besoins.
                 </p>
+                <p><strong>Disponibilité :</strong> à confirmer.</p>
 
                 <a class="button"
-                   href="https://wa.me/221703311532?text=Bonjour%20IKF%20Immobilier%2C%20je%20cherche%20une%20villa%20%C3%A0%20louer."
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    Rechercher une villa
+                   href="https://wa.me/221703311532?text=Bonjour%2C%20je%20recherche%20un%20vehicule%20de%20gamme%20superieure.">
+                    Faire une demande
                 </a>
-            </article>
+            </div>
+        </article>
 
-        </div>
     </section>
 
-    <section class="contact" id="contact">
-        <h2 class="section-title">Contactez IKF Immobilier</h2>
+    <section class="info">
+        <h2 class="section-title">Conditions générales de location</h2>
 
-        <p>Téléphone : +221 77 877 78 57</p>
-        <p>WhatsApp : +221 70 331 15 32</p>
-        <p>E-mail : khalilfofana2002@gmail.com</p>
-        <p>Adresse : Keur Massar, Medina Gana Sarr</p>
+        <p>
+            Pour organiser une location dans de bonnes conditions,
+            les modalités seront précisées avant la remise du véhicule.
+        </p>
+
+        <h3>1. Documents nécessaires</h3>
+        <ul>
+            <li>Une pièce d'identité valide.</li>
+            <li>Un permis de conduire valide et adapté au véhicule.</li>
+            <li>Les documents complémentaires prévus au contrat.</li>
+        </ul>
+
+        <h3>2. Réservation et paiement</h3>
+        <ul>
+            <li>La disponibilité du véhicule doit être confirmée.</li>
+            <li>Le tarif et la durée sont convenus avant la location.</li>
+            <li>Une caution peut être prévue au contrat.</li>
+        </ul>
+
+        <h3>3. Utilisation du véhicule</h3>
+        <ul>
+            <li>Respecter le Code de la route.</li>
+            <li>Ne pas prêter ou sous-louer le véhicule sans autorisation.</li>
+            <li>Ne pas utiliser le véhicule pour une activité illégale.</li>
+            <li>Signaler rapidement toute panne ou tout accident.</li>
+        </ul>
+
+        <h3>4. Entretien et dommages</h3>
+        <ul>
+            <li>Prendre soin du véhicule pendant la location.</li>
+            <li>Signaler les dommages et les anomalies.</li>
+            <li>Les responsabilités et garanties sont précisées au contrat.</li>
+        </ul>
+
+        <h3>5. Retour du véhicule</h3>
+        <ul>
+            <li>Respecter la date, l'heure et le lieu convenus.</li>
+            <li>Restituer les clés et les accessoires.</li>
+            <li>Tout retard doit être signalé à IKF Auto.</li>
+        </ul>
+
+        <h3>6. Assurance et responsabilité</h3>
+        <p>
+            Les garanties d'assurance, les franchises, les responsabilités
+            et les éventuels frais doivent être expliqués dans le contrat
+            avant la remise du véhicule.
+        </p>
+
+        <h3>7. Acceptation des conditions</h3>
+        <p>
+            Les conditions définitives doivent figurer dans un contrat
+            de location adapté au droit applicable au Sénégal.
+        </p>
 
         <a class="button"
-           href="https://wa.me/221703311532"
-           target="_blank"
-           rel="noopener noreferrer">
-            Nous contacter sur WhatsApp
+           href="https://wa.me/221703311532?text=Bonjour%20IKF%20Auto%2C%20je%20souhaite%20connaitre%20vos%20conditions%20de%20location.">
+            Demander les conditions sur WhatsApp
         </a>
     </section>
+
+    <section class="info">
+        <h2 class="section-title">Contact IKF Auto</h2>
+
+        <p>
+            Vous souhaitez louer un véhicule ou obtenir plus d'informations ?
+            Contactez-nous directement.
+        </p>
+
+        <p><strong>WhatsApp :</strong> +221 70 331 15 32</p>
+        <p><strong>Email :</strong> khalilfofana2002@gmail.com</p>
+
+        <a class="button"
+           href="https://wa.me/221703311532">
+            Écrire à IKF Auto
+        </a>
+    </section>
+
 </main>
 
 <footer>
-    <p>IKF — TRAVAIL · DISCIPLINE · RÉUSSITE</p>
-    <p>© 2026 IKF Immobilier</p>
+    <p><strong>IKF AUTO</strong></p>
+    <p>TRAVAIL · DISCIPLINE · RÉUSSITE</p>
+    <p>WhatsApp : +221 70 331 15 32</p>
+    <p>Email : khalilfofana2002@gmail.com</p>
+    <p>© 2026 IKF — Tous droits réservés.</p>
 </footer>
 
 </body>
