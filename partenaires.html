@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Véhicules de partenaires | IKF Auto</title>
 
     <style>
@@ -42,30 +43,65 @@
             display: inline-block;
         }
 
+        nav a:hover {
+            color: #d4af37;
+        }
+
         main {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 35px auto;
             padding: 20px;
         }
 
         .intro {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
-        .intro h2 {
+        .intro h2,
+        .section-title {
             color: #d4af37;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .vehicles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+            margin-bottom: 40px;
         }
 
         .card {
             background: #1d1d1d;
             border: 1px solid #d4af37;
             border-radius: 12px;
-            padding: 25px;
+            padding: 20px;
             margin-bottom: 20px;
+            overflow: hidden;
         }
 
+        .vehicle-card {
+            padding: 0;
+            transition: transform 0.2s;
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .vehicle-card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .vehicle-info {
+            padding: 18px;
+        }
+
+        .vehicle-info h3,
         .card h3 {
             color: #d4af37;
             margin-bottom: 10px;
@@ -74,12 +110,16 @@
         .button {
             display: inline-block;
             margin-top: 15px;
-            padding: 12px 20px;
+            padding: 12px 18px;
             background: #d4af37;
             color: #000;
             text-decoration: none;
             font-weight: bold;
             border-radius: 6px;
+        }
+
+        .button:hover {
+            background: #f1d675;
         }
 
         footer {
@@ -88,6 +128,16 @@
             background: #000;
             border-top: 2px solid #d4af37;
             margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 14px;
+            }
+
+            .vehicle-card img {
+                height: 200px;
+            }
         }
     </style>
 </head>
@@ -107,27 +157,105 @@
 </header>
 
 <main>
+
     <section class="intro">
         <h2>Nos véhicules partenaires</h2>
         <p>
-            IKF Auto vous accompagne dans la recherche de véhicules
-            proposés par des partenaires. Contactez-nous pour nous
-            préciser le type de véhicule que vous recherchez.
+            Découvrez quelques marques recherchées et contactez IKF Auto
+            pour nous préciser le véhicule que vous souhaitez acheter
+            ou louer auprès de nos partenaires.
         </p>
     </section>
 
-    <article class="card">
-        <h3>🚗 Recherche d'un véhicule</h3>
-        <p>
-            Vous recherchez une voiture de ville, une berline,
-            un SUV ou un autre type de véhicule proposé par un partenaire ?
-            Faites-nous part de votre besoin.
-        </p>
-        <a class="button"
-           href="https://wa.me/221703311532?text=Bonjour%2C%20je%20recherche%20un%20v%C3%A9hicule%20chez%20les%20partenaires%20de%20IKF%20Auto.">
-            Rechercher un véhicule
-        </a>
-    </article>
+    <h2 class="section-title">🚘 Marques recherchées</h2>
+
+    <section class="vehicles">
+
+        <article class="card vehicle-card">
+            <img
+                src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=80"
+                alt="Exemple de voiture pour une recherche Toyota">
+            <div class="vehicle-info">
+                <h3>Toyota</h3>
+                <p>Berline, voiture familiale ou SUV selon les disponibilités des partenaires.</p>
+                <a class="button"
+                   href="https://wa.me/221703311532?text=Bonjour%2C%20je%20recherche%20un%20v%C3%A9hicule%20Toyota%20chez%20les%20partenaires%20IKF%20Auto.">
+                    Rechercher une Toyota
+                </a>
+            </div>
+        </article>
+
+        <article class="card vehicle-card">
+            <img
+                src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80"
+                alt="Exemple de voiture pour une recherche Ford">
+            <div class="vehicle-info">
+                <h3>Ford</h3>
+                <p>Véhicules particuliers et utilitaires selon les offres disponibles.</p>
+                <a class="button"
+                   href="https://wa.me/221703311532?text=Bonjour%2C%20je%20recherche%20un%20v%C3%A9hicule%20Ford%20chez%20les%20partenaires%20IKF%20Auto.">
+                    Rechercher une Ford
+                </a>
+            </div>
+        </article>
+
+        <article class="card vehicle-card">
+            <img
+                src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=80"
+                alt="Exemple de véhicule pour une recherche Mitsubishi">
+            <div class="vehicle-info">
+                <h3>Mitsubishi</h3>
+                <p>Recherche de SUV, 4x4 ou autres modèles selon les disponibilités.</p>
+                <a class="button"
+                   href="https://wa.me/221703311532?text=Bonjour%2C%20je%20recherche%20un%20v%C3%A9hicule%20Mitsubishi%20chez%20les%20partenaires%20IKF%20Auto.">
+                    Rechercher une Mitsubishi
+                </a>
+            </div>
+        </article>
+
+        <article class="card vehicle-card">
+            <img
+                src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80"
+                alt="Exemple de voiture pour une recherche Opel">
+            <div class="vehicle-info">
+                <h3>Opel</h3>
+                <p>Voitures compactes, berlines ou autres modèles selon les offres.</p>
+                <a class="button"
+                   href="https://wa.me/221703311532?text=Bonjour%2C%20je%20recherche%20un%20v%C3%A9hicule%20Opel%20chez%20les%20partenaires%20IKF%20Auto.">
+                    Rechercher une Opel
+                </a>
+            </div>
+        </article>
+
+        <article class="card vehicle-card">
+            <img
+                src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=900&q=80"
+                alt="Exemple de voiture pour une recherche Peugeot">
+            <div class="vehicle-info">
+                <h3>Peugeot</h3>
+                <p>Recherche de citadines, berlines et véhicules familiaux.</p>
+                <a class="button"
+                   href="https://wa.me/221703311532?text=Bonjour%2C%20je%20recherche%20un%20v%C3%A9hicule%20Peugeot%20chez%20les%20partenaires%20IKF%20Auto.">
+                    Rechercher une Peugeot
+                </a>
+            </div>
+        </article>
+
+        <article class="card vehicle-card">
+            <img
+                src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80"
+                alt="Exemple de voiture pour une recherche Chevrolet">
+            <div class="vehicle-info">
+                <h3>Chevrolet</h3>
+                <p>Recherche de berlines, SUV ou autres modèles selon les offres.</p>
+                <a class="button"
+                   href="https://wa.me/221703311532?text=Bonjour%2C%20je%20recherche%20un%20v%C3%A9hicule%20Chevrolet%20chez%20les%20partenaires%20IKF%20Auto.">
+                    Rechercher une Chevrolet
+                </a>
+            </div>
+        </article>
+
+    </section>
 
     <article class="card">
         <h3>🤝 Devenir partenaire</h3>
@@ -147,12 +275,15 @@
         <p>
             Les véhicules, les tarifs et les conditions sont à confirmer
             directement avec le propriétaire ou le partenaire concerné.
+            Les photos présentées sont illustratives et ne garantissent
+            pas la disponibilité d'un véhicule.
         </p>
         <a class="button"
            href="https://wa.me/221703311532?text=Bonjour%2C%20je%20souhaite%20conna%C3%AEtre%20les%20conditions%20des%20offres%20partenaires%20de%20IKF%20Auto.">
             Demander des informations
         </a>
     </article>
+
 </main>
 
 <footer>
@@ -163,4 +294,3 @@
 
 </body>
 </html>
-```
