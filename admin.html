@@ -127,11 +127,15 @@
             .select("id, nom_client, telephone, service, type_commande, details, budget, mode_paiement, statut, date_creation")
             .order("date_creation", { ascending: false });
 
+        ```javascript
         if (error) {
+            console.error("Erreur Supabase :", error);
             ordersMessage.textContent =
-                "Impossible de charger les commandes. Vérifie les autorisations Supabase.";
+                "Erreur Supabase : " + error.message;
             return;
         }
+```
+
 
         if (!data || data.length === 0) {
             ordersMessage.textContent = "Aucune commande pour le moment.";
