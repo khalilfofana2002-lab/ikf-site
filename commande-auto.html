@@ -4,17 +4,155 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Commande IKF Auto</title>
-  <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: Arial, sans-serif; background: #f1f3f5; color: #222; }
-    header { background: #111; color: #d4af37; padding: 24px 15px; text-align: center; }
-    main { max-width: 650px; margin: 25px auto; padding: 24px; background: white; border-radius: 12px; }
-    label { display: block; margin-top: 15px; font-weight: bold; }
-    input, select, textarea { width: 100%; padding: 12px; margin-top: 6px; border: 1px solid #bbb; border-radius: 7px; font-size: 16px; }
-    button, .back { display: block; width: 100%; margin-top: 20px; padding: 14px; border: 0; border-radius: 7px; background: #c9a227; color: #111; font-weight: bold; font-size: 16px; text-align: center; text-decoration: none; cursor: pointer; }
-    button:disabled { opacity: .6; }
-    .note { color: #555; font-size: 14px; line-height: 1.5; }
-  </style>
+<style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b0b0b;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #050505, #202020);
+      color: #d4af37;
+      padding: 35px 18px;
+      text-align: center;
+      border-bottom: 2px solid #d4af37;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: clamp(26px, 5vw, 36px);
+      letter-spacing: 1px;
+    }
+
+    header p {
+      color: #e5d8a8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    main {
+      width: calc(100% - 30px);
+      max-width: 680px;
+      margin: 30px auto;
+      padding: 28px;
+      background: #171717;
+      border: 1px solid #3d3320;
+      border-radius: 16px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+    }
+
+    h2 {
+      color: #e0bd55;
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      margin-top: 18px;
+      color: #f0d783;
+      font-weight: bold;
+    }
+
+    input,
+    select,
+    textarea {
+      display: block;
+      width: 100%;
+      padding: 13px;
+      margin-top: 7px;
+      border: 1px solid #555;
+      border-radius: 8px;
+      background: #0e0e0e;
+      color: #fff;
+      font: inherit;
+      font-size: 16px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 2px solid #d4af37;
+      outline-offset: 1px;
+      border-color: #d4af37;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    button,
+    .back {
+      display: block;
+      width: 100%;
+      margin-top: 22px;
+      padding: 14px 18px;
+      border: 1px solid #e5c45c;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #f0d778, #c49a24);
+      color: #111;
+      font-weight: bold;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s, filter 0.2s;
+    }
+
+    button:hover,
+    .back:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    button:focus-visible,
+    .back:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+      transform: none;
+    }
+
+    .note {
+      color: #c5c5c5;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    footer {
+      padding: 20px 15px;
+      text-align: center;
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 28px 15px;
+      }
+
+      main {
+        margin: 20px auto;
+        padding: 20px 16px;
+      }
+    }
+</style>
+
 </head>
 <body>
   <header>
