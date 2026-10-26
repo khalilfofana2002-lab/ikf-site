@@ -703,11 +703,16 @@ const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_fdqw0PEcQbtaUePE1OxWBg_xzP-vNP-
                     statut: "Nouvelle"
                 }]);
 
-            if (error) {
-                console.error("Erreur Supabase :", error);
-                alert("La commande n'a pas pu être enregistrée. Vérifiez la configuration Supabase et réessayez.");
-                return;
-            }
+if (error) {
+    console.error("Erreur Supabase :", error);
+    alert(
+        "Erreur Supabase : " +
+        error.message +
+        "\nCode : " + error.code
+    );
+    return;
+}
+
 
             // 3. OUVRIR WHATSAPP APRÈS L'ENREGISTREMENT
             const lignes = [
