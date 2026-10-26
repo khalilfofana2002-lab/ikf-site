@@ -594,38 +594,46 @@
     <p>© <span id="annee"></span> IKF Groupe. Tous droits réservés.</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+    // 1. REMPLACE CES DEUX VALEURS PAR TES INFORMATIONS SUPABASE
+    const SUPABASE_URL = https://dwioklrcpbhzhdfmcnqn.supabase.co/rest/v1/
+    const SUPABASE_PUBLISHABLE_KEY = sb_publishable_fdqw0PEcQbtaUePE1OxWBg_xzP-vNP-
+
+    const db = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
     const service = document.getElementById("service");
     const besoin = document.getElementById("besoin");
 
     const options = {
         immobilier: [
-            ["Vente de maison", "Vente de maison"],
-            ["Location de maison", "Location de maison"],
-            ["Achat de terrain", "Achat de terrain"],
-            ["Demande de visite", "Demande de visite"],
-            ["Accompagnement immobilier", "Accompagnement immobilier"]
+            "Vente de maison",
+            "Location de maison",
+            "Achat de terrain",
+            "Demande de visite",
+            "Accompagnement immobilier"
         ],
-
         auto: [
-            ["Achat de véhicule", "Achat de véhicule"],
-            ["Location de véhicule", "Location de véhicule"],
-            ["Véhicule de partenaire", "Véhicule de partenaire"],
-            ["Proposer un véhicule", "Proposer un véhicule"]
+            "Achat de véhicule",
+            "Location de véhicule",
+            "Véhicule de partenaire",
+            "Proposer un véhicule"
         ],
-
         commerce: [
-            ["Achat de produit", "Achat de produit"],
-            ["Demande de disponibilité", "Demande de disponibilité"],
-            ["Commande commerciale", "Commande commerciale"],
-            ["Autre demande commerciale", "Autre demande commerciale"]
+            "Achat de produit",
+            "Demande de disponibilité",
+            "Commande commerciale",
+            "Autre demande commerciale"
         ],
-
         digital: [
-            ["Création de site web", "Création de site web"],
-            ["Service numérique", "Service numérique"],
-            ["Accompagnement digital", "Accompagnement digital"],
-            ["Autre demande digitale", "Autre demande digitale"]
+            "Création de site web",
+            "Service numérique",
+            "Accompagnement digital",
+            "Autre demande digitale"
         ]
     };
 
@@ -639,8 +647,8 @@
 
         (options[valeur] || []).forEach(function(item) {
             const option = document.createElement("option");
-            option.value = item[0];
-            option.textContent = item[1];
+            option.value = item;
+            option.textContent = item;
             besoin.appendChild(option);
         });
     }
@@ -662,7 +670,7 @@
         });
     });
 
-    document.getElementById("commandeForm").addEventListener("submit", function(event) {
+    document.getElementById("commandeForm").addEventListener("submit", async function(event) {
         event.preventDefault();
 
         const nom = document.getElementById("nom").value.trim();
@@ -673,28 +681,65 @@
         const budget = document.getElementById("budget").value;
         const paiement = document.getElementById("paiement").value;
 
-        const lignes = [
-            "Bonjour IKF Groupe, je souhaite présenter une demande.",
-            "",
-            "Nom : " + nom,
-            "Téléphone : " + telephone,
-            "Domaine : " + domaine,
-            "Type de demande : " + typeDemande,
-            "Détails : " + details,
-            "Budget indicatif : " + (budget ? budget + " FCFA" : "Non précisé"),
-            "Préférence de paiement : " + paiement,
-            "",
-            "Merci de me contacter pour la suite."
-        ];
+        if (!nom || !telephone || !service.value || !typeDemande) {
+            alert("Veuillez remplir les champs obligatoires.");
+            return;
+        }
 
-        const url = "https://wa.me/221703311532?text=" +
-            encodeURIComponent(lignes.join("\n"));
+        const boutonEnvoyer = event.submitter;
+        if (boutonEnvoyer) boutonEnvoyer.disabled = true;
 
-        window.open(url, "_blank", "noopener,noreferrer");
+        try {
+            // 2. ENREGISTRER LA COMMANDE DANS SUPABASE
+            const { error } = await db
+                .from("commandes")
+                .insert([{
+                    nom_client: nom,
+                    telephone: telephone,
+                    service: domaine,
+                    type_commande: typeDemande,
+                    details: details,
+                    budget: budget ? budget + " FCFA" : "",
+                    mode_paiement: paiement,
+                    statut: "Nouvelle"
+                }]);
+
+            if (error) {
+                console.error("Erreur Supabase :", error);
+                alert("La commande n'a pas pu être enregistrée. Vérifiez la configuration Supabase et réessayez.");
+                return;
+            }
+
+            // 3. OUVRIR WHATSAPP APRÈS L'ENREGISTREMENT
+            const lignes = [
+                "Bonjour IKF Groupe, je souhaite présenter une demande.",
+                "",
+                "Nom : " + nom,
+                "Téléphone : " + telephone,
+                "Domaine : " + domaine,
+                "Type de demande : " + typeDemande,
+                "Détails : " + details,
+                "Budget indicatif : " + (budget ? budget + " FCFA" : "Non précisé"),
+                "Préférence de paiement : " + paiement,
+                "",
+                "Merci de me contacter pour la suite."
+            ];
+
+            const url = "https://wa.me/221703311532?text=" +
+                encodeURIComponent(lignes.join("\n"));
+
+            window.location.href = url;
+
+        } catch (erreur) {
+            console.error(erreur);
+            alert("Une erreur est survenue. Vérifiez votre connexion Internet et réessayez.");
+        } finally {
+            if (boutonEnvoyer) boutonEnvoyer.disabled = false;
+        }
     });
 
-    document.getElementById("annee").textContent =
-        new Date().getFullYear();
+    const annee = document.getElementById("annee");
+    if (annee) annee.textContent = new Date().getFullYear();
 </script>
 
 </body>
