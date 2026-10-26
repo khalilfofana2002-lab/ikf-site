@@ -164,41 +164,99 @@
     <h2>Votre demande immobilière</h2>
     <p class="note">Remplissez le formulaire. Votre demande sera enregistrée et vous pourrez ensuite contacter IKF sur WhatsApp.</p>
 
-    <form id="commandeImmoForm">
-      <label for="nom">Nom complet *</label>
-      <input id="nom" required>
+<form id="commandeImmoForm">
+  <label for="nom">Nom complet *</label>
+  <input
+    id="nom"
+    type="text"
+    autocomplete="name"
+    placeholder="Votre nom et prénom"
+    required
+  >
 
-      <label for="telephone">Téléphone *</label>
-      <input id="telephone" type="tel" required>
+  <label for="telephone">Numéro de téléphone *</label>
+  <input
+    id="telephone"
+    type="tel"
+    autocomplete="tel"
+    placeholder="Ex. 77 123 45 67"
+    required
+  >
 
-      <label for="besoin">Type de demande *</label>
-      <select id="besoin" required>
-        <option value="">Choisir une demande</option>
-        <option value="Achat de maison">Achat de maison</option>
-        <option value="Location de maison">Location de maison</option>
-        <option value="Achat de terrain">Achat de terrain</option>
-        <option value="Location commerciale">Location commerciale</option>
-        <option value="Accompagnement immobilier">Accompagnement immobilier</option>
-        <option value="Proposer un bien immobilier">Proposer un bien immobilier</option>
-      </select>
+  <label for="besoin">Votre demande *</label>
+  <select id="besoin" required>
+    <option value="">Choisir une demande</option>
+    <option value="Achat de maison">Achat de maison</option>
+    <option value="Location de maison">Location de maison</option>
+    <option value="Achat de terrain">Achat de terrain</option>
+    <option value="Location commerciale">Location commerciale</option>
+    <option value="Accompagnement immobilier">Accompagnement immobilier</option>
+    <option value="Proposer un bien immobilier">Proposer un bien immobilier</option>
+  </select>
 
-      <label for="details">Détails de votre demande *</label>
-      <textarea id="details" rows="4" required placeholder="Ville ou quartier, type de bien, caractéristiques..."></textarea>
+  <label for="quartier">Ville ou quartier recherché *</label>
+  <input
+    id="quartier"
+    type="text"
+    placeholder="Ex. Keur Massar, Dakar..."
+    required
+  >
 
-      <label for="budget">Budget indicatif (FCFA)</label>
-      <input id="budget" type="number" min="0" placeholder="Ex. 15000000">
+  <label for="typeBien">Type de bien recherché</label>
+  <select id="typeBien">
+    <option value="">Choisir un type de bien</option>
+    <option value="Maison">Maison</option>
+    <option value="Appartement">Appartement</option>
+    <option value="Terrain">Terrain</option>
+    <option value="Local commercial">Local commercial</option>
+    <option value="Villa">Villa</option>
+    <option value="Autre">Autre</option>
+  </select>
 
-      <label for="paiement">Préférence de paiement</label>
-      <select id="paiement">
-        <option value="À discuter">À discuter</option>
-        <option value="Wave">Wave</option>
-        <option value="Orange Money">Orange Money</option>
-        <option value="Espèces">Espèces</option>
-        <option value="Virement bancaire">Virement bancaire</option>
-      </select>
+  <label for="chambres">Nombre de chambres souhaité</label>
+  <select id="chambres">
+    <option value="">Non précisé</option>
+    <option value="Studio ou 1 chambre">Studio ou 1 chambre</option>
+    <option value="2 chambres">2 chambres</option>
+    <option value="3 chambres">3 chambres</option>
+    <option value="4 chambres ou plus">4 chambres ou plus</option>
+    <option value="Sans objet">Sans objet</option>
+  </select>
 
-      <button id="envoyer" type="submit">Envoyer ma demande</button>
-    </form>
+  <label for="details">Décrivez votre projet *</label>
+  <textarea
+    id="details"
+    rows="5"
+    required
+    placeholder="Précisez vos critères, la superficie, les équipements ou les autres informations utiles..."
+  ></textarea>
+
+  <label for="budget">Budget indicatif (FCFA)</label>
+  <input
+    id="budget"
+    type="number"
+    min="0"
+    step="1000"
+    placeholder="Ex. 15000000"
+  >
+
+  <label for="paiement">Préférence de paiement</label>
+  <select id="paiement">
+    <option value="À discuter">À discuter</option>
+    <option value="Wave">Wave</option>
+    <option value="Orange Money">Orange Money</option>
+    <option value="Espèces">Espèces</option>
+    <option value="Virement bancaire">Virement bancaire</option>
+  </select>
+
+  <p class="note">
+    Vos informations nous aideront à mieux comprendre votre projet immobilier.
+    Vérifiez vos coordonnées avant d'envoyer votre demande.
+  </p>
+
+  <button id="envoyer" type="submit">Envoyer ma demande</button>
+</form>
+
 
     <a class="back" href="index.html">Retour au site IKF</a>
   </main>
@@ -220,6 +278,9 @@
       const telephone = document.getElementById("telephone").value.trim();
       const typeDemande = document.getElementById("besoin").value;
       const details = document.getElementById("details").value.trim();
+      const quartier = document.getElementById("quartier").value.trim();
+      const typeBien = document.getElementById("typeBien").value;
+      const chambres = document.getElementById("chambres").value;
       const budget = document.getElementById("budget").value;
       const paiement = document.getElementById("paiement").value;
       const bouton = document.getElementById("envoyer");
@@ -236,6 +297,9 @@
         "Téléphone : " + telephone,
         "Service : Immobilier",
         "Type : " + typeDemande,
+        "Ville ou quartier : " + quartier,
+        "Type de bien : " + (typeBien || "Non précisé"),
+        "Nombre de chambres : " + (chambres || "Non précisé"),
         "Détails : " + details,
         "Budget : " + (budget ? budget + " FCFA" : "Non précisé"),
         "Paiement : " + paiement
@@ -252,7 +316,10 @@
           telephone: telephone,
           service: "immobilier",
           type_commande: typeDemande,
-          details: details,
+          details: "Ville ou quartier : " + quartier +
+          " | Type de bien : " + (typeBien || "Non précisé") +
+          " | Chambres : " + (chambres || "Non précisé") +
+          " | Projet : " + details,
           budget: budget ? budget + " FCFA" : "",
           mode_paiement: paiement,
           statut: "Nouvelle"
