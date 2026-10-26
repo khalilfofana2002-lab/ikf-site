@@ -670,6 +670,7 @@ const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_fdqw0PEcQbtaUePE1OxWBg_xzP-vNP-
     });
 
     document.getElementById("commandeForm").addEventListener("submit", async function(event) {
+        const whatsappWindow = window.open("about:blank", "_blank");
         event.preventDefault();
 
         const nom = document.getElementById("nom").value.trim();
@@ -732,7 +733,11 @@ if (error) {
             const url = "https://wa.me/221703311532?text=" +
                 encodeURIComponent(lignes.join("\n"));
 
-            window.open(url, "_blank");
+            if (whatsappWindow) {
+    whatsappWindow.location.href = url;
+} else {
+    alert("Autorisez les fenêtres pop-up pour ouvrir WhatsApp.");
+}
 
         } catch (erreur) {
             console.error(erreur);
