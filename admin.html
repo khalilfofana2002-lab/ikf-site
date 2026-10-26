@@ -175,7 +175,52 @@
             });
 
             carte.appendChild(details);
+    const statutLabel = document.createElement("label");
+    statutLabel.textContent = "Modifier le statut : ";
+
+    const statutSelect = document.createElement("select");
+
+    ["Nouvelle", "En cours", "Terminée", "Annulée"].forEach(function(statut) {
+        const option = document.createElement("option");
+        option.value = statut;
+        option.textContent = statut;
+
+        if (statut === commande.statut) {
+            option.selected = true;
+        }
+
+        statutSelect.appendChild(option);
+    });
+
+    const statutButton = document.createElement("button");
+    statutButton.type = "button";
+    statutButton.textContent = "Enregistrer le statut";
+
+    statutButton.addEventListener("click", async function() {
+        statutButton.disabled = true;
+
+        const { error } = await db
+            .from("commandes")
+            .update({ statut: statutSelect.value })
+            .eq("id", commande.id);
+
+        statutButton.disabled = false;
+
+        if (error) {
+            alert("Impossible de modifier le statut. Vérifie les autorisations Supabase.");
+            return;
+        }
+
+        alert("Statut de la commande mis à jour !");
+        await chargerCommandes();
+    });
+
+    carte.appendChild(statutLabel);
+    carte.appendChild(statutSelect);
+    carte.appendChild(statutButton);
+
             ordersList.appendChild(carte);
+
         });
     }
 
