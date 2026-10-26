@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration IKF</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        main {
+            max-width: 1000px;
+            margin: auto;
+        }
+        h1, h2 { color: #d4af37; }
+        form, .commande {
+            background: #202020;
+            border: 1px solid #806b2b;
+            border-radius: 10px;
+            padding: 18px;
+            margin: 15px 0;
+        }
+        input, button {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            margin: 7px 0;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        input {
+            background: #fff;
+            color: #111;
+            border: 1px solid #aaa;
+        }
+        button {
+            background: #d4af37;
+            color: #111;
+            border: 0;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .message { color: #f0d879; }
+        .details { color: #ddd; line-height: 1.6; }
+        .petit { color: #bbb; font-size: 14px; }
+    </style>
+</head>
+<body>
+<main>
+    <h1>IKF Groupe — Administration</h1>
+    <p class="petit">Connecte-toi pour consulter les commandes reçues.</p>
+
+    <section id="connexion">
+        <form id="loginForm">
+            <h2>Connexion administrateur</h2>
+            <label for="email">Adresse e-mail</label>
+            <input id="email" type="email" required autocomplete="username">
+
+            <label for="password">Mot de passe</label>
+            <input id="password" type="password" required autocomplete="current-password">
+
+            <button type="submit">Se connecter</button>
+            <p id="loginMessage" class="message" aria-live="polite"></p>
+        </form>
+    </section>
+
+    <section id="espace" hidden>
+        <h2>Commandes reçues</h2>
+        <button id="refreshBtn" type="button">Actualiser les commandes</button>
+        <button id="logoutBtn" type="button">Se déconnecter</button>
+        <p id="ordersMessage" class="message" aria-live="polite"></p>
+        <div id="ordersList"></div>
+    </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    const SUPABASE_URL = "https://dwioklrcpbhzhdfmcnqn.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_fdqw0PEcQbtaUePE1OxWBg_xzP-vNP-";
+
+    const db = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
+    const loginForm = document.getElementById("loginForm");
+    const loginMessage = document.getElementById("loginMessage");
+    const ordersMessage = document.getElementById("ordersMessage");
+    const connexion = document.getElementById("connexion");
+    const espace = document.getElementById("espace");
+    const ordersList = document.getElementById("ordersList");
+
+    loginForm.addEventListener("submit", async function(event) {
+        event.preventDefault();
+        loginMessage.textContent = "Connexion en cours…";
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+
+        const { error } = await db.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+        if (error) {
+            loginMessage.textContent =
+                "Connexion impossible. Vérifie ton e-mail et ton mot de passe.";
+            return;
+        }
+
+        loginMessage.textContent = "";
+        connexion.hidden = true;
+        espace.hidden = false;
+        await chargerCommandes();
+    });
+
+    async function chargerCommandes() {
+        ordersMessage.textContent = "Chargement des commandes…";
+        ordersList.replaceChildren();
+
+        const { data, error } = await db
+            .from("commandes")
+            .select("id, nom_client, telephone, service, type_commande, details, budget, mode_paiement, statut, date_creation")
+            .order("date_creation", { ascending: false });
+
+        if (error) {
+            ordersMessage.textContent =
+                "Impossible de charger les commandes. Vérifie les autorisations Supabase.";
+            return;
+        }
+
+        if (!data || data.length === 0) {
+            ordersMessage.textContent = "Aucune commande pour le moment.";
+            return;
+        }
+
+        ordersMessage.textContent = data.length + " commande(s) trouvée(s).";
+
+        data.forEach(function(commande) {
+            const carte = document.createElement("article");
+            carte.className = "commande";
+
+            const titre = document.createElement("h2");
+            titre.textContent = "Commande #" + commande.id;
+            carte.appendChild(titre);
+
+            const details = document.createElement("div");
+            details.className = "details";
+
+            const lignes = [
+                ["Client", commande.nom_client],
+                ["Téléphone", commande.telephone],
+                ["Service", commande.service],
+                ["Demande", commande.type_commande],
+                ["Détails", commande.details],
+                ["Budget", commande.budget],
+                ["Paiement", commande.mode_paiement],
+                ["Statut", commande.statut],
+                ["Date", commande.date_creation
+                    ? new Date(commande.date_creation).toLocaleString("fr-FR")
+                    : ""]
+            ];
+
+            lignes.forEach(function(ligne) {
+                const p = document.createElement("p");
+                const fort = document.createElement("strong");
+                fort.textContent = ligne[0] + " : ";
+                p.appendChild(fort);
+                p.appendChild(document.createTextNode(ligne[1] || "Non renseigné"));
+                details.appendChild(p);
+            });
+
+            carte.appendChild(details);
+            ordersList.appendChild(carte);
+        });
+    }
+
+    document.getElementById("refreshBtn").addEventListener("click", chargerCommandes);
+
+    document.getElementById("logoutBtn").addEventListener("click", async function() {
+        await db.auth.signOut();
+        espace.hidden = true;
+        connexion.hidden = false;
+        loginForm.reset();
+        ordersList.replaceChildren();
+        ordersMessage.textContent = "";
+        loginMessage.textContent = "Tu es déconnecté.";
+    });
+
+    db.auth.getSession().then(async function(resultat) {
+        if (resultat.data.session) {
+            connexion.hidden = true;
+            espace.hidden = false;
+            await chargerCommandes();
+        }
+    });
+</script>
+</body>
+</html>
