@@ -3,185 +3,698 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Commandes | IKF Groupe</title>
+    <meta name="description" content="Découvrez les services IKF Immobilier, IKF Auto et FOFANA Commerce Service. Envoyez votre demande en quelques étapes.">
 
     <style>
+        :root {
+            --or: #d4af37;
+            --or-clair: #f5df91;
+            --noir: #080808;
+            --fond: #111111;
+            --carte: #181818;
+            --texte: #f7f7f7;
+            --gris: #b9b9b9;
+            --bordure: rgba(212, 175, 55, 0.28);
+        }
+
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #111;
-            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--fond);
+            color: var(--texte);
+            line-height: 1.6;
         }
 
-        header {
-            background: #000;
-            padding: 22px 15px;
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .topbar {
+            background: #050505;
+            border-bottom: 1px solid var(--bordure);
+            padding: 17px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            color: var(--or);
+            font-size: 27px;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        .logo span {
+            display: block;
+            color: #ddd;
+            font-size: 9px;
+            letter-spacing: 2px;
+            font-weight: normal;
+        }
+
+        .home-link {
+            color: var(--or-clair);
+            font-size: 14px;
+        }
+
+        .hero {
             text-align: center;
-            border-bottom: 2px solid #d4af37;
+            padding: 75px 20px 65px;
+            background:
+                radial-gradient(ellipse at top, #3b3017 0%, #17130b 30%, #080808 75%);
+            border-bottom: 1px solid var(--bordure);
         }
 
-        header h1 {
-            color: #d4af37;
-            margin: 0 0 8px;
+        .eyebrow {
+            color: var(--or);
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
         }
 
-        header p {
-            margin: 0;
+        .hero h1 {
+            max-width: 850px;
+            margin: 0 auto 20px;
+            font-size: clamp(32px, 6vw, 57px);
+            line-height: 1.15;
         }
 
-        main {
+        .hero h1 span {
+            color: var(--or);
+        }
+
+        .hero p {
+            max-width: 620px;
+            margin: auto;
+            color: var(--gris);
+            font-size: 16px;
+        }
+
+        .hero-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 25px;
+            background: var(--or);
+            color: #080808;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .hero-button:hover {
+            background: var(--or-clair);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            width: min(1100px, 90%);
+            margin: auto;
+        }
+
+        .section {
+            padding: 65px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(25px, 4vw, 35px);
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: var(--gris);
             max-width: 650px;
-            margin: 30px auto;
-            padding: 20px;
+            margin: auto;
         }
 
-        .box {
-            background: #202020;
-            padding: 24px;
+        .gold-line {
+            width: 65px;
+            height: 3px;
+            background: var(--or);
+            margin: 16px auto 0;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, #202020, #111111);
+            border: 1px solid var(--bordure);
+            padding: 28px 23px;
             border-radius: 12px;
-            border: 1px solid #444;
+            transition: 0.25s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--or);
+        }
+
+        .service-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            color: var(--or-clair);
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--gris);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .choose-button {
+            display: inline-block;
+            padding: 10px 15px;
+            border: 1px solid var(--or);
+            color: var(--or-clair);
+            border-radius: 5px;
+            background: transparent;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .choose-button:hover {
+            background: var(--or);
+            color: #080808;
+        }
+
+        .order-section {
+            padding: 10px 0 75px;
+            scroll-margin-top: 20px;
+        }
+
+        .order-box {
+            max-width: 760px;
+            margin: auto;
+            padding: clamp(22px, 5vw, 42px);
+            border: 1px solid var(--bordure);
+            border-radius: 14px;
+            background: linear-gradient(150deg, #1d1d1d, #101010);
+        }
+
+        .order-box h2 {
+            font-size: 29px;
+            margin-bottom: 8px;
+        }
+
+        .intro {
+            color: var(--gris);
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .field {
+            min-width: 0;
+        }
+
+        .full {
+            grid-column: 1 / -1;
         }
 
         label {
             display: block;
-            margin: 18px 0 8px;
+            font-size: 14px;
             font-weight: bold;
+            margin-bottom: 7px;
+            color: #f0d889;
         }
 
         input, select, textarea {
             width: 100%;
-            padding: 13px;
+            padding: 13px 14px;
+            background: #090909;
+            color: white;
+            border: 1px solid #414141;
             border-radius: 6px;
-            border: 1px solid #777;
-            font-size: 16px;
+            font: inherit;
+            font-size: 15px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: 2px solid var(--or);
+            outline-offset: 1px;
+        }
+
+        select option {
+            background: #111;
+            color: white;
         }
 
         textarea {
-            min-height: 100px;
+            min-height: 120px;
             resize: vertical;
         }
 
-        button {
+        .hint {
+            font-size: 12px;
+            color: var(--gris);
+            margin-top: 6px;
+        }
+
+        .submit-button {
             width: 100%;
-            padding: 15px;
-            margin-top: 22px;
-            background: #d4af37;
-            color: #000;
+            padding: 16px;
             border: none;
             border-radius: 6px;
+            background: var(--or);
+            color: #080808;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 800;
             cursor: pointer;
+            margin-top: 24px;
         }
 
-        button:hover {
-            background: #f0d36b;
+        .submit-button:hover {
+            background: var(--or-clair);
         }
 
-        .note {
-            color: #ddd;
-            font-size: 14px;
-            line-height: 1.6;
+        .notice {
+            border-left: 3px solid var(--or);
+            padding: 13px 15px;
+            background: rgba(212, 175, 55, 0.07);
+            color: #d4d4d4;
+            font-size: 13px;
+            margin-top: 22px;
+        }
+
+        .trust {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 25px 0 55px;
+            text-align: center;
+        }
+
+        .trust div {
+            color: var(--gris);
+            font-size: 13px;
+        }
+
+        .trust strong {
+            display: block;
+            color: var(--or-clair);
+            margin-bottom: 5px;
+            font-size: 15px;
         }
 
         footer {
+            border-top: 1px solid var(--bordure);
+            background: #050505;
             text-align: center;
-            padding: 20px;
-            color: #ccc;
+            padding: 28px 15px;
+            color: var(--gris);
+            font-size: 13px;
         }
 
-        a {
-            color: #d4af37;
+        footer strong {
+            color: var(--or);
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 760px) {
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 24px;
+            }
+
+            .hero {
+                padding: 55px 20px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .topbar {
+                padding: 15px 5%;
+            }
+
+            .logo {
+                font-size: 23px;
+            }
+
+            .home-link {
+                font-size: 12px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+
+            .trust {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<header>
-    <h1>IKF GROUPE</h1>
-    <p>Votre demande, notre engagement</p>
+<header class="topbar">
+    <a class="logo" href="index.html" aria-label="Accueil IKF Groupe">
+        IKF
+        <span>GROUPE</span>
+    </a>
+
+    <a class="home-link" href="index.html">← Retour à l'accueil</a>
 </header>
 
+<section class="hero">
+    <div class="eyebrow">L'excellence au service de vos projets</div>
+
+    <h1>
+        Donnez vie à vos projets<br>
+        avec <span>IKF Groupe.</span>
+    </h1>
+
+    <p>
+        Immobilier, automobile et commerce : présentez-nous votre besoin.
+        Notre équipe pourra vous contacter pour étudier votre demande.
+    </p>
+
+    <a href="#commande" class="hero-button">Présenter mon projet →</a>
+</section>
+
 <main>
-    <div class="box">
-        <h2>Faire une demande</h2>
-        <p>Remplissez ce formulaire pour nous présenter votre besoin.</p>
+    <section class="section container">
+        <div class="section-heading">
+            <h2>Nos domaines d'activité</h2>
+            <p>
+                Choisissez le domaine qui correspond à votre besoin
+                pour préparer votre demande.
+            </p>
+            <div class="gold-line"></div>
+        </div>
 
-        <form id="commandeForm">
+        <div class="services">
 
-            <label for="nom">Votre nom complet</label>
-            <input id="nom" name="nom" type="text" required>
+            <article class="service-card">
+                <div class="service-icon" aria-hidden="true">🏛️</div>
+                <h3>IKF Immobilier</h3>
+                <p>
+                    Vente et location de maisons, terrains et accompagnement
+                    dans vos projets immobiliers.
+                </p>
+                <button class="choose-button" type="button"
+                    data-service="immobilier">
+                    Choisir Immobilier →
+                </button>
+            </article>
 
-            <label for="telephone">Votre numéro de téléphone</label>
-            <input id="telephone" name="telephone" type="tel" required>
+            <article class="service-card">
+                <div class="service-icon" aria-hidden="true">🚘</div>
+                <h3>IKF Auto</h3>
+                <p>
+                    Demandes concernant l'achat, la location ou la proposition
+                    d'un véhicule.
+                </p>
+                <button class="choose-button" type="button"
+                    data-service="auto">
+                    Choisir IKF Auto →
+                </button>
+            </article>
 
-            <label for="service">Choisissez un service</label>
-            <select id="service" name="service" required>
-                <option value="">-- Choisir un service --</option>
-                <option>IKF Immobilier - Vente de maison</option>
-                <option>IKF Immobilier - Location de maison</option>
-                <option>IKF Immobilier - Terrain</option>
-                <option>IKF Immobilier - Demande de visite</option>
-                <option>IKF Auto - Achat de véhicule</option>
-                <option>IKF Auto - Location de véhicule</option>
-                <option>IKF Auto - Proposer un véhicule</option>
-                <option>FOFANA Commerce Service - Achat de produit</option>
-                <option>IKF Digital - Service numérique</option>
-            </select>
+            <article class="service-card">
+                <div class="service-icon" aria-hidden="true">🛍️</div>
+                <h3>FOFANA Commerce Service</h3>
+                <p>
+                    Présentez votre besoin concernant un produit ou une
+                    commande commerciale.
+                </p>
+                <button class="choose-button" type="button"
+                    data-service="commerce">
+                    Choisir Commerce →
+                </button>
+            </article>
 
-            <label for="details">Décrivez votre demande</label>
-            <textarea id="details" name="details"
-                placeholder="Exemple : je cherche une maison à louer à Keur Massar..."
-                required></textarea>
+        </div>
+    </section>
 
-            <label for="paiement">Préférence de paiement</label>
-            <select id="paiement" name="paiement" required>
-                <option value="">-- Choisir --</option>
-                <option>Paiement après confirmation</option>
-                <option>Je souhaite payer en ligne, si disponible</option>
-            </select>
+    <section class="order-section container" id="commande">
+        <div class="section-heading">
+            <h2>Votre demande personnalisée</h2>
+            <p>
+                Remplissez les informations ci-dessous.
+                Votre demande sera préparée pour WhatsApp.
+            </p>
+            <div class="gold-line"></div>
+        </div>
 
-            <p class="note">
-                Cette première version prépare votre demande sur WhatsApp.
-                Aucun paiement en ligne n'est effectué sur cette page.
+        <div class="order-box">
+            <h2>Parlons de votre projet</h2>
+            <p class="intro">
+                Les champs marqués d'un astérisque (*) sont obligatoires.
             </p>
 
-            <button type="submit">Envoyer ma demande sur WhatsApp</button>
-        </form>
-    </div>
+            <form id="commandeForm">
+                <div class="form-grid">
 
-    <p><a href="index.html">← Retour à l'accueil IKF</a></p>
+                    <div class="field">
+                        <label for="nom">Nom complet *</label>
+                        <input id="nom" name="nom" type="text"
+                            autocomplete="name" required maxlength="100">
+                    </div>
+
+                    <div class="field">
+                        <label for="telephone">Téléphone *</label>
+                        <input id="telephone" name="telephone" type="tel"
+                            autocomplete="tel" required maxlength="30">
+                    </div>
+
+                    <div class="field full">
+                        <label for="service">Domaine souhaité *</label>
+                        <select id="service" name="service" required>
+                            <option value="">Choisir un domaine</option>
+                            <option value="immobilier">IKF Immobilier</option>
+                            <option value="auto">IKF Auto</option>
+                            <option value="commerce">FOFANA Commerce Service</option>
+                            <option value="digital">IKF Digital</option>
+                        </select>
+                    </div>
+
+                    <div class="field full">
+                        <label for="besoin">Type de demande *</label>
+                        <select id="besoin" name="besoin" required>
+                            <option value="">Choisir une demande</option>
+                        </select>
+                    </div>
+
+                    <div class="field full">
+                        <label for="details">Détails de votre projet *</label>
+                        <textarea id="details" name="details"
+                            placeholder="Décrivez votre besoin, le lieu, le produit ou le véhicule recherché..."
+                            required maxlength="1500"></textarea>
+                    </div>
+
+                    <div class="field">
+                        <label for="budget">Budget indicatif (FCFA)</label>
+                        <input id="budget" name="budget" type="number"
+                            min="0" step="1" placeholder="Facultatif">
+                    </div>
+
+                    <div class="field">
+                        <label for="paiement">Préférence de paiement *</label>
+                        <select id="paiement" name="paiement" required>
+                            <option value="">Choisir une option</option>
+                            <option value="Après confirmation">
+                                Après confirmation
+                            </option>
+                            <option value="Wave, si disponible">
+                                Wave, si disponible
+                            </option>
+                            <option value="Orange Money, si disponible">
+                                Orange Money, si disponible
+                            </option>
+                            <option value="Carte bancaire, si disponible">
+                                Carte bancaire, si disponible
+                            </option>
+                        </select>
+                        <p class="hint">
+                            Le choix indique votre préférence, pas un paiement effectué.
+                        </p>
+                    </div>
+
+                </div>
+
+                <button class="submit-button" type="submit">
+                    Envoyer ma demande sur WhatsApp →
+                </button>
+
+                <div class="notice">
+                    <strong>Information :</strong> cette page transmet votre
+                    demande à WhatsApp. Elle ne réalise pas de paiement en ligne
+                    et ne confirme pas automatiquement une réservation ou un achat.
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="container trust">
+        <div>
+            <strong>Un accompagnement personnalisé</strong>
+            Chaque demande est présentée clairement.
+        </div>
+
+        <div>
+            <strong>Une démarche simple</strong>
+            Préparez votre demande en quelques étapes.
+        </div>
+
+        <div>
+            <strong>Travail · Discipline · Réussite</strong>
+            L'engagement au cœur de notre vision.
+        </div>
+    </section>
 </main>
 
 <footer>
-    © 2026 IKF Groupe — Travail · Discipline · Réussite
+    <strong>IKF GROUPE</strong>
+    <p>Travail · Discipline · Réussite</p>
+    <p>© <span id="annee"></span> IKF Groupe. Tous droits réservés.</p>
 </footer>
 
 <script>
+    const service = document.getElementById("service");
+    const besoin = document.getElementById("besoin");
+
+    const options = {
+        immobilier: [
+            ["Vente de maison", "Vente de maison"],
+            ["Location de maison", "Location de maison"],
+            ["Achat de terrain", "Achat de terrain"],
+            ["Demande de visite", "Demande de visite"],
+            ["Accompagnement immobilier", "Accompagnement immobilier"]
+        ],
+
+        auto: [
+            ["Achat de véhicule", "Achat de véhicule"],
+            ["Location de véhicule", "Location de véhicule"],
+            ["Véhicule de partenaire", "Véhicule de partenaire"],
+            ["Proposer un véhicule", "Proposer un véhicule"]
+        ],
+
+        commerce: [
+            ["Achat de produit", "Achat de produit"],
+            ["Demande de disponibilité", "Demande de disponibilité"],
+            ["Commande commerciale", "Commande commerciale"],
+            ["Autre demande commerciale", "Autre demande commerciale"]
+        ],
+
+        digital: [
+            ["Création de site web", "Création de site web"],
+            ["Service numérique", "Service numérique"],
+            ["Accompagnement digital", "Accompagnement digital"],
+            ["Autre demande digitale", "Autre demande digitale"]
+        ]
+    };
+
+    function actualiserBesoins(valeur) {
+        besoin.replaceChildren();
+
+        const premier = document.createElement("option");
+        premier.value = "";
+        premier.textContent = "Choisir une demande";
+        besoin.appendChild(premier);
+
+        (options[valeur] || []).forEach(function(item) {
+            const option = document.createElement("option");
+            option.value = item[0];
+            option.textContent = item[1];
+            besoin.appendChild(option);
+        });
+    }
+
+    service.addEventListener("change", function() {
+        actualiserBesoins(service.value);
+    });
+
+    document.querySelectorAll("[data-service]").forEach(function(bouton) {
+        bouton.addEventListener("click", function() {
+            service.value = bouton.dataset.service;
+            actualiserBesoins(service.value);
+
+            document.getElementById("commande").scrollIntoView({
+                behavior: "smooth"
+            });
+
+            service.focus({ preventScroll: true });
+        });
+    });
+
     document.getElementById("commandeForm").addEventListener("submit", function(event) {
         event.preventDefault();
 
         const nom = document.getElementById("nom").value.trim();
         const telephone = document.getElementById("telephone").value.trim();
-        const service = document.getElementById("service").value;
+        const domaine = service.options[service.selectedIndex].text;
+        const typeDemande = besoin.value;
         const details = document.getElementById("details").value.trim();
+        const budget = document.getElementById("budget").value;
         const paiement = document.getElementById("paiement").value;
 
-        const message =
-            "Bonjour IKF Groupe, je souhaite faire une demande.%0A%0A" +
-            "Nom : " + encodeURIComponent(nom) + "%0A" +
-            "Téléphone : " + encodeURIComponent(telephone) + "%0A" +
-            "Service : " + encodeURIComponent(service) + "%0A" +
-            "Demande : " + encodeURIComponent(details) + "%0A" +
-            "Paiement souhaité : " + encodeURIComponent(paiement);
+        const lignes = [
+            "Bonjour IKF Groupe, je souhaite présenter une demande.",
+            "",
+            "Nom : " + nom,
+            "Téléphone : " + telephone,
+            "Domaine : " + domaine,
+            "Type de demande : " + typeDemande,
+            "Détails : " + details,
+            "Budget indicatif : " + (budget ? budget + " FCFA" : "Non précisé"),
+            "Préférence de paiement : " + paiement,
+            "",
+            "Merci de me contacter pour la suite."
+        ];
 
-        window.open("https://wa.me/221703311532?text=" + message, "_blank");
+        const url = "https://wa.me/221703311532?text=" +
+            encodeURIComponent(lignes.join("\n"));
+
+        window.open(url, "_blank", "noopener,noreferrer");
     });
+
+    document.getElementById("annee").textContent =
+        new Date().getFullYear();
 </script>
 
 </body>
