@@ -732,7 +732,7 @@ if (error) {
             const url = "https://wa.me/221703311532?text=" +
                 encodeURIComponent(lignes.join("\n"));
 
-            window.location.href = url;
+            window.open(url, "_blank");
 
         } catch (erreur) {
             console.error(erreur);
