@@ -733,10 +733,11 @@ if (error) {
             const url = "https://wa.me/221703311532?text=" +
                 encodeURIComponent(lignes.join("\n"));
 
-            if (whatsappWindow) {
-    whatsappWindow.location.href = url;
+           if (whatsappWindow) {
+    whatsappWindow.opener = null;
+    whatsappWindow.location.replace(url);
 } else {
-    alert("Autorisez les fenêtres pop-up pour ouvrir WhatsApp.");
+    window.location.assign(url);
 }
 
         } catch (erreur) {
