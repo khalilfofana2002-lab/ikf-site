@@ -47,19 +47,19 @@
         .message { color: #f0d879; }
         .details { color: #ddd; line-height: 1.6; }
         .petit { color: #bbb; font-size: 14px; }
-.stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
-    margin: 20px 0;
-}
-
 .stat {
     background: #202020;
     border: 1px solid #d4af37;
     border-radius: 10px;
     padding: 20px;
     text-align: center;
+    color: #f5f5f5;
+    cursor: pointer;
+}
+
+.stat:hover {
+    background: #302a18;
+    transform: translateY(-2px);
 }
 
 .stat span {
@@ -72,6 +72,12 @@
     display: block;
     color: #d4af37;
     font-size: 30px;
+}
+
+.stat small {
+    display: block;
+    margin-top: 10px;
+    color: #f0d879;
 }
 
     </style>
@@ -99,26 +105,32 @@
 <h2>Tableau de bord IKF</h2>
 
 <div class="stats">
-    <div class="stat">
+    <button type="button" class="stat" data-filtre="Toutes">
         <span>Total des commandes</span>
         <strong id="totalCommandes">0</strong>
-    </div>
+        <small>Voir toutes les commandes</small>
+    </button>
 
-    <div class="stat">
-        <span>Nouvelles</span>
-        <strong id="nouvellesCommandes">0</strong>
-    </div>
+<button type="button" class="stat" data-filtre="Nouvelle">
+    <span>Nouvelles</span>
+    <strong id="nouvellesCommandes">0</strong>
+    <small>Voir les nouvelles</small>
+</button>
 
-    <div class="stat">
-        <span>En cours</span>
-        <strong id="enCoursCommandes">0</strong>
-    </div>
+<button type="button" class="stat" data-filtre="En cours">
+    <span>En cours</span>
+    <strong id="enCoursCommandes">0</strong>
+    <small>Voir les commandes en cours</small>
+</button>
 
-    <div class="stat">
-        <span>Terminées</span>
-        <strong id="termineesCommandes">0</strong>
-    </div>
+<button type="button" class="stat" data-filtre="Terminée">
+    <span>Terminées</span>
+    <strong id="termineesCommandes">0</strong>
+    <small>Voir les commandes terminées</small>
+</button>
+
 </div>
+
 
 <h2>Commandes reçues</h2>
 
