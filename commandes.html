@@ -669,87 +669,89 @@ const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_fdqw0PEcQbtaUePE1OxWBg_xzP-vNP-
         });
     });
 
-    document.getElementById("commandeForm").addEventListener("submit", async function(event) {
-        const whatsappWindow = window.open("about:blank", "_blank");
-        event.preventDefault();
+document.getElementById("commandeForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
 
-        const nom = document.getElementById("nom").value.trim();
-        const telephone = document.getElementById("telephone").value.trim();
-        const domaine = service.options[service.selectedIndex].text;
-        const typeDemande = besoin.value;
-        const details = document.getElementById("details").value.trim();
-        const budget = document.getElementById("budget").value;
-        const paiement = document.getElementById("paiement").value;
+    const nom = document.getElementById("nom").value.trim();
+    const telephone = document.getElementById("telephone").value.trim();
+    const serviceSelect = document.getElementById("service");
+    const besoinSelect = document.getElementById("besoin");
 
-        if (!nom || !telephone || !service.value || !typeDemande) {
-            alert("Veuillez remplir les champs obligatoires.");
+    const domaine = serviceSelect.options[serviceSelect.selectedIndex].text;
+    const typeDemande = besoinSelect.value;
+    const details = document.getElementById("details").value.trim();
+    const budget = document.getElementById("budget").value;
+    const paiement = document.getElementById("paiement").value;
+
+    if (!nom || !telephone || !serviceSelect.value || !typeDemande) {
+        alert("Veuillez remplir les champs obligatoires.");
+        return;
+    }
+
+    const boutonEnvoyer = event.submitter;
+    if (boutonEnvoyer) boutonEnvoyer.disabled = true;
+
+    try {
+        const lignes = [
+            "Bonjour IKF Groupe, je souhaite présenter une demande.",
+            "",
+            "Nom : " + nom,
+            "Téléphone : " + telephone,
+            "Domaine : " + domaine,
+            "Type de demande : " + typeDemande,
+            "Détails : " + details,
+            "Budget indicatif : " + (budget ? budget + " FCFA" : "Non précisé"),
+            "Préférence de paiement : " + (paiement || "Non précisée"),
+            "",
+            "Merci de me contacter pour la suite."
+        ];
+
+        const urlWhatsApp = "https://wa.me/221703311532?text=" +
+            encodeURIComponent(lignes.join("\n"));
+
+        // Enregistrer la commande dans Supabase
+        const { error } = await db
+            .from("commandes")
+            .insert([{
+                nom_client: nom,
+                telephone: telephone,
+                service: domaine,
+                type_commande: typeDemande,
+                details: details,
+                budget: budget ? budget + " FCFA" : "",
+                mode_paiement: paiement,
+                statut: "Nouvelle"
+            }]);
+
+        if (error) {
+            console.error("Erreur Supabase :", error);
+            alert("La commande n'a pas été enregistrée : " + error.message);
             return;
         }
 
-        const boutonEnvoyer = event.submitter;
-        if (boutonEnvoyer) boutonEnvoyer.disabled = true;
+        // Proposer d'ouvrir WhatsApp après l'enregistrement
+        const ouvrir = confirm(
+            "Votre commande a été enregistrée avec succès !\n\n" +
+            "Cliquez sur OK pour ouvrir WhatsApp et envoyer les détails."
+        );
 
-        try {
-            // 2. ENREGISTRER LA COMMANDE DANS SUPABASE
-            const { error } = await db
-                .from("commandes")
-                .insert([{
-                    nom_client: nom,
-                    telephone: telephone,
-                    service: domaine,
-                    type_commande: typeDemande,
-                    details: details,
-                    budget: budget ? budget + " FCFA" : "",
-                    mode_paiement: paiement,
-                    statut: "Nouvelle"
-                }]);
-
-if (error) {
-    console.error("Erreur Supabase :", error);
-    alert(
-        "Erreur Supabase : " +
-        error.message +
-        "\nCode : " + error.code
-    );
-    return;
-}
-
-
-            // 3. OUVRIR WHATSAPP APRÈS L'ENREGISTREMENT
-            const lignes = [
-                "Bonjour IKF Groupe, je souhaite présenter une demande.",
-                "",
-                "Nom : " + nom,
-                "Téléphone : " + telephone,
-                "Domaine : " + domaine,
-                "Type de demande : " + typeDemande,
-                "Détails : " + details,
-                "Budget indicatif : " + (budget ? budget + " FCFA" : "Non précisé"),
-                "Préférence de paiement : " + paiement,
-                "",
-                "Merci de me contacter pour la suite."
-            ];
-
-            const url = "https://wa.me/221703311532?text=" +
-                encodeURIComponent(lignes.join("\n"));
-
-           if (whatsappWindow) {
-    whatsappWindow.opener = null;
-    whatsappWindow.location.replace(url);
-} else {
-    window.location.assign(url);
-}
-
-        } catch (erreur) {
-            console.error(erreur);
-            alert("Une erreur est survenue. Vérifiez votre connexion Internet et réessayez.");
-        } finally {
-            if (boutonEnvoyer) boutonEnvoyer.disabled = false;
+        if (ouvrir) {
+            window.location.href = urlWhatsApp;
+        } else {
+            alert("Votre commande est enregistrée. Vous pouvez nous contacter sur WhatsApp plus tard.");
         }
-    });
 
-    const annee = document.getElementById("annee");
-    if (annee) annee.textContent = new Date().getFullYear();
+    } catch (erreur) {
+        console.error("Erreur :", erreur);
+        alert("Une erreur est survenue. Vérifiez votre connexion Internet.");
+    } finally {
+        if (boutonEnvoyer) boutonEnvoyer.disabled = false;
+    }
+});
+
+const annee = document.getElementById("annee");
+if (annee) annee.textContent = new Date().getFullYear();
+
 </script>
 
 </body>
