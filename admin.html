@@ -47,6 +47,33 @@
         .message { color: #f0d879; }
         .details { color: #ddd; line-height: 1.6; }
         .petit { color: #bbb; font-size: 14px; }
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.stat {
+    background: #202020;
+    border: 1px solid #d4af37;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.stat span {
+    display: block;
+    color: #ddd;
+    margin-bottom: 10px;
+}
+
+.stat strong {
+    display: block;
+    color: #d4af37;
+    font-size: 30px;
+}
+
     </style>
 </head>
 <body>
@@ -69,7 +96,32 @@
     </section>
 
     <section id="espace" hidden>
-        <h2>Commandes reçues</h2>
+<h2>Tableau de bord IKF</h2>
+
+<div class="stats">
+    <div class="stat">
+        <span>Total des commandes</span>
+        <strong id="totalCommandes">0</strong>
+    </div>
+
+    <div class="stat">
+        <span>Nouvelles</span>
+        <strong id="nouvellesCommandes">0</strong>
+    </div>
+
+    <div class="stat">
+        <span>En cours</span>
+        <strong id="enCoursCommandes">0</strong>
+    </div>
+
+    <div class="stat">
+        <span>Terminées</span>
+        <strong id="termineesCommandes">0</strong>
+    </div>
+</div>
+
+<h2>Commandes reçues</h2>
+
         <button id="refreshBtn" type="button">Actualiser les commandes</button>
         <button id="logoutBtn" type="button">Se déconnecter</button>
         <p id="ordersMessage" class="message" aria-live="polite"></p>
@@ -135,14 +187,40 @@
         }
 
 
-        if (!data || data.length === 0) {
-            ordersMessage.textContent = "Aucune commande pour le moment.";
-            return;
-        }
+        const commandes = data || [];
 
-        ordersMessage.textContent = data.length + " commande(s) trouvée(s).";
+document.getElementById("totalCommandes").textContent = commandes.length;
 
-        data.forEach(function(commande) {
+document.getElementById("nouvellesCommandes").textContent =
+    commandes.filter(c => c.statut === "Nouvelle").length;
+
+document.getElementById("enCoursCommandes").textContent =
+    commandes.filter(c => c.statut === "En cours").length;
+
+document.getElementById("termineesCommandes").textContent =
+    commandes.filter(c => c.statut === "Terminée").length;
+
+if (commandes.length === 0) {
+    ordersMessage.textContent = "Aucune commande pour le moment.";
+    return;
+}
+
+ordersMessage.textContent =
+    commandes.length + " commande(s) trouvée(s).";
+        
+document.getElementById("totalCommandes").textContent = data.length;
+
+document.getElementById("nouvellesCommandes").textContent =
+    data.filter(c => c.statut === "Nouvelle").length;
+
+document.getElementById("enCoursCommandes").textContent =
+    data.filter(c => c.statut === "En cours").length;
+
+document.getElementById("termineesCommandes").textContent =
+    data.filter(c => c.statut === "Terminée").length;
+
+
+        commandes.forEach(function(commande) {
             const carte = document.createElement("article");
             carte.className = "commande";
 
