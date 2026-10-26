@@ -157,6 +157,7 @@
     const connexion = document.getElementById("connexion");
     const espace = document.getElementById("espace");
     const ordersList = document.getElementById("ordersList");
+    let filtreActif = "Toutes";
 
     loginForm.addEventListener("submit", async function(event) {
         event.preventDefault();
@@ -232,7 +233,11 @@ document.getElementById("termineesCommandes").textContent =
     data.filter(c => c.statut === "Terminée").length;
 
 
-        commandes.forEach(function(commande) {
+        const commandesAffichees = filtreActif === "Toutes"
+    ? commandes
+    : commandes.filter(c => c.statut === filtreActif);
+
+commandesAffichees.forEach(function(commande) {
             const carte = document.createElement("article");
             carte.className = "commande";
 
@@ -315,7 +320,18 @@ document.getElementById("termineesCommandes").textContent =
 
         });
     }
+document.querySelectorAll(".stat[data-filtre]").forEach(function(bouton) {
+    bouton.addEventListener("click", async function() {
+        filtreActif = bouton.dataset.filtre;
 
+        const titre = document.querySelector("#espace h2:last-of-type");
+        titre.textContent = filtreActif === "Toutes"
+            ? "Toutes les commandes"
+            : "Commandes : " + filtreActif;
+
+        await chargerCommandes();
+    });
+});
     document.getElementById("refreshBtn").addEventListener("click", chargerCommandes);
 
     document.getElementById("logoutBtn").addEventListener("click", async function() {
