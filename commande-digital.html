@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commande IKF Digital</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#101010;color:#fff;line-height:1.6}
+header{text-align:center;padding:28px 15px;background:#080808;border-bottom:2px solid #d4af37}
+header h1{color:#d4af37}
+main{max-width:720px;margin:30px auto;padding:20px}
+.card{background:#1b1b1b;border:1px solid #8f7424;border-radius:14px;padding:25px}
+h2{color:#d4af37;margin-bottom:10px}
+.intro{color:#ddd;margin-bottom:20px}
+label{display:block;margin:15px 0 6px;font-weight:bold}
+input,select,textarea{width:100%;padding:13px;border-radius:7px;border:1px solid #555;background:#101010;color:#fff;font-size:16px}
+button,.back{display:block;width:100%;padding:14px;margin-top:20px;border:0;border-radius:8px;background:#d4af37;color:#111;font-weight:bold;font-size:16px;text-align:center;text-decoration:none;cursor:pointer}
+button:disabled{opacity:.6}
+.note{font-size:13px;color:#ccc;margin-top:14px}
+footer{text-align:center;padding:22px;color:#aaa}
+</style>
+</head>
+
+<body>
+<header>
+<h1>IKF DIGITAL</h1>
+<p>Vos projets numériques, notre engagement.</p>
+</header>
+
+<main>
+<div class="card">
+<h2>Demander un service numérique</h2>
+<p class="intro">Présentez votre projet pour recevoir une réponse adaptée à votre besoin.</p>
+
+<form id="commandeDigitalForm">
+<label for="nom">Nom complet *</label>
+<input id="nom" type="text" autocomplete="name" required>
+
+<label for="telephone">Téléphone *</label>
+<input id="telephone" type="tel" autocomplete="tel" placeholder="77 123 45 67" required>
+
+<label for="service">Service souhaité *</label>
+<select id="service" required>
+<option value="">Choisir un service</option>
+<option value="Création de site web">Création de site web</option>
+<option value="Création de site e-commerce">Création de site e-commerce</option>
+<option value="Création d'application">Création d'application</option>
+<option value="Conception graphique">Conception graphique</option>
+<option value="Logo et identité visuelle">Logo et identité visuelle</option>
+<option value="Communication digitale">Communication digitale</option>
+<option value="Assistance informatique">Assistance informatique</option>
+<option value="Autre service numérique">Autre service numérique</option>
+</select>
+
+<label for="projet">Nom du projet ou de l'entreprise</label>
+<input id="projet" type="text" placeholder="Facultatif">
+
+<label for="budget">Budget estimé (FCFA)</label>
+<input id="budget" type="number" min="0" step="1000" placeholder="Ex. 100000">
+
+<label for="delai">Délai souhaité</label>
+<select id="delai">
+<option value="À discuter">À discuter</option>
+<option value="Urgent">Urgent</option>
+<option value="Sous 7 jours">Sous 7 jours</option>
+<option value="Sous 30 jours">Sous 30 jours</option>
+</select>
+
+<label for="details">Description du projet *</label>
+<textarea id="details" rows="5" required placeholder="Expliquez ce que vous souhaitez réaliser..."></textarea>
+
+<p class="note">Les champs marqués d'un * sont obligatoires.</p>
+<button id="envoyer" type="submit">Envoyer ma demande</button>
+</form>
+
+<a class="back" href="numerique.html">Retour à IKF Digital</a>
+<a class="back" href="index.html">Retour à l'accueil IKF</a>
+</div>
+</main>
+
+<footer>© IKF — IKF Digital</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://dwioklrcpbhzhdfmcnqn.supabase.co";
+const SUPABASE_KEY = "sb_publishable_fdqw0PEcQbtaUePE1OxWBg_xzP-vNP-";
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+document.getElementById("commandeDigitalForm").addEventListener("submit", async function(event){
+  event.preventDefault();
+
+  const nom = document.getElementById("nom").value.trim();
+  const telephone = document.getElementById("telephone").value.trim();
+  const service = document.getElementById("service").value;
+  const projet = document.getElementById("projet").value.trim();
+  const budget = document.getElementById("budget").value;
+  const delai = document.getElementById("delai").value;
+  const details = document.getElementById("details").value.trim();
+  const bouton = document.getElementById("envoyer");
+
+  bouton.disabled = true;
+  bouton.textContent = "Enregistrement en cours...";
+
+  const detailsComplets =
+    "Projet : " + (projet || "Non précisé") +
+    " | Délai : " + delai +
+    " | Description : " + details;
+
+  const lignes = [
+    "Bonjour IKF Digital, voici ma demande.",
+    "",
+    "Nom : " + nom,
+    "Téléphone : " + telephone,
+    "Service : " + service,
+    "Projet : " + (projet || "Non précisé"),
+    "Budget : " + (budget ? budget + " FCFA" : "Non précisé"),
+    "Délai : " + delai,
+    "Description : " + details
+  ];
+
+  const urlWhatsApp = "https://wa.me/221703311532?text=" + encodeURIComponent(lignes.join("\n"));
+
+  try {
+    const { error } = await db.from("commandes").insert([{
+      nom_client: nom,
+      telephone: telephone,
+      service: "digital",
+      type_commande: service,
+      details: detailsComplets,
+      budget: budget ? budget + " FCFA" : "",
+      mode_paiement: "À discuter",
+      statut: "Nouvelle"
+    }]);
+
+    if (error) {
+      console.error(error);
+      alert("La demande n'a pas été enregistrée : " + error.message);
+      return;
+    }
+
+    if (confirm("Votre demande IKF Digital est enregistrée. Voulez-vous continuer sur WhatsApp ?")) {
+      window.location.href = urlWhatsApp;
+    } else {
+      alert("Demande enregistrée avec succès. Merci !");
+      document.getElementById("commandeDigitalForm").reset();
+    }
+  } catch (erreur) {
+    console.error(erreur);
+    alert("Erreur de connexion. Réessayez plus tard.");
+  } finally {
+    bouton.disabled = false;
+    bouton.textContent = "Envoyer ma demande";
+  }
+});
+</script>
+</body>
+</html>
