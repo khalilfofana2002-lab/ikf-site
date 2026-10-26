@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commande FCS | Fofana Commerce Service</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: #f3f5f2; color: #222; }
+    header { background: #111; color: #d4af37; padding: 24px 15px; text-align: center; }
+    main { max-width: 650px; margin: 25px auto; padding: 24px; background: white; border-radius: 12px; }
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    input, select, textarea { width: 100%; padding: 12px; margin-top: 6px; border: 1px solid #bbb; border-radius: 7px; font-size: 16px; }
+    button, .back { display: block; width: 100%; margin-top: 20px; padding: 14px; border: 0; border-radius: 7px; background: #c9a227; color: #111; font-weight: bold; font-size: 16px; text-align: center; text-decoration: none; cursor: pointer; }
+    button:disabled { opacity: .6; }
+    .note { color: #555; font-size: 14px; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>FCS</h1>
+    <p>FOFANA COMMERCE SERVICE</p>
+    <p>Achat • Vente • Commerce</p>
+  </header>
+
+  <main>
+    <h2>Votre demande commerciale</h2>
+    <p class="note">Utilisez ce formulaire pour demander un produit, proposer un article ou présenter un besoin commercial.</p>
+
+    <form id="commandeFcsForm">
+      <label for="nom">Nom complet *</label>
+      <input id="nom" required>
+
+      <label for="telephone">Téléphone *</label>
+      <input id="telephone" type="tel" required>
+
+      <label for="besoin">Type de demande *</label>
+      <select id="besoin" required>
+        <option value="">Choisir une demande</option>
+        <option value="Acheter un produit">Acheter un produit</option>
+        <option value="Vendre un produit">Proposer un produit à vendre</option>
+        <option value="Demande de prix">Demander un prix</option>
+        <option value="Commande en gros">Commande en gros</option>
+        <option value="Partenariat commercial">Partenariat commercial</option>
+        <option value="Autre demande commerciale">Autre demande commerciale</option>
+      </select>
+
+      <label for="details">Détails du produit ou de la demande *</label>
+      <textarea id="details" rows="4" required placeholder="Nom du produit, quantité, caractéristiques, lieu de livraison..."></textarea>
+
+      <label for="budget">Budget indicatif (FCFA)</label>
+      <input id="budget" type="number" min="0" placeholder="Ex. 100000">
+
+      <label for="paiement">Préférence de paiement</label>
+      <select id="paiement">
+        <option value="À discuter">À discuter</option>
+        <option value="Wave">Wave</option>
+        <option value="Orange Money">Orange Money</option>
+        <option value="Espèces">Espèces</option>
+        <option value="Virement bancaire">Virement bancaire</option>
+      </select>
+
+      <button id="envoyer" type="submit">Envoyer ma demande FCS</button>
+    </form>
+
+    <a class="back" href="index.html">Retour au site IKF</a>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://dwioklrcpbhzhdfmcnqn.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_fdqw0PEcQbtaUePE1OxWBg_xzP-vNP-";
+
+    const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+    document.getElementById("commandeFcsForm").addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const nom = document.getElementById("nom").value.trim();
+      const telephone = document.getElementById("telephone").value.trim();
+      const typeDemande = document.getElementById("besoin").value;
+      const details = document.getElementById("details").value.trim();
+      const budget = document.getElementById("budget").value;
+      const paiement = document.getElementById("paiement").value;
+      const bouton = document.getElementById("envoyer");
+
+      if (!nom || !telephone || !typeDemande || !details) {
+        alert("Veuillez remplir les champs obligatoires.");
+        return;
+      }
+
+      const lignes = [
+        "Bonjour FOFANA COMMERCE SERVICE, je souhaite présenter une demande.",
+        "",
+        "Nom : " + nom,
+        "Téléphone : " + telephone,
+        "Service : FCS / Commerce",
+        "Type : " + typeDemande,
+        "Détails : " + details,
+        "Budget : " + (budget ? budget + " FCFA" : "Non précisé"),
+        "Paiement : " + paiement
+      ];
+
+      const urlWhatsApp = "https://wa.me/221703311532?text=" + encodeURIComponent(lignes.join("\n"));
+      bouton.disabled = true;
+
+      try {
+        const { error } = await db.from("commandes").insert([{
+          nom_client: nom,
+          telephone: telephone,
+          service: "fcs",
+          type_commande: typeDemande,
+          details: details,
+          budget: budget ? budget + " FCFA" : "",
+          mode_paiement: paiement,
+          statut: "Nouvelle"
+        }]);
+
+        if (error) {
+          console.error(error);
+          alert("La demande FCS n'a pas été enregistrée : " + error.message);
+          return;
+        }
+
+        if (confirm("Votre demande FCS est enregistrée ! Ouvrir WhatsApp maintenant ?")) {
+          window.location.href = urlWhatsApp;
+        } else {
+          alert("Votre demande est enregistrée. Merci !");
+        }
+      } catch (erreur) {
+        console.error(erreur);
+        alert("Erreur de connexion. Veuillez réessayer.");
+      } finally {
+        bouton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
