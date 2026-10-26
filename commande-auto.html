@@ -164,39 +164,115 @@
     <h2>Votre demande automobile</h2>
     <p class="note">Remplissez le formulaire pour acheter, louer ou proposer un véhicule.</p>
 
-    <form id="commandeAutoForm">
-      <label for="nom">Nom complet *</label>
-      <input id="nom" required>
+<form id="commandeAutoForm">
+  <label for="nom">Nom complet *</label>
+  <input
+    id="nom"
+    type="text"
+    autocomplete="name"
+    placeholder="Votre nom et prénom"
+    required
+  >
 
-      <label for="telephone">Téléphone *</label>
-      <input id="telephone" type="tel" required>
+  <label for="telephone">Numéro de téléphone *</label>
+  <input
+    id="telephone"
+    type="tel"
+    autocomplete="tel"
+    placeholder="Ex. 77 123 45 67"
+    required
+  >
 
-      <label for="besoin">Type de demande *</label>
-      <select id="besoin" required>
-        <option value="">Choisir une demande</option>
-        <option value="Achat de véhicule">Achat de véhicule</option>
-        <option value="Location de véhicule">Location de véhicule</option>
-        <option value="Véhicule partenaire">Véhicule d'un partenaire</option>
-        <option value="Proposer un véhicule">Proposer mon véhicule</option>
-      </select>
+  <label for="besoin">Type de demande *</label>
+  <select id="besoin" required>
+    <option value="">Choisir une demande</option>
+    <option value="Achat de véhicule">Achat de véhicule</option>
+    <option value="Location de véhicule">Location de véhicule</option>
+    <option value="Véhicule partenaire">Véhicule d'un partenaire</option>
+    <option value="Proposer un véhicule">Proposer mon véhicule</option>
+  </select>
 
-      <label for="details">Détails du véhicule recherché *</label>
-      <textarea id="details" rows="4" required placeholder="Marque, modèle, année, boîte, durée de location..."></textarea>
+  <label for="marque">Marque du véhicule</label>
+  <input
+    id="marque"
+    type="text"
+    placeholder="Ex. Toyota, Hyundai, Mercedes..."
+  >
 
-      <label for="budget">Budget indicatif (FCFA)</label>
-      <input id="budget" type="number" min="0" placeholder="Ex. 5000000">
+  <label for="modele">Modèle recherché</label>
+  <input
+    id="modele"
+    type="text"
+    placeholder="Ex. Corolla, Tucson, Classe C..."
+  >
 
-      <label for="paiement">Préférence de paiement</label>
-      <select id="paiement">
-        <option value="À discuter">À discuter</option>
-        <option value="Wave">Wave</option>
-        <option value="Orange Money">Orange Money</option>
-        <option value="Espèces">Espèces</option>
-        <option value="Virement bancaire">Virement bancaire</option>
-      </select>
+  <label for="annee">Année du véhicule souhaitée</label>
+  <input
+    id="annee"
+    type="number"
+    min="1980"
+    max="2035"
+    placeholder="Ex. 2022"
+  >
 
-      <button id="envoyer" type="submit">Envoyer ma demande Auto</button>
-    </form>
+  <label for="boite">Boîte de vitesses</label>
+  <select id="boite">
+    <option value="">Sans préférence</option>
+    <option value="Manuelle">Manuelle</option>
+    <option value="Automatique">Automatique</option>
+  </select>
+
+  <label for="carburant">Type de carburant</label>
+  <select id="carburant">
+    <option value="">Sans préférence</option>
+    <option value="Essence">Essence</option>
+    <option value="Diesel">Diesel</option>
+    <option value="Hybride">Hybride</option>
+    <option value="Électrique">Électrique</option>
+    <option value="GPL">GPL</option>
+  </select>
+
+  <label for="lieu">Ville ou lieu souhaité</label>
+  <input
+    id="lieu"
+    type="text"
+    placeholder="Ex. Dakar, Keur Massar..."
+  >
+
+  <label for="details">Détails de votre demande *</label>
+  <textarea
+    id="details"
+    rows="5"
+    required
+    placeholder="Précisez l'état souhaité, la durée de location ou les autres caractéristiques..."
+  ></textarea>
+
+  <label for="budget">Budget indicatif (FCFA)</label>
+  <input
+    id="budget"
+    type="number"
+    min="0"
+    step="1000"
+    placeholder="Ex. 5000000"
+  >
+
+  <label for="paiement">Préférence de paiement</label>
+  <select id="paiement">
+    <option value="À discuter">À discuter</option>
+    <option value="Wave">Wave</option>
+    <option value="Orange Money">Orange Money</option>
+    <option value="Espèces">Espèces</option>
+    <option value="Virement bancaire">Virement bancaire</option>
+  </select>
+
+  <p class="note">
+    Vérifiez vos coordonnées et décrivez votre besoin avec précision
+    pour nous aider à traiter votre demande.
+  </p>
+
+  <button id="envoyer" type="submit">Envoyer ma demande Auto</button>
+</form>
+
 
     <a class="back" href="index.html">Retour au site IKF</a>
   </main>
@@ -214,6 +290,14 @@
       const nom = document.getElementById("nom").value.trim();
       const telephone = document.getElementById("telephone").value.trim();
       const typeDemande = document.getElementById("besoin").value;
+      
+      const marque = document.getElementById("marque").value.trim();
+      const modele = document.getElementById("modele").value.trim();
+      const annee = document.getElementById("annee").value;
+      const boite = document.getElementById("boite").value;
+      const carburant = document.getElementById("carburant").value;
+      const lieu = document.getElementById("lieu").value.trim();
+
       const details = document.getElementById("details").value.trim();
       const budget = document.getElementById("budget").value;
       const paiement = document.getElementById("paiement").value;
@@ -231,6 +315,15 @@
         "Téléphone : " + telephone,
         "Service : Auto",
         "Type : " + typeDemande,
+        "Service : Auto",
+        "Type : " + typeDemande,
+        "Marque : " + (marque || "Non précisée"),
+        "Modèle : " + (modele || "Non précisé"),
+        "Année : " + (annee || "Non précisée"),
+        "Boîte de vitesses : " + (boite || "Sans préférence"),
+        "Carburant : " + (carburant || "Sans préférence"),
+        "Ville ou lieu : " + (lieu || "Non précisé"),
+        "Détails : " + details,
         "Détails : " + details,
         "Budget : " + (budget ? budget + " FCFA" : "Non précisé"),
         "Paiement : " + paiement
@@ -245,7 +338,13 @@
           telephone: telephone,
           service: "auto",
           type_commande: typeDemande,
-          details: details,
+          details: "Marque : " + (marque || "Non précisée") +
+          " | Modèle : " + (modele || "Non précisé") +
+          " | Année : " + (annee || "Non précisée") +
+          " | Boîte : " + (boite || "Sans préférence") +
+          " | Carburant : " + (carburant || "Sans préférence") +
+          " | Ville ou lieu : " + (lieu || "Non précisé") +
+          " | Demande : " + details,
           budget: budget ? budget + " FCFA" : "",
           mode_paiement: paiement,
           statut: "Nouvelle"
