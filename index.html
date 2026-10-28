@@ -63,6 +63,83 @@ footer strong{color:var(--gold)}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:760px){header{padding:12px 5%}nav{align-items:flex-start;flex-direction:column}.links{gap:12px!important}.links a{font-size:13px!important}.hero{padding:65px 6%;min-height:75vh}section{padding:58px 6%}.about-grid,.grid,.steps,.contact-grid{grid-template-columns:1fr}.motto{letter-spacing:1.5px}.whatsapp-float{right:10px;bottom:10px;font-size:13px;padding:11px 13px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+    .menu-commandes {
+    position: relative;
+    display: inline-block;
+    margin-left: auto;
+}
+
+.bouton-trois-points {
+    background: #080808;
+    color: #d4af37;
+    border: 1px solid #d4af37;
+    border-radius: 8px;
+    padding: 4px 14px;
+    font-size: 28px;
+    line-height: 1.2;
+    cursor: pointer;
+}
+
+.menu-deroulant {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 290px;
+    max-width: calc(100vw - 30px);
+    background: #080808;
+    border: 1px solid #d4af37;
+    border-radius: 8px;
+    padding: 8px;
+    z-index: 9999;
+}
+
+.menu-deroulant.ouvert {
+    display: block;
+}
+
+.menu-deroulant a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 11px;
+    font-size: 13px;
+    border-radius: 5px;
+}
+
+.menu-deroulant a:hover {
+    background: #211b0d;
+    color: #d4af37;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav .links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 700px) {
+    nav {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    nav .links {
+        flex: 1;
+        gap: 12px;
+    }
+
+    .menu-commandes {
+        flex-shrink: 0;
+    }
+}
 </style>
 </head>
 <body>
@@ -189,5 +266,24 @@ footer strong{color:var(--gold)}
 <footer>© <span id="annee"></span> <strong>IKF</strong> — Ibrahima Khaliloulaye Fofana. Tous droits réservés.</footer>
 <a class="whatsapp-float" href="https://wa.me/221703311532" target="_blank" rel="noopener noreferrer">WhatsApp · IKF</a>
 <script>document.getElementById("annee").textContent=new Date().getFullYear();</script>
+    <script>
+const boutonMenu = document.getElementById("boutonMenu");
+const menuDeroulant = document.getElementById("menuDeroulant");
+
+boutonMenu.addEventListener("click", function (event) {
+    event.stopPropagation();
+
+    const ouvert = menuDeroulant.classList.toggle("ouvert");
+
+    boutonMenu.setAttribute("aria-expanded", String(ouvert));
+});
+
+document.addEventListener("click", function (event) {
+    if (!event.target.closest(".menu-commandes")) {
+        menuDeroulant.classList.remove("ouvert");
+        boutonMenu.setAttribute("aria-expanded", "false");
+    }
+});
+</script>
 </body>
 </html>
