@@ -270,7 +270,7 @@ const donnees = {
 
         <article class="card">
             <img src="2.jpeg" alt="Véhicule IKF Auto"
-    style="width:100%;height:260px;object-fit:contain;background:#111;border-radius:10px;"
+        style="width:100%;height:260px;object-fit:contain;background:#111;border-radius:10px;">
             <h3>Voiture à louer</h3>
             <p>Tarif : à confirmer</p>
             <p>Ville : à préciser</p>
@@ -422,9 +422,37 @@ const donnees = {
             <p>Tarif journalier : à confirmer</p>
             <p>Ville : à préciser</p>
             <p>Photo illustrative, offre non confirmée.</p>
-            <a class="button" href="https://wa.me/221703311532?text=Bonjour%20IKF%20Auto%2C%20je%20souhaite%20louer%20une%20voiture%20neuve.">
-                Demander une location
-            </a>
+            <details>
+    <summary class="button" style="cursor:pointer;text-align:center;">
+        Demander une location
+    </summary>
+
+    <form id="form-location-neuve" style="margin-top:15px;">
+        <label>Votre nom :</label>
+        <input type="text" name="nom" required
+               placeholder="Entrez votre nom"
+               style="width:100%;padding:10px;margin:6px 0 12px;">
+
+        <label>Votre téléphone :</label>
+        <input type="tel" name="telephone" required
+               placeholder="Votre numéro"
+               style="width:100%;padding:10px;margin:6px 0 12px;">
+
+        <label>Durée de location :</label>
+        <input type="text" name="duree" required
+               placeholder="Ex. : 3 jours"
+               style="width:100%;padding:10px;margin:6px 0 12px;">
+
+        <label>Votre demande :</label>
+        <textarea name="commentaire" required
+                  placeholder="Précisez vos besoins"
+                  style="width:100%;padding:10px;margin:6px 0 12px;min-height:90px;"></textarea>
+
+        <button type="submit" class="button">
+            Envoyer ma demande
+        </button>
+    </form>
+</details>
         </article>
 
         <article class="card">
@@ -756,6 +784,67 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!whatsapp) {
             alert("Autorisez l'ouverture de WhatsApp dans votre navigateur.");
+        } else {
+            alert("Vérifiez WhatsApp pour envoyer votre demande.");
+        }
+    });
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const formulaire = document.getElementById("form-location-neuve");
+    if (!formulaire) return;
+
+    formulaire.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const nom = formulaire.querySelector('[name="nom"]').value.trim();
+        const telephone = formulaire.querySelector('[name="telephone"]').value.trim();
+        const duree = formulaire.querySelector('[name="duree"]').value.trim();
+        const commentaire = formulaire.querySelector('[name="commentaire"]').value.trim();
+
+        if (!nom || !telephone || !duree || !commentaire) {
+            alert("Veuillez remplir tous les champs.");
+            return;
+        }
+
+        const demande = "Durée de location : " + duree +
+            "\nPrécisions : " + commentaire;
+
+        const donnees = {
+            nom: nom,
+            telephone: telephone,
+            vehicule: "Location de voiture neuve",
+            typeDemande: "Location",
+            commentaire: demande
+        };
+
+        const message =
+            "Bonjour IKF Auto, je souhaite louer une voiture neuve.\n" +
+            "Nom : " + nom + "\n" +
+            "Téléphone : " + telephone + "\n" +
+            "Durée : " + duree + "\n" +
+            "Ma demande : " + commentaire;
+
+        const whatsapp = window.open(
+            "https://wa.me/221703311532?text=" +
+            encodeURIComponent(message),
+            "_blank"
+        );
+
+        fetch(
+            "https://script.google.com/macros/s/AKfycbzDRtrKWrc6JhqoZiBnzuDyF7jVdh7LYRbPJuYqRRO_sNcDeoxMLtSpVbz4hdKcjeaz/exec",
+            {
+                method: "POST",
+                mode: "no-cors",
+                body: JSON.stringify(donnees)
+            }
+        ).catch(function (erreur) {
+            console.error("Erreur d'enregistrement :", erreur);
+        });
+
+        if (!whatsapp) {
+            alert("WhatsApp n'a pas pu s'ouvrir. Vérifiez le blocage des fenêtres.");
         } else {
             alert("Vérifiez WhatsApp pour envoyer votre demande.");
         }
