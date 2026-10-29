@@ -251,9 +251,43 @@ footer p {
             <p>Tarif : à confirmer</p>
             <p>Ville : à préciser</p>
             <p>Photo illustrative, offre non confirmée.</p>
-            <a class="button" href="https://wa.me/221703311532?text=Bonjour%20IKF%20Auto%2C%20je%20recherche%20une%20voiture%20%C3%A0%20louer.">
-                Demander des informations
-            </a>
+<details>
+    <summary class="button" style="cursor:pointer; text-align:center;">
+        Demander des informations
+    </summary>
+
+    <form onsubmit="event.preventDefault();
+        const nom = this.nom.value;
+        const telephone = this.telephone.value;
+        const commentaire = this.commentaire.value;
+        const message = 'Bonjour IKF Auto, je souhaite louer une voiture.'
+            + '%0ANom : ' + encodeURIComponent(nom)
+            + '%0ATéléphone : ' + encodeURIComponent(telephone)
+            + '%0AMa demande : ' + encodeURIComponent(commentaire);
+        window.open('https://wa.me/221703311532?text=' + message, '_blank');"
+        style="margin-top:15px;">
+
+        <label>Votre nom :</label>
+        <input type="text" name="nom" required
+            placeholder="Entrez votre nom"
+            style="width:100%;padding:10px;margin:6px 0 12px;">
+
+        <label>Votre téléphone :</label>
+        <input type="tel" name="telephone" required
+            placeholder="Votre numéro"
+            style="width:100%;padding:10px;margin:6px 0 12px;">
+
+        <label>Votre commentaire ou demande :</label>
+        <textarea name="commentaire" required
+            placeholder="Précisez vos besoins pour la location..."
+            style="width:100%;padding:10px;margin:6px 0 12px;min-height:100px;"></textarea>
+
+        <button type="submit" class="button">
+            Envoyer ma demande
+        </button>
+    </form>
+</details>
+
         </article>
 
     </div>
@@ -334,9 +368,43 @@ footer p {
             <p>Prix : à confirmer</p>
             <p>Ville : à préciser</p>
             <p>Photo illustrative, offre non confirmée.</p>
-            <a class="button" href="https://wa.me/221703311532?text=Bonjour%20IKF%20Auto%2C%20je%20recherche%20une%20moto.">
-                Demander des informations
-            </a>
+<details>
+    <summary class="button" style="cursor:pointer; text-align:center;">
+        Demander des informations
+    </summary>
+
+    <form onsubmit="event.preventDefault();
+        const nom = this.nom.value;
+        const telephone = this.telephone.value;
+        const commentaire = this.commentaire.value;
+        const message = 'Bonjour IKF Auto, je recherche une moto.'
+            + '%0ANom : ' + encodeURIComponent(nom)
+            + '%0ATéléphone : ' + encodeURIComponent(telephone)
+            + '%0AMa demande : ' + encodeURIComponent(commentaire);
+        window.open('https://wa.me/221703311532?text=' + message, '_blank');"
+        style="margin-top:15px;">
+
+        <label>Votre nom :</label>
+        <input type="text" name="nom" required
+            placeholder="Entrez votre nom"
+            style="width:100%;padding:10px;margin:6px 0 12px;">
+
+        <label>Votre téléphone :</label>
+        <input type="tel" name="telephone" required
+            placeholder="Votre numéro"
+            style="width:100%;padding:10px;margin:6px 0 12px;">
+
+        <label>Votre commentaire ou demande :</label>
+        <textarea name="commentaire" required
+            placeholder="Précisez la moto recherchée et votre budget..."
+            style="width:100%;padding:10px;margin:6px 0 12px;min-height:100px;"></textarea>
+
+        <button type="submit" class="button">
+            Envoyer ma demande
+        </button>
+    </form>
+</details>
+
         </article>
 
     </div>
@@ -352,9 +420,43 @@ footer p {
             <p>Prix ou tarif : à confirmer</p>
             <p>Ville : à préciser</p>
             <p>Photo illustrative, offre non confirmée.</p>
-            <a class="button" href="https://wa.me/221703311532?text=Bonjour%20IKF%20Auto%2C%20je%20recherche%20un%20v%C3%A9hicule%20utilitaire.">
-                Demander des informations
-            </a>
+<details>
+    <summary class="button" style="cursor:pointer; text-align:center;">
+        Demander des informations
+    </summary>
+
+    <form onsubmit="event.preventDefault();
+        const nom = this.nom.value;
+        const telephone = this.telephone.value;
+        const commentaire = this.commentaire.value;
+        const message = 'Bonjour IKF Auto, je recherche un véhicule utilitaire.'
+            + '%0ANom : ' + encodeURIComponent(nom)
+            + '%0ATéléphone : ' + encodeURIComponent(telephone)
+            + '%0AMa demande : ' + encodeURIComponent(commentaire);
+        window.open('https://wa.me/221703311532?text=' + message, '_blank');"
+        style="margin-top:15px;">
+
+        <label>Votre nom :</label>
+        <input type="text" name="nom" required
+            placeholder="Entrez votre nom"
+            style="width:100%;padding:10px;margin:6px 0 12px;">
+
+        <label>Votre téléphone :</label>
+        <input type="tel" name="telephone" required
+            placeholder="Votre numéro"
+            style="width:100%;padding:10px;margin:6px 0 12px;">
+
+        <label>Votre commentaire ou demande :</label>
+        <textarea name="commentaire" required
+            placeholder="Précisez le véhicule utilitaire recherché et votre budget..."
+            style="width:100%;padding:10px;margin:6px 0 12px;min-height:100px;"></textarea>
+
+        <button type="submit" class="button">
+            Envoyer ma demande
+        </button>
+    </form>
+</details>
+
         </article>
 
     </div>
