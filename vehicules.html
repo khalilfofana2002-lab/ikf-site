@@ -344,9 +344,32 @@ const donnees = {
             <p>Prix : à confirmer</p>
             <p>Ville : à préciser</p>
             <p>Photo illustrative, offre non confirmée.</p>
-            <a class="button" href="https://wa.me/221703311532?text=Bonjour%20IKF%20Auto%2C%20je%20recherche%20une%20voiture%20neuve%20%C3%A0%20acheter.">
-                Acheter une voiture neuve
-            </a>
+            <details>
+    <summary class="button" style="cursor:pointer;text-align:center;">
+        Acheter une voiture neuve
+    </summary>
+
+    <form id="form-voiture-neuve" style="margin-top:15px;">
+        <label>Votre nom :</label>
+        <input type="text" name="nom" required
+               placeholder="Entrez votre nom"
+               style="width:100%;padding:10px;margin:6px 0 12px;">
+
+        <label>Votre téléphone :</label>
+        <input type="tel" name="telephone" required
+               placeholder="Votre numéro"
+               style="width:100%;padding:10px;margin:6px 0 12px;">
+
+        <label>Votre demande :</label>
+        <textarea name="commentaire" required
+                  placeholder="Précisez votre recherche"
+                  style="width:100%;padding:10px;margin:6px 0 12px;min-height:90px;"></textarea>
+
+        <button type="submit" class="button">
+            Envoyer ma demande
+        </button>
+    </form>
+</details>
         </article>
 
         <article class="card">
@@ -607,6 +630,58 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const formulaire = document.getElementById("form-voiture-neuve");
 
+    if (!formulaire) return;
+
+    formulaire.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const nom = formulaire.querySelector('[name="nom"]').value.trim();
+        const telephone = formulaire.querySelector('[name="telephone"]').value.trim();
+        const commentaire = formulaire.querySelector('[name="commentaire"]').value.trim();
+
+        if (!nom || !telephone || !commentaire) {
+            alert("Veuillez remplir tous les champs.");
+            return;
+        }
+
+        const donnees = {
+            nom: nom,
+            telephone: telephone,
+            vehicule: "Voiture neuve à vendre",
+            typeDemande: "Achat",
+            commentaire: commentaire
+        };
+
+        const message =
+            "Bonjour IKF Auto, je recherche une voiture neuve à acheter.\n" +
+            "Nom : " + nom + "\n" +
+            "Téléphone : " + telephone + "\n" +
+            "Ma demande : " + commentaire;
+
+        window.open(
+            "https://wa.me/221703311532?text=" +
+            encodeURIComponent(message),
+            "_blank"
+        );
+
+        fetch(
+            "https://script.google.com/macros/s/AKfycbzDRtrKWrc6JhqoZiBnzuDyF7jVdh7LYRbPJuYqRRO_sNcDeoxMLtSpVbz4hdKcjeaz/exec",
+            {
+                method: "POST",
+                mode: "no-cors",
+                body: JSON.stringify(donnees)
+            }
+        ).catch(function (erreur) {
+            console.error("Erreur d'enregistrement :", erreur);
+        });
+
+        alert("Votre demande a été préparée. Vérifiez WhatsApp pour l'envoyer.");
+    });
+});
+</script>
 </body>
 </html>
