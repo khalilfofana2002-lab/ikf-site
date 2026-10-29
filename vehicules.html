@@ -210,16 +210,36 @@ footer p {
         Demander des informations
     </summary>
 
-    <form onsubmit="event.preventDefault(); 
-        const nom = this.nom.value;
-        const telephone = this.telephone.value;
-        const commentaire = this.commentaire.value;
-        const message = 'Bonjour IKF Auto, je recherche une voiture à vendre.%0ANom : ' 
-            + encodeURIComponent(nom)
-            + '%0ATéléphone : ' + encodeURIComponent(telephone)
-            + '%0AMa demande : ' + encodeURIComponent(commentaire);
-        window.open('https://wa.me/221703311532?text=' + message, '_blank');"
-        style="margin-top:15px;">
+<form onsubmit="event.preventDefault();
+    const formulaire = this;
+    const nom = formulaire.nom.value;
+    const telephone = formulaire.telephone.value;
+    const commentaire = formulaire.commentaire.value;
+
+    const donnees = {
+        nom: nom,
+        telephone: telephone,
+        vehicule: 'Voiture à vendre',
+        typeDemande: 'Achat',
+        commentaire: commentaire
+    };
+
+    fetch('https://script.google.com/macros/s/AKfycbzDRtrKWrc6JhqoZiBnzuDyF7jVdh7LYRbPJuYqRRO_sNcDeoxMLtSpVbz4hdKcjeaz/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify(donnees)
+    });
+
+    const message = 'Bonjour IKF Auto, je recherche une voiture à vendre.'
+        + '%0ANom : ' + encodeURIComponent(nom)
+        + '%0ATéléphone : ' + encodeURIComponent(telephone)
+        + '%0AMa demande : ' + encodeURIComponent(commentaire);
+
+    window.open('https://wa.me/221703311532?text=' + message, '_blank');
+    alert('Votre demande a été envoyée. Merci de contacter IKF Auto !');
+"
+    style="margin-top:15px;">
+
 
         <label>Votre nom :</label>
         <input type="text" name="nom" required
