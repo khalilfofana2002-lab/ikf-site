@@ -140,6 +140,49 @@ nav .links {
         flex-shrink: 0;
     }
 }
+    /* Formulaire des avis IKF */
+#formAvis label,
+#formAvis .titre-etoiles {
+    display: block;
+    color: #d4af37;
+    font-weight: bold;
+    margin: 18px 0 8px;
+}
+
+#formAvis input[type="text"],
+#formAvis textarea {
+    width: 100%;
+    padding: 13px;
+    background: #080808;
+    color: #f5f0df;
+    border: 1px solid #493916;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+#formAvis textarea {
+    resize: vertical;
+}
+
+.etoiles-avis {
+    display: flex;
+    gap: 10px;
+    margin: 8px 0 22px;
+}
+
+.etoiles-avis button {
+    background: none;
+    border: none;
+    color: #777;
+    font-size: 35px;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.etoiles-avis button.active {
+    color: #d4af37;
+}
 </style>
 </head>
 <body>
@@ -320,30 +363,43 @@ nav .links {
     <div class="container">
         <div class="section-head">
             <p class="eyebrow">Votre expérience compte</p>
-            <h2>Les avis de nos <span class="gold">clients</span></h2>
-            <p>Vous avez échangé avec IKF ? Partagez votre expérience et laissez-nous votre avis.</p>
+            <h2>Donnez votre <span class="gold">avis sur IKF</span></h2>
+            <p>Votre opinion nous aide à améliorer nos services.</p>
         </div>
 
         <div class="panel">
             <form id="formAvis">
-                <label for="noteAvis">Votre note :</label>
-                <select id="noteAvis" required>
-                    <option value="">Choisir une note</option>
-                    <option value="5 étoiles">⭐⭐⭐⭐⭐ — Excellent</option>
-                    <option value="4 étoiles">⭐⭐⭐⭐ — Très bien</option>
-                    <option value="3 étoiles">⭐⭐⭐ — Bien</option>
-                    <option value="2 étoiles">⭐⭐ — Moyen</option>
-                    <option value="1 étoile">⭐ — À améliorer</option>
-                </select>
+
+                <label for="nomAvis">Votre nom :</label>
+                <input
+                    type="text"
+                    id="nomAvis"
+                    placeholder="Entrez votre nom"
+                    required>
+
+                <p class="titre-etoiles">Votre note :</p>
+
+                <div class="etoiles-avis" id="etoilesAvis">
+                    <button type="button" data-note="1" aria-label="1 étoile">★</button>
+                    <button type="button" data-note="2" aria-label="2 étoiles">★</button>
+                    <button type="button" data-note="3" aria-label="3 étoiles">★</button>
+                    <button type="button" data-note="4" aria-label="4 étoiles">★</button>
+                    <button type="button" data-note="5" aria-label="5 étoiles">★</button>
+                </div>
+
+                <input type="hidden" id="noteAvis" required>
 
                 <label for="commentaireAvis">Votre commentaire :</label>
-                <textarea id="commentaireAvis" rows="4"
-                    placeholder="Écrivez votre avis ici..."
+                <textarea
+                    id="commentaireAvis"
+                    rows="4"
+                    placeholder="Racontez votre expérience avec IKF..."
                     required></textarea>
 
                 <button type="submit" class="btn primary">
-                    Envoyer mon avis
+                    Publier mon avis
                 </button>
+
             </form>
         </div>
     </div>
@@ -390,15 +446,41 @@ document.addEventListener("click", function (event) {
 });
 </script>
     <script>
+// Sélection des étoiles
+const etoiles = document.querySelectorAll("#etoilesAvis button");
+const champNote = document.getElementById("noteAvis");
+
+etoiles.forEach(function(bouton) {
+    bouton.addEventListener("click", function() {
+        const note = Number(this.dataset.note);
+        champNote.value = note;
+
+        etoiles.forEach(function(etoile) {
+            etoile.classList.toggle(
+                "active",
+                Number(etoile.dataset.note) <= note
+            );
+        });
+    });
+});
+
+// Envoi de l'avis sur WhatsApp
 document.getElementById("formAvis").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    const note = document.getElementById("noteAvis").value;
-    const commentaire = document.getElementById("commentaireAvis").value;
+    const nom = document.getElementById("nomAvis").value.trim();
+    const note = champNote.value;
+    const commentaire = document.getElementById("commentaireAvis").value.trim();
+
+    if (!note) {
+        alert("Veuillez choisir une note avec les étoiles.");
+        return;
+    }
 
     const message =
-        "Bonjour IKF, voici mon avis :\n\n" +
-        "Note : " + note + "\n" +
+        "Bonjour IKF, voici un nouvel avis :\n\n" +
+        "Nom : " + nom + "\n" +
+        "Note : " + note + "/5 étoiles\n" +
         "Commentaire : " + commentaire;
 
     const lien = "https://wa.me/221703311532?text=" + encodeURIComponent(message);
