@@ -463,28 +463,60 @@ etoiles.forEach(function(bouton) {
     });
 });
 
-// Envoi de l'avis sur WhatsApp
-document.getElementById("formAvis").addEventListener("submit", function(event) {
+// Enregistrement de l'avis dans Google Sheets et envoi WhatsApp
+document.getElementById("formAvis").addEventListener("submit", async function(event) {
     event.preventDefault();
 
     const nom = document.getElementById("nomAvis").value.trim();
-    const note = champNote.value;
+    const note = Number(champNote.value);
     const commentaire = document.getElementById("commentaireAvis").value.trim();
 
-    if (!note) {
+    if (!note || note < 1 || note > 5) {
         alert("Veuillez choisir une note avec les étoiles.");
         return;
     }
 
+    const avis = {
+        nom: nom,
+        note: note,
+        commentaire: commentaire
+    };
+
     const message =
-        "Bonjour IKF, voici un nouvel avis :\n\n" +
+        "Nouvel avis client IKF\n\n" +
         "Nom : " + nom + "\n" +
         "Note : " + note + "/5 étoiles\n" +
         "Commentaire : " + commentaire;
 
-    const lien = "https://wa.me/221703311532?text=" + encodeURIComponent(message);
+    // Ouvrir WhatsApp avec le message préparé
+    const lienWhatsApp =
+        "https://wa.me/221703311532?text=" + encodeURIComponent(message);
 
-    window.open(lien, "_blank");
+    window.open(lienWhatsApp, "_blank");
+
+    // Enregistrer également dans Google Sheets
+    try {
+        await fetch("https://script.google.com/macros/s/AKfycbwMBJ1x65mEQG-Rn2tpRurBQ3VxEuhCvIP-xJdE2gMxgF6ARl-DqVTF4mrsfTSQG5yA/exec", {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify(avis)
+        });
+
+        alert("Merci ! Votre avis a été envoyé pour validation.");
+
+        document.getElementById("formAvis").reset();
+        champNote.value = "";
+
+        etoiles.forEach(function(etoile) {
+            etoile.classList.remove("active");
+        });
+
+    } catch (erreur) {
+        alert("L'envoi vers Google Sheets a rencontré un problème. Vérifiez votre connexion.");
+    }
 });
 </script>
 </body>
