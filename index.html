@@ -185,12 +185,25 @@ nav .links {
 <section class="hero" id="accueil">
 <div class="hero-inner">
 <div class="logo-container"><img src="logo-ikf.png" alt="Logo officiel IKF" class="logo-ikf"></div>
-<p class="eyebrow">Entrepreneuriat · Projets · Opportunités</p>
-<h1>Une vision ambitieuse.<span class="gold">Une discipline constante.</span>Un avenir à construire.</h1>
-<p class="lead">Je suis Ibrahima Khaliloulaye Fofana. À travers IKF, je construis progressivement un univers professionnel tourné vers l’entrepreneuriat, l’immobilier, le commerce et les opportunités du numérique.</p>
+<p class="eyebrow">BIENVENUE DANS L'UNIVERS IKF</p>
+
+<h1>
+    Des ambitions fortes.
+    <span class="gold">Des solutions concrètes.</span>
+</h1>
+
+<p class="lead">
+    IKF rassemble des initiatives dans l’immobilier, l’automobile,
+    le commerce et le numérique pour vous accompagner dans vos projets
+    et vous rapprocher de nouvelles opportunités.
+</p>
 <p class="motto">TRAVAIL · DISCIPLINE · RÉUSSITE</p>
 <p class="muted">Des idées à structurer, des projets à développer et des relations professionnelles à bâtir sur la confiance.</p>
-<div class="actions"><a class="btn primary" href="#services">Découvrir mes services</a><a class="btn" href="https://wa.me/221703311532?text=Bonjour%20IKF%2C%20je%20souhaite%20discuter%20d%E2%80%99un%20projet." target="_blank" rel="noopener noreferrer">Discuter de votre projet</a></div>
+<div class="actions">
+    <a class="btn primary" href="#apropos">À propos de moi</a>
+    <a class="btn" href="#services">Nos services</a>
+    <a class="btn" href="#contact">Me contacter</a>
+    <a class="btn" href="#reseaux">Mes réseaux sociaux</a>
 </div>
 </section>
 <section id="apropos">
@@ -286,6 +299,55 @@ nav .links {
 </div>
 </div>
 </section>
+    <section id="reseaux">
+    <div class="container">
+        <div class="section-head">
+            <p class="eyebrow">Restons connectés</p>
+            <h2>Retrouvez IKF sur <span class="gold">les réseaux sociaux</span></h2>
+            <p>Suivez nos actualités, nos projets et nos nouvelles opportunités.</p>
+        </div>
+
+        <div class="actions">
+            <a class="btn" href="https://www.facebook.com/share/19xxNopGWa/" target="_blank" rel="noopener noreferrer">Facebook</a>
+
+            <a class="btn" href="https://www.instagram.com/ikfbissness/" target="_blank" rel="noopener noreferrer">Instagram</a>
+
+            <a class="btn" href="https://www.tiktok.com/@ikfbissness" target="_blank" rel="noopener noreferrer">TikTok</a>
+        </div>
+    </div>
+</section>
+    <section id="avis">
+    <div class="container">
+        <div class="section-head">
+            <p class="eyebrow">Votre expérience compte</p>
+            <h2>Les avis de nos <span class="gold">clients</span></h2>
+            <p>Vous avez échangé avec IKF ? Partagez votre expérience et laissez-nous votre avis.</p>
+        </div>
+
+        <div class="panel">
+            <form id="formAvis">
+                <label for="noteAvis">Votre note :</label>
+                <select id="noteAvis" required>
+                    <option value="">Choisir une note</option>
+                    <option value="5 étoiles">⭐⭐⭐⭐⭐ — Excellent</option>
+                    <option value="4 étoiles">⭐⭐⭐⭐ — Très bien</option>
+                    <option value="3 étoiles">⭐⭐⭐ — Bien</option>
+                    <option value="2 étoiles">⭐⭐ — Moyen</option>
+                    <option value="1 étoile">⭐ — À améliorer</option>
+                </select>
+
+                <label for="commentaireAvis">Votre commentaire :</label>
+                <textarea id="commentaireAvis" rows="4"
+                    placeholder="Écrivez votre avis ici..."
+                    required></textarea>
+
+                <button type="submit" class="btn primary">
+                    Envoyer mon avis
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
 <section id="contact">
 <div class="container">
 <div class="section-head"><p class="eyebrow">Entrons en contact</p><h2>Votre prochain projet commence <span class="gold">par une conversation</span></h2><p>Présentez votre besoin ou votre idée. Je vous répondrai pour que nous puissions en discuter.</p></div>
@@ -325,6 +387,23 @@ document.addEventListener("click", function (event) {
         menuDeroulant.classList.remove("ouvert");
         boutonMenu.setAttribute("aria-expanded", "false");
     }
+});
+</script>
+    <script>
+document.getElementById("formAvis").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const note = document.getElementById("noteAvis").value;
+    const commentaire = document.getElementById("commentaireAvis").value;
+
+    const message =
+        "Bonjour IKF, voici mon avis :\n\n" +
+        "Note : " + note + "\n" +
+        "Commentaire : " + commentaire;
+
+    const lien = "https://wa.me/221703311532?text=" + encodeURIComponent(message);
+
+    window.open(lien, "_blank");
 });
 </script>
 </body>
