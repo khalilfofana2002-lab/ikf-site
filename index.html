@@ -527,6 +527,47 @@ document.getElementById("formAvis").addEventListener("submit", async function(ev
         alert("L'envoi vers Google Sheets a rencontré un problème. Vérifiez votre connexion.");
     }
 });
+      // Afficher les avis validés sur le site IKF
+(function() {
+    const liste = document.getElementById("listeAvis");
+
+    const adresse = "https://script.google.com/macros/s/AKfycbwMBJ1x65mEQG-Rn2tpRurBQ3VxEuhCvIP-xJdE2gMxgF6ARl-DqVTF4mrsfTSQG5yA/exec";
+
+    window.afficherAvisIKF = function(avis) {
+        liste.replaceChildren();
+
+        if (!avis || avis.length === 0) {
+            liste.textContent = "Aucun avis publié pour le moment.";
+            return;
+        }
+
+        avis.forEach(function(item) {
+            const carte = document.createElement("div");
+            carte.className = "panel";
+
+            const nom = document.createElement("h4");
+            nom.textContent = item.nom;
+
+            const etoiles = document.createElement("p");
+            etoiles.textContent = "★".repeat(Number(item.note)) + "☆".repeat(5 - Number(item.note));
+            etoiles.style.color = "#d4af37";
+
+            const commentaire = document.createElement("p");
+            commentaire.textContent = item.commentaire;
+
+            carte.append(nom, etoiles, commentaire);
+            liste.appendChild(carte);
+        });
+    };
+
+    const script = document.createElement("script");
+    script.src = adresse + "?callback=afficherAvisIKF";
+    script.onerror = function() {
+        liste.textContent = "Impossible de charger les avis pour le moment.";
+    };
+
+    document.body.appendChild(script);
+})();  
 </script>
 </body>
 </html>
